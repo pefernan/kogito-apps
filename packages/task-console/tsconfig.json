@@ -1,4 +1,9 @@
 {
+    "compilerOptions": {
+        "paths": {
+            "uniforms": ["/node_modules/uniforms/es5"]
+        }
+    },
     "extends": "../../tsconfig.json",
     "include": [
         "src/**/*.ts",

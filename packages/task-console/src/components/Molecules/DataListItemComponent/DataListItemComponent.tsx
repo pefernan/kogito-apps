@@ -1,17 +1,20 @@
 import Moment from 'react-moment';
-import React, {useCallback, useState, useEffect} from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import {
   Alert,
   AlertActionCloseButton,
   Button,
   DataListAction,
   DataListCell,
+  DataListContent,
   DataListItem,
   DataListItemCells,
   DataListItemRow,
+  DataListToggle
 } from '@patternfly/react-core';
-import {useGetProcessInstanceByIdLazyQuery} from '../../../graphql/types';
-import axios from "axios";
+import { useGetProcessInstanceByIdLazyQuery } from '../../../graphql/types';
+import axios from 'axios';
+import TaskForm from '../FormRenderer/TaskForm';
 
 /* tslint:disable:no-string-literal */
 
@@ -22,8 +25,8 @@ interface IUserTaskInstance {
   priority: string;
   processInstanceId: string;
   processId: string;
-  rootProcessInstanceId,
-  rootProcessId,
+  rootProcessInstanceId;
+  rootProcessId;
   state: string;
   actualOwner: string;
   adminGroups: string;
@@ -46,13 +49,17 @@ export interface IOwnProps {
 const DataListItemComponent: React.FC<IOwnProps> = ({
   userTaskInstanceData
 }) => {
+  const [expanded, setexpanded] = useState(false);
   const [isPiLoaded, setPiLoaded] = useState(false);
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertTitle, setAlertTitle] = useState('');
   const [alertType, setAlertType] = useState(null);
   const [alertMessage, setAlertMessage] = useState('');
 
-  const [getProcessInstance, {loading,data}] = useGetProcessInstanceByIdLazyQuery({
+  const [
+    getProcessInstance,
+    { loading, data }
+  ] = useGetProcessInstanceByIdLazyQuery({
     fetchPolicy: 'network-only'
   });
 
@@ -64,29 +71,33 @@ const DataListItemComponent: React.FC<IOwnProps> = ({
       const processInstanceId = userTaskInstanceData.processInstanceId;
 
       try {
-         // @ts-ignore
-        const result = await axios.post(`${_endpoint}/${processId}/${processInstanceId}/${taskReferenceName}/${taskId}`,
+        // @ts-ignore
+        const result = await axios.post(
+          `${_endpoint}/${processId}/${processInstanceId}/${taskReferenceName}/${taskId}`,
           {},
           {
             headers: {
               'Content-Type': 'application/json',
-              'Accept': 'application/json',
-              'crossorigin': 'true',
+              Accept: 'application/json',
+              crossorigin: 'true',
               'Access-Control-Allow-Origin': '*'
             }
-          });
+          }
+        );
         setAlertTitle('Executing task');
         setAlertType('success');
         setAlertMessage(
-          'Task has successfully executed.' + `${_endpoint}/${processId}/${processInstanceId}/${taskReferenceName}/${taskId}`
+          'Task has successfully executed.' +
+            `${_endpoint}/${processId}/${processInstanceId}/${taskReferenceName}/${taskId}`
         );
         setAlertVisible(true);
       } catch (error) {
         setAlertTitle('Executing task');
         setAlertType('danger');
         setAlertMessage(
-          'Task execution failed. Message: ' + `${_endpoint}/${processId}/${processInstanceId}/${taskReferenceName}/${taskId}` +
-          JSON.stringify(error.message)
+          'Task execution failed. Message: ' +
+            `${_endpoint}/${processId}/${processInstanceId}/${taskReferenceName}/${taskId}` +
+            JSON.stringify(error.message)
         );
         setAlertVisible(true);
       }
@@ -104,7 +115,7 @@ const DataListItemComponent: React.FC<IOwnProps> = ({
         id: userTaskInstanceData.processInstanceId
       }
     });
-    setPiLoaded(true)
+    setPiLoaded(true);
   }
 
   useEffect(() => {
@@ -119,29 +130,37 @@ const DataListItemComponent: React.FC<IOwnProps> = ({
         <Alert
           variant={alertType}
           title={alertTitle}
-          action={<AlertActionCloseButton onClose={() => closeAlert()}/>}
+          action={<AlertActionCloseButton onClose={() => closeAlert()} />}
         >
           {alertMessage}
         </Alert>
       )}
-      <DataListItem
-        aria-labelledby="kie-datalist-item"
-      >
+      <DataListItem aria-labelledby="kie-datalist-item">
         <DataListItemRow>
+          <DataListToggle
+            onClick={() => setexpanded(!expanded)}
+            isExpanded={expanded}
+            id={'kie-datalist-toggle-' + userTaskInstanceData.id}
+            aria-controls="kie-datalist-expand"
+          />
           <DataListItemCells
             dataListCells={[
-              <DataListCell key={1}>
-                {userTaskInstanceData.name}
-              </DataListCell>,
+              <DataListCell key={1}>{userTaskInstanceData.name}</DataListCell>,
               <DataListCell key={2}>
                 {userTaskInstanceData.started ? (
-                  <Moment fromNow>{new Date(`${userTaskInstanceData.started}`)}</Moment>
+                  <Moment fromNow>
+                    {new Date(`${userTaskInstanceData.started}`)}
+                  </Moment>
                 ) : (
                   ''
                 )}
               </DataListCell>,
-              <DataListCell key={3}>{userTaskInstanceData.processId}</DataListCell>,
-              <DataListCell key={4}>{userTaskInstanceData.processInstanceId}</DataListCell>,
+              <DataListCell key={3}>
+                {userTaskInstanceData.processId}
+              </DataListCell>,
+              <DataListCell key={4}>
+                {userTaskInstanceData.processInstanceId}
+              </DataListCell>,
               <DataListCell key={5}>{userTaskInstanceData.state}</DataListCell>
             ]}
           />
@@ -151,20 +170,39 @@ const DataListItemComponent: React.FC<IOwnProps> = ({
             id="kie-datalist-action"
             aria-label="Actions"
           >
-            <Button variant="secondary"
-                    isDisabled={!isPiLoaded}
-                    onClick={() =>
-                      handleExecuteTask(
-                        userTaskInstanceData.id,
-                        userTaskInstanceData.referenceName,
-                        userTaskInstanceData.processId,
-                        userTaskInstanceData.processInstanceId,
-                        data.ProcessInstances[0].endpoint
-                      )
-                    }
-            > Complete </Button>
+            <Button
+              variant="secondary"
+              isDisabled={!isPiLoaded}
+              onClick={() =>
+                handleExecuteTask(
+                  userTaskInstanceData.id,
+                  userTaskInstanceData.referenceName,
+                  userTaskInstanceData.processId,
+                  userTaskInstanceData.processInstanceId,
+                  data.ProcessInstances[0].endpoint
+                )
+              }
+            >
+              {' '}
+              Complete{' '}
+            </Button>
           </DataListAction>
         </DataListItemRow>
+        <DataListContent
+          aria-label="content"
+          id={'kie-datalist-expand-' + userTaskInstanceData.id}
+          isHidden={!expanded}
+        >
+          {expanded ? (
+            <React.Fragment>
+              <h1>Content: {userTaskInstanceData.name}</h1>
+              <TaskForm
+                task={userTaskInstanceData}
+                afterSubmit={() => alert('Submit!')}
+              />
+            </React.Fragment>
+          ) : null}
+        </DataListContent>
       </DataListItem>
     </React.Fragment>
   );
