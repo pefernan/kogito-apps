@@ -1,5 +1,11 @@
 import React from 'react';
-import { AutoFields, AutoForm, ErrorsField } from 'uniforms-patternfly';
+// @ts-ignore
+import {
+  AutoFields,
+  AutoForm,
+  DateField,
+  ErrorsField
+} from 'uniforms-patternfly';
 
 import Ajv from 'ajv';
 import JSONSchemaBridge from 'uniforms-bridge-json-schema';
@@ -44,15 +50,16 @@ const FormRenderer: React.FC<IOwnProps> = ({
 
   const schemaValidator = createValidator();
 
+  const formSchema = new JSONSchemaBridge(schema, schemaValidator);
   return (
     <div>
       <h1>{title}</h1>
       <AutoForm
-        schema={new JSONSchemaBridge(schema, schemaValidator)}
+        schema={formSchema}
         model={model}
         disabled={!enabled}
         showInlineError
-        placeHolder
+        placeholder
         onSubmit={formModel =>
           formAction ? formAction.onSubmit(formModel) : null
         }
@@ -65,6 +72,7 @@ const FormRenderer: React.FC<IOwnProps> = ({
                 return (
                   <Button
                     key={'submit-' + action.id}
+                    type="submit"
                     variant="primary"
                     onClick={() => (formAction = action)}
                   >

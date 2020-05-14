@@ -76,6 +76,7 @@ const TaskForm: React.FC<IOwnProps> = ({ task, afterSubmit }) => {
           clearAfterSubmit: formAction.reload,
           onSubmit: (model: any) => {
             window.alert('Submiting action: ' + formAction.name);
+            window.alert('data:  ' + JSON.stringify(model, null, 2));
 
             if (formAction.reload) {
               afterSubmit();
