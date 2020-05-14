@@ -1,11 +1,5 @@
 import React from 'react';
-// @ts-ignore
-import {
-  AutoFields,
-  AutoForm,
-  DateField,
-  ErrorsField
-} from 'uniforms-patternfly';
+import { AutoFields, AutoForm, ErrorsField } from 'uniforms-patternfly';
 
 import Ajv from 'ajv';
 import JSONSchemaBridge from 'uniforms-bridge-json-schema';

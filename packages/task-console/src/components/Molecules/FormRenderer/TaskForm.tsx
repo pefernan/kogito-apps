@@ -3,6 +3,7 @@ import SpinnerComponent from '../../Atoms/SpinnerComponent/SpinnerComponent';
 import FormRenderer, { IFormAction } from './FormRenderer';
 import EmptyStateComponent from '../../Atoms/EmptyStateComponent/EmptyStateComponent';
 import ConfirmTravelForm from './ConfirmTravel';
+import { isEmpty } from 'lodash';
 
 interface IUserTaskInstance {
   id: string;
@@ -41,7 +42,6 @@ interface IFormActionDescription {
 
 export interface ITaskFormDescription {
   schema: any;
-  model?: any;
   actions?: IFormActionDescription[];
 }
 
@@ -74,6 +74,7 @@ const TaskForm: React.FC<IOwnProps> = ({ task, afterSubmit }) => {
           id: formAction.name,
           label: formAction.name,
           clearAfterSubmit: formAction.reload,
+          // tslint:disable-next-line:no-shadowed-variable
           onSubmit: (model: any) => {
             window.alert('Submiting action: ' + formAction.name);
             window.alert('data:  ' + JSON.stringify(model, null, 2));
@@ -86,11 +87,15 @@ const TaskForm: React.FC<IOwnProps> = ({ task, afterSubmit }) => {
       }
     );
 
+    const outputs = JSON.parse(task.outputs);
+
+    const model = !isEmpty(outputs) ? outputs : JSON.parse(task.inputs);
+
     return (
       <FormRenderer
         title={task.name}
         schema={taskFormDescription.schema}
-        model={taskFormDescription.model}
+        model={model}
         actions={actions}
       />
     );

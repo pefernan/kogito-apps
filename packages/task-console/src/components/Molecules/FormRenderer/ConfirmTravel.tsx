@@ -1,4 +1,5 @@
 import { ITaskFormDescription } from './TaskForm';
+// import { LongTextField } from 'uniforms-patternfly';
 
 const ConfirmTravelForm: ITaskFormDescription = {
   schema: {
@@ -44,6 +45,9 @@ const ConfirmTravelForm: ITaskFormDescription = {
               street: {
                 type: 'string',
                 disabled: false
+                /*uniforms: {
+                  component: LongTextField
+                }*/
               },
               city: {
                 type: 'string',
@@ -73,26 +77,6 @@ const ConfirmTravelForm: ITaskFormDescription = {
           }
         }
       }
-    }
-  },
-
-  model: {
-    flight: {
-      flightNumber: 'EK256',
-      seat: '26E',
-      gate: '12'
-    },
-    hotel: {
-      name: 'Sarovar Portico Outer Ring Road',
-      address: {
-        street: '39/5, Marathahalli Outer Ring Road',
-        city: 'Bengaluru',
-        zipCode: '560037',
-        country: 'India'
-      },
-      phone: '+91 80672 05000',
-      bookingNumber: '1234567890',
-      room: '19'
     }
   },
 
