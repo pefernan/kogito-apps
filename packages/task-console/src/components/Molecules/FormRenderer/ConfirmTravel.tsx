@@ -22,13 +22,34 @@ const ConfirmTravelForm: ITaskFormDescription = {
           },
           departure: {
             type: 'string',
-            format: 'date',
+            format: 'date-time',
             disabled: false
           },
           arrival: {
             type: 'string',
-            format: 'date',
+            format: 'date-time',
             disabled: false
+          }
+        },
+        disabled: true
+      },
+      alias: {
+        type: 'array',
+        items: {
+          type: 'string',
+          uniforms: {
+            title: 'New Alias',
+            placeholder: 'Alias'
+          }
+        }
+      },
+      objects: {
+        type: 'array',
+        items: {
+          type: 'object',
+          properties: {
+            name: { type: 'string' },
+            lastName: { type: 'string' }
           }
         }
       },

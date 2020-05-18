@@ -198,6 +198,7 @@ const DataListItemComponent: React.FC<IOwnProps> = ({
               <h1>Content: {userTaskInstanceData.name}</h1>
               <TaskForm
                 task={userTaskInstanceData}
+                processInstance={data.ProcessInstances[0]}
                 afterSubmit={() => alert('Submit!')}
               />
             </React.Fragment>

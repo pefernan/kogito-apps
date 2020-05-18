@@ -1,10 +1,9 @@
 import React from 'react';
-import { AutoFields, AutoForm, ErrorsField } from 'uniforms-patternfly';
 
 import Ajv from 'ajv';
 import JSONSchemaBridge from 'uniforms-bridge-json-schema';
-import { ActionGroup } from '@patternfly/react-core/dist/js/components/Form/ActionGroup';
-import { Button } from '@patternfly/react-core';
+import { Button, ActionGroup } from '@patternfly/react-core';
+import { AutoFields, AutoForm, ErrorsField } from 'uniforms-patternfly';
 
 export interface IFormAction {
   id: string;
@@ -50,7 +49,7 @@ const FormRenderer: React.FC<IOwnProps> = ({
       <h1>{title}</h1>
       <AutoForm
         schema={formSchema}
-        model={model}
+        model={{ alias: [], objects: [] }}
         disabled={!enabled}
         showInlineError
         placeholder
@@ -59,7 +58,7 @@ const FormRenderer: React.FC<IOwnProps> = ({
         }
       >
         <AutoFields />
-        <ErrorsField />
+        <ErrorsField name="name" />
         <ActionGroup>
           {actions
             ? actions.map(action => {

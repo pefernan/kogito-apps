@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import SpinnerComponent from '../../Atoms/SpinnerComponent/SpinnerComponent';
 import FormRenderer, { IFormAction } from './FormRenderer';
 import EmptyStateComponent from '../../Atoms/EmptyStateComponent/EmptyStateComponent';
 import ConfirmTravelForm from './ConfirmTravel';
 import { isEmpty } from 'lodash';
+import axios from 'axios';
 
 interface IUserTaskInstance {
   id: string;
@@ -28,8 +29,16 @@ interface IUserTaskInstance {
   referenceName: string;
 }
 
+interface IProcessInstance {
+  id: string;
+  processId: string;
+  processName?: string;
+  endpoint: string;
+}
+
 interface IOwnProps {
   task: IUserTaskInstance;
+  processInstance: IProcessInstance;
   afterSubmit: () => void;
 }
 
@@ -45,12 +54,72 @@ export interface ITaskFormDescription {
   actions?: IFormActionDescription[];
 }
 
-const TaskForm: React.FC<IOwnProps> = ({ task, afterSubmit }) => {
+const TaskForm: React.FC<IOwnProps> = ({
+  task,
+  processInstance,
+  afterSubmit
+}) => {
   const [loading, setLoading] = useState(true);
   const [taskFormDescription, setTaskFormDescription]: [
     ITaskFormDescription,
     any
   ] = useState(null);
+
+  const handleExecuteTask = useCallback(
+    async (formModel, afterSubmitAction) => {
+      const taskId = task.id;
+      const taskReferenceName = task.referenceName;
+      const processInstanceId = task.processInstanceId;
+      const endpoint = processInstance.endpoint;
+
+      const url = `${endpoint}/${processInstanceId}/${taskReferenceName}/${taskId}`;
+
+      delete formModel.NodeName;
+      delete formModel.Priority;
+      delete formModel.Skippable;
+      delete formModel.TaskName;
+      delete formModel.hotel;
+
+      const data = JSON.stringify(formModel);
+      try {
+        // @ts-ignore
+        const result = await axios.post(url, data, {
+          headers: {
+            /*'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'crossorigin': 'true',
+              'Access-Control-Allow-Origin': '*'*/
+            'Content-Type': 'application/json;charset=UTF-8',
+            'Access-Control-Allow-Origin': '*'
+          }
+        });
+        alert('done!' + result);
+
+        if (afterSubmitAction) {
+          afterSubmitAction();
+        }
+        /*
+        setAlertTitle('Executing task');
+        setAlertType('success');
+        setAlertMessage(
+          'Task has successfully executed.' +
+          `${_endpoint}/${processId}/${processInstanceId}/${taskReferenceName}/${taskId}`
+        );
+        setAlertVisible(true);*/
+      } catch (error) {
+        alert('Error: ' + error);
+        /*setAlertTitle('Executing task');
+        setAlertType('danger');
+        setAlertMessage(
+          'Task execution failed. Message: ' +
+          `${_endpoint}/${processId}/${processInstanceId}/${taskReferenceName}/${taskId}` +
+          JSON.stringify(error.message)
+        );
+        setAlertVisible(true);*/
+      }
+    },
+    []
+  );
 
   const loadForm = () => {
     if (task.name === 'Confirm travel') {
@@ -75,13 +144,12 @@ const TaskForm: React.FC<IOwnProps> = ({ task, afterSubmit }) => {
           label: formAction.name,
           clearAfterSubmit: formAction.reload,
           // tslint:disable-next-line:no-shadowed-variable
-          onSubmit: (model: any) => {
-            window.alert('Submiting action: ' + formAction.name);
-            window.alert('data:  ' + JSON.stringify(model, null, 2));
-
-            if (formAction.reload) {
-              afterSubmit();
-            }
+          onSubmit: (formModel: any) => {
+            handleExecuteTask(formModel, () => {
+              if (formAction.reload) {
+                afterSubmit();
+              }
+            });
           }
         };
       }
