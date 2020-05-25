@@ -1,5 +1,5 @@
 import Moment from 'react-moment';
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, useContext } from 'react';
 import {
   Alert,
   AlertActionCloseButton,
@@ -12,6 +12,11 @@ import {
 } from '@patternfly/react-core';
 import { useGetProcessInstanceByIdLazyQuery } from '../../../graphql/types';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import TaskConsoleContext, {
+  IContext
+} from '../../../context/TaskConsoleContext/TaskConsoleContext';
+import { TaskInfo } from '../../../model/TaskInfo';
 
 /* tslint:disable:no-string-literal */
 
@@ -58,6 +63,8 @@ const DataListItemComponent: React.FC<IOwnProps> = ({
   ] = useGetProcessInstanceByIdLazyQuery({
     fetchPolicy: 'network-only'
   });
+
+  const context: IContext<TaskInfo> = useContext(TaskConsoleContext);
 
   const handleExecuteTask = useCallback(
     async (_taskID, _taskReferenceName, _processID, _instanceID, _endpoint) => {
@@ -176,6 +183,17 @@ const DataListItemComponent: React.FC<IOwnProps> = ({
               {' '}
               Complete{' '}
             </Button>
+            <Link
+              to={'/Task/' + userTaskInstanceData.id}
+              onClick={() =>
+                context.setActiveItem({
+                  task: userTaskInstanceData,
+                  processInstance: data.ProcessInstances[0]
+                })
+              }
+            >
+              Open Form
+            </Link>
           </DataListAction>
         </DataListItemRow>
       </DataListItem>

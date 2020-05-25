@@ -6,9 +6,13 @@ import {
   InjectedOuiaProps,
   withOuiaContext
 } from '@patternfly/react-core';
-import { PageLayout, ouiaAttribute } from '@kogito-apps/common';
-import { Redirect, Route, Link, Switch } from 'react-router-dom';
+import { PageLayout } from '@kogito-apps/common/src/components';
+import { Redirect, Route, Link, Switch, BrowserRouter } from 'react-router-dom';
 import taskConsoleLogo from '../../../static/taskConsoleLogo.svg';
+
+import UserTaskInstanceDetailsPage from '../UserTaskInstanceDetailsPage/UserTaskInstanceDetailsPage';
+import TaskConsoleContextProvider from '../../../context/TaskConsoleContext/TaskConsoleContextProvider';
+import { ouiaAttribute } from '@kogito-apps/common';
 import DataListContainerExpandable from '../DataListContainerExpandable/DataListContainerExpandable';
 import DataListContainer from '../DataListContainer/DataListContainer';
 import { Location, History } from 'history';
@@ -65,15 +69,30 @@ const PageLayoutComponent: React.FC<IOwnProps & InjectedOuiaProps> = ({
       BrandAltText="Task Console Logo"
       BrandClick={BrandClick}
     >
-      <Switch>
-        <Route exact path="/" render={() => <Redirect to="/UserTasks" />} />
-        <Route
-          exact
-          path="/UserTasks"
-          component={DataListContainerExpandable}
-        />
-        <Route exact path="/UserTasksFilters" component={DataListContainer} />
-      </Switch>
+      <TaskConsoleContextProvider>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" render={() => <Redirect to="/UserTasks" />} />
+            <Route
+              exact
+              path="/UserTasks"
+              component={DataListContainerExpandable}
+            />
+            <Route
+              exact
+              path="/UserTasksFilters"
+              component={DataListContainer}
+            />
+            <Route
+              exact
+              path="/Task/:taskId"
+              render={routeProps => (
+                <UserTaskInstanceDetailsPage {...routeProps} />
+              )}
+            />
+          </Switch>
+        </BrowserRouter>
+      </TaskConsoleContextProvider>
     </PageLayout>
   );
 };
