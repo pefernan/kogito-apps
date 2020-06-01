@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import {
   Breadcrumb,
   BreadcrumbItem,
-  PageSection
+  PageSection,
+  withOuiaContext
 } from '@patternfly/react-core';
 import TaskConsoleContext, {
   IContext
@@ -13,9 +14,10 @@ import { TaskInfo } from '../../../model/TaskInfo';
 import TaskFormComponent from '../../Organisms/TaskFormComponent/TaskFormComponent';
 
 const UserTaskInstanceDetailsPage = props => {
-  const id = props.match.params.taskId;
 
   const context: IContext<TaskInfo> = useContext(TaskConsoleContext);
+
+  const taskInfo = context.getActiveItem();
 
   return (
     <PageSection variant="light">
@@ -25,19 +27,9 @@ const UserTaskInstanceDetailsPage = props => {
           <Link to={'/'}>Home</Link>
         </BreadcrumbItem>
       </Breadcrumb>
-      <h1>Task Id: {id}</h1>
-      {
-        <div>
-          <TaskFormComponent taskInfo={context.getActiveItem()} />
-          <h2>task: {context.getActiveItem().task.name}</h2>
-          <h2>
-            process: {context.getActiveItem().processInstance.processName}
-          </h2>
-          <h2>endpoint: {context.getActiveItem().processInstance.endpoint}</h2>
-        </div>
-      }
+      <TaskFormComponent taskInfo={taskInfo} successCallback={() => alert("success")} errorCallback={() => alert("error")} />
     </PageSection>
   );
 };
 
-export default UserTaskInstanceDetailsPage;
+export default withOuiaContext(UserTaskInstanceDetailsPage);

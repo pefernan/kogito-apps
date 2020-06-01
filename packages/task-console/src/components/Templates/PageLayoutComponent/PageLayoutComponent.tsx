@@ -6,16 +6,15 @@ import {
   InjectedOuiaProps,
   withOuiaContext
 } from '@patternfly/react-core';
-import { PageLayout } from '@kogito-apps/common/src/components';
 import { Redirect, Route, Link, Switch, BrowserRouter } from 'react-router-dom';
 import taskConsoleLogo from '../../../static/taskConsoleLogo.svg';
 
 import UserTaskInstanceDetailsPage from '../UserTaskInstanceDetailsPage/UserTaskInstanceDetailsPage';
 import TaskConsoleContextProvider from '../../../context/TaskConsoleContext/TaskConsoleContextProvider';
-import { ouiaAttribute } from '@kogito-apps/common';
 import DataListContainerExpandable from '../DataListContainerExpandable/DataListContainerExpandable';
 import DataListContainer from '../DataListContainer/DataListContainer';
 import { Location, History } from 'history';
+import { ouiaAttribute, PageLayout } from '@kogito-apps/common';
 
 interface IOwnProps {
   location: Location;

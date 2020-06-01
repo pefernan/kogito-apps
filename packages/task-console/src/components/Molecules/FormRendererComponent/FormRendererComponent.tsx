@@ -4,6 +4,7 @@ import Ajv from 'ajv';
 import JSONSchemaBridge from 'uniforms-bridge-json-schema';
 import { Button, ActionGroup } from '@patternfly/react-core';
 import { AutoFields, AutoForm, ErrorsField } from 'uniforms-patternfly';
+import ModelConversionTool from '../../../util/ModelConversionTool';
 
 export interface IFormAction {
   id: string;
@@ -67,7 +68,7 @@ const FormRendererComponent: React.FC<IOwnProps> = ({ form }) => {
   const createValidator = schema => {
     const validator = ajv.compile(schema);
     return model => {
-      const newModel = convertDataBeforeValidate(model, schema);
+      const newModel = ModelConversionTool.convertDateToString(model, schema);
       validator(newModel);
 
       if (validator.errors && validator.errors.length) {
@@ -85,12 +86,14 @@ const FormRendererComponent: React.FC<IOwnProps> = ({ form }) => {
     createValidator(form.schema)
   );
 
+  const formData = ModelConversionTool.convertStringToDate(form.model, form.schema);
+
   let formAction;
 
   return (
     <AutoForm
       placeholder
-      model={form.model}
+      model={formData}
       disabled={!enabled}
       schema={bridge}
       onSubmit={formModel =>

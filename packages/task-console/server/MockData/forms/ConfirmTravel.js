@@ -1,5 +1,3 @@
-import { FormDescription } from '../../../../model/FormDescription';
-
 const schema = {
   type: 'object',
   properties: {
@@ -64,7 +62,8 @@ const schema = {
   }
 };
 
-const ConfirmTravelForm: FormDescription = {
+
+module.exports = ConfirmTravelForm = {
   schema: JSON.stringify(schema),
 
   actions: [
@@ -75,12 +74,16 @@ const ConfirmTravelForm: FormDescription = {
       outputs: []
     },
     {
-      name: 'Confirm',
+      name: 'Release',
       endpoint: 'blabla',
       primary: false,
-      outputs: ['flight', 'hotel']
+      outputs: []
+    },
+    {
+      name: 'Whatever',
+      endpoint: 'blabla',
+      primary: true,
+      outputs: []
     }
   ]
 };
-
-export default ConfirmTravelForm;
