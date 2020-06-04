@@ -1,10 +1,10 @@
 import React from 'react';
 
 import Ajv from 'ajv';
-import JSONSchemaBridge from 'uniforms-bridge-json-schema';
 import { Button, ActionGroup } from '@patternfly/react-core';
 import { AutoFields, AutoForm, ErrorsField } from 'uniforms-patternfly';
 import ModelConversionTool from '../../../util/ModelConversionTool';
+import JSONSchemaBridge from 'uniforms-bridge-json-schema';
 
 export interface IFormAction {
   id: string;
@@ -86,7 +86,10 @@ const FormRendererComponent: React.FC<IOwnProps> = ({ form }) => {
     createValidator(form.schema)
   );
 
-  const formData = ModelConversionTool.convertStringToDate(form.model, form.schema);
+  const formData = ModelConversionTool.convertStringToDate(
+    form.model,
+    form.schema
+  );
 
   let formAction;
 

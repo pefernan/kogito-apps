@@ -1,3 +1,4 @@
+const fs = require('fs');
 const confirmTravelForm = require('./forms/ConfirmTravel');
 const applyForVisaForm = require('./forms/ApplyForVisa');
 
@@ -48,10 +49,6 @@ module.exports = controller = {
       return err.taskId === req.params.taskId;
     });
 
-    restData.t
-
-    console.log(task[0]);
-
     Object.keys(task[0]).forEach(key => {
       console.log(key + ": " + task[0][key])
     });
@@ -61,5 +58,28 @@ module.exports = controller = {
     } else if (task[0].referenceName === 'VisaApplication') {
       res.send(applyForVisaForm);
     }
+  },
+
+  getTaskFormTemplate: (req, res) => {
+
+    const processId = restData.process.filter(data => {
+      if(req.params.processId === 'travels' && req.params.taskReferenceName === 'ConfirmTravel') {
+        fs.readFile('./formTemplates/ConfirmTravel.html', null, buffer => {
+          if (error) {
+            res.status(500).send("Cannot find form");
+          } else {
+            res.writeHead(200, {
+              'Content-Type': 'text/html'
+            });
+            res.write(data);
+            res.end();
+          }
+        })
+      } else {
+        res.status(500).send("Cannot find form");
+      }
+    });
+
+
   }
 };
