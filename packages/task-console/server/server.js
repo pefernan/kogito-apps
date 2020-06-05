@@ -49,7 +49,7 @@ app.get(
 );
 
 app.get(
-  '/:processId/:taskReferenceName/form',
+  '/:processId/:taskReferenceName/:taskId/form',
   controller.getTaskFormTemplate
 );
 

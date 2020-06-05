@@ -62,7 +62,6 @@ const schema = {
   }
 };
 
-
 module.exports = ConfirmTravelForm = {
   schema: JSON.stringify(schema),
 
@@ -77,12 +76,6 @@ module.exports = ConfirmTravelForm = {
       name: 'Release',
       endpoint: 'blabla',
       primary: false,
-      outputs: []
-    },
-    {
-      name: 'Whatever',
-      endpoint: 'blabla',
-      primary: true,
       outputs: []
     }
   ]

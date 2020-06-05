@@ -10,7 +10,7 @@ module.exports = restData = {
               referenceName: "VisaApplication",
               taskId: "45a73767-5da3-49bf-9c40-d533c3e77ef3",
               complete: "success",
-              message: "success"
+              message: "success bla bla bla"
             }
           ]
         },
@@ -21,7 +21,18 @@ module.exports = restData = {
               referenceName: "ConfirmTravel",
               taskId: "047ec38d-5d57-4330-8c8d-9bd67b53a529",
               complete: "failed",
-              message: "failed"
+              message: "failed IDK"
+            }
+          ]
+        },
+        {
+          processInstanceId: '00000000-0000-0000-0000-000000000001',
+          tasks: [
+            {
+              referenceName: "ConfirmTravel",
+              taskId: "00000000-0000-0000-0000-000000000000",
+              complete: "success",
+              message: "success hey"
             }
           ]
         }

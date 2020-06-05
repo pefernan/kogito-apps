@@ -23,7 +23,7 @@ interface IOwnProps {
   form: IForm;
 }
 
-const FormRendererComponent: React.FC<IOwnProps> = ({ form }) => {
+const UniformsFormRenderer: React.FC<IOwnProps> = ({ form }) => {
   const convertDataBeforeValidate = (model, schema) => {
     const obj = {};
     Object.keys(model).forEach(property => {
@@ -126,4 +126,4 @@ const FormRendererComponent: React.FC<IOwnProps> = ({ form }) => {
   );
 };
 
-export default FormRendererComponent;
+export default UniformsFormRenderer;

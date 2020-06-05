@@ -49,10 +49,6 @@ module.exports = controller = {
       return err.taskId === req.params.taskId;
     });
 
-    Object.keys(task[0]).forEach(key => {
-      console.log(key + ": " + task[0][key])
-    });
-
     if (task[0].referenceName === 'ConfirmTravel') {
       res.send(confirmTravelForm);
     } else if (task[0].referenceName === 'VisaApplication') {
@@ -62,24 +58,25 @@ module.exports = controller = {
 
   getTaskFormTemplate: (req, res) => {
 
-    const processId = restData.process.filter(data => {
-      if(req.params.processId === 'travels' && req.params.taskReferenceName === 'ConfirmTravel') {
-        fs.readFile('./formTemplates/ConfirmTravel.html', null, buffer => {
-          if (error) {
-            res.status(500).send("Cannot find form");
-          } else {
-            res.writeHead(200, {
-              'Content-Type': 'text/html'
-            });
-            res.write(data);
-            res.end();
-          }
-        })
-      } else {
-        res.status(500).send("Cannot find form");
-      }
-    });
+    console.log(
+      `......ProcessId:${req.params.processId} --taskReferenceName:${req.params.taskReferenceName} --taskId:${req.params.taskId}`
+    );
 
-
+    if(req.params.taskId === "00000000-0000-0000-0000-000000000000") {
+      fs.readFile(__dirname + '/formTemplates/form.html', null, (error, buffer) => {
+        if (error) {
+          console.log("Error: " + error);
+          res.status(500).send(error);
+        } else {
+          res.writeHead(200, {
+            'Content-Type': 'text/html'
+          });
+          res.write(buffer.toString('utf8'));
+          res.end();
+        }
+      })
+    } else {
+      res.status(500).send("Cannot find form");
+    }
   }
 };

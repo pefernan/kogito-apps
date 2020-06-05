@@ -1,14 +1,23 @@
 export default class ModelConversionTool {
-
   public static convertDateToString = (model, schema): any => {
-    return ModelConversionTool.convertDates(model, schema, value => value.toISOString());
+    return ModelConversionTool.convertDates(model, schema, value =>
+      value.toISOString()
+    );
   };
 
   public static convertStringToDate = (model, schema): any => {
-    return ModelConversionTool.convertDates(model, schema, value => new Date(value));
+    return ModelConversionTool.convertDates(
+      model,
+      schema,
+      value => new Date(value)
+    );
   };
 
-  private static convertDates = (model: any, schema: any, conversion: (value: any) => any): any => {
+  private static convertDates = (
+    model: any,
+    schema: any,
+    conversion: (value: any) => any
+  ): any => {
     const obj = {};
 
     if (model) {
@@ -21,12 +30,20 @@ export default class ModelConversionTool {
           if (properties) {
             switch (properties.type) {
               case 'object':
-                obj[property] = ModelConversionTool.convertDates(value, properties, conversion);
+                obj[property] = ModelConversionTool.convertDates(
+                  value,
+                  properties,
+                  conversion
+                );
                 break;
               case 'array':
                 if (properties.items && properties.items.type === 'object') {
                   obj[property] = value.map(item =>
-                    ModelConversionTool.convertDates(item, properties.items, conversion)
+                    ModelConversionTool.convertDates(
+                      item,
+                      properties.items,
+                      conversion
+                    )
                   );
                 } else {
                   obj[property] = value;
