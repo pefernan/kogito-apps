@@ -15,6 +15,7 @@ import axios from 'axios';
 import EmptyStateSpinner from '../../Atoms/SpinnerComponent/SpinnerComponent';
 import EmptyStateComponent from '../../Atoms/EmptyStateComponent/EmptyStateComponent';
 import TemplateFormRenderer from '../../Molecules/TemplateFormRenderer/TemplateFormRenderer';
+import { FormRegistry } from '../../../services/forms/FormRegistry';
 
 interface IOwnProps {
   taskInfo?: TaskInfo;
@@ -30,17 +31,18 @@ const TaskForm: React.FC<IOwnProps> = ({
   // tslint:disable: no-floating-promises
   const context: IContext<TaskInfo> = useContext(TaskConsoleContext);
 
-  const formsTemplateServerURL = process.env.KOGITO_FORMS_TEMPLATE_SERVER_URL;
+  const formRegistry = new FormRegistry();
+
+  const formTemplateUrl = formRegistry.getTaskFormPath(
+    taskInfo.task.processId,
+    taskInfo.task.referenceName
+  );
 
   const [userTaskInfo, setUserTaskInfo]: [TaskInfo, any] = useState(null);
   const [taskFormDescription, setTaskFormDescription]: [
     FormDescription,
     any
   ] = useState(null);
-  const [formTemplateLoaded, setFormTemplateLoaded]: [boolean, any] = useState(
-    false
-  );
-  const [formTemplate, setFormTemplate]: [string, any] = useState(null);
 
   useEffect(() => {
     if (!userTaskInfo) {
@@ -58,48 +60,14 @@ const TaskForm: React.FC<IOwnProps> = ({
     loadTaskFormDescription();
   }, [userTaskInfo]);
 
-  useEffect(() => {
-    if (formsTemplateServerURL) {
-      loadFormTemplate();
-    }
-  }, [taskFormDescription]);
-
-  const loadFormTemplate = async () => {
-    if (userTaskInfo && formsTemplateServerURL) {
-      const templateURL = formsTemplateServerURL
-        .replace('{$processId}', taskInfo.task.processId)
-        .replace('{processInstanceId}', taskInfo.task.processInstanceId)
-        .replace('{$taskId}', taskInfo.task.id)
-        .replace('{$taskReferenceName}', taskInfo.task.referenceName);
-
-      try {
-        const result = await axios.get(templateURL, {
-          headers: {
-            Accept: 'text/html',
-            crossorigin: 'true',
-            'Access-Control-Allow-Origin': '*'
-          }
-        });
-
-        if (result.status === 200) {
-          setFormTemplate(result.data);
-        }
-        setFormTemplateLoaded(true);
-      } catch (e) {
-        setFormTemplateLoaded(true);
-      }
-    }
-  };
-
   const isLoaded = () => {
+    if (formTemplateUrl) {
+      return true;
+    }
+
     if (!taskFormDescription) {
       return false;
     }
-
-    if (formsTemplateServerURL) {
-      return formTemplateLoaded;
-    }
-
     return true;
   };
 
@@ -161,6 +129,15 @@ const TaskForm: React.FC<IOwnProps> = ({
       );
     }
 
+    if (formTemplateUrl) {
+      return (
+        <TemplateFormRenderer
+          template={formTemplateUrl}
+          endpoint={getTaskEndpoint()}
+        />
+      );
+    }
+
     let formActions = [];
     // Adding actions if the task isn't completed
     if (userTaskInfo.task.state !== 'Completed') {
@@ -185,19 +162,6 @@ const TaskForm: React.FC<IOwnProps> = ({
         : JSON.parse(userTaskInfo.task.inputs);
     } catch (e) {
       alert(e);
-    }
-
-    if (formsTemplateServerURL && formTemplate) {
-      return (
-        <TemplateFormRenderer
-          form={{
-            template: formTemplate,
-            schema: JSON.parse(taskFormDescription.schema),
-            model: formData,
-            actions: formActions
-          }}
-        />
-      );
     }
 
     return (

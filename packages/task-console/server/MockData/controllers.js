@@ -1,3 +1,4 @@
+const data = require('./graphql');
 const fs = require('fs');
 const confirmTravelForm = require('./forms/ConfirmTravel');
 const applyForVisaForm = require('./forms/ApplyForVisa');
@@ -29,6 +30,19 @@ module.exports = controller = {
       case 'failed':
         res.status(500).send(task[0].message);
         break;
+    }
+  },
+
+  getTaskData: (req, res) => {
+    console.log(
+      `......ProcessId:${req.params.processId} --piId:${req.params.processId} --taskId:${req.params.taskId}`
+    );
+    const result = data.UserTaskInstances.find(task => task.id === req.params.taskId);
+    console.log("result: " + result)
+    if(result) {
+      res.send(result.inputs)
+    } else {
+      res.status(500).send("Couldn't load task data");
     }
   },
 
@@ -78,5 +92,20 @@ module.exports = controller = {
     } else {
       res.status(500).send("Cannot find form");
     }
+  },
+
+  getStaticForm: (req, res) => {
+    fs.readFile(__dirname + '/formTemplates/html-form.html', null, (error, buffer) => {
+      if (error) {
+        console.log("Error: " + error);
+        res.status(500).send(error);
+      } else {
+        res.writeHead(200, {
+          'Content-Type': 'text/html'
+        });
+        res.write(buffer.toString('utf8'));
+        res.end();
+      }
+    });
   }
 };

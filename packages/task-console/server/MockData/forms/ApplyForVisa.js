@@ -79,7 +79,7 @@ const schema = {
 
 module.exports = ApplyForVisaForm = {
 
-  schema: JSON.stringify(schema),
+  schema: schema,
 
   actions: [
     {

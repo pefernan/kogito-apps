@@ -44,6 +44,11 @@ app.post(
 );
 
 app.get(
+  '/:processId/:processInstanceId/:taskReferenceName/:taskId',
+  controller.getTaskData
+);
+
+app.get(
   '/:processId/:processInstanceId/:taskReferenceName/:taskId/form',
   controller.getTaskForm
 );
@@ -52,6 +57,10 @@ app.get(
   '/:processId/:taskReferenceName/:taskId/form',
   controller.getTaskFormTemplate
 );
+
+app.get('/:processId/:taskReferenceName',
+  controller.getStaticForm
+)
 
 function timeout(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));

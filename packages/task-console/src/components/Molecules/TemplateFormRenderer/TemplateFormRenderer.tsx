@@ -1,65 +1,32 @@
 import React, { useEffect } from 'react';
 
-export interface IFormAction {
-  id: string;
-  label: string;
-  primary?: boolean;
-  onSubmit: (model: any) => void;
-}
-
-export interface IForm {
-  template: string;
-  schema: any;
-  model?: any;
-  actions?: IFormAction[];
-}
-
 interface IOwnProps {
-  form: IForm;
+  template: string;
+  endpoint: string;
 }
 
-interface ISubmittedForm {
-  action: string;
-  formData: any;
-}
-
-const TemplateFormRenderer: React.FC<IOwnProps> = ({ form }) => {
-  const mustache = require('mustache');
-
+const TemplateFormRenderer: React.FC<IOwnProps> = ({ template, endpoint }) => {
   useEffect(() => {
-    window.addEventListener('message', event => {
-      const formData: ISubmittedForm = JSON.parse(event.data);
-
-      if (formData) {
-        form.actions.forEach(action => {
-          const actionId = action.id ? action.id : '';
-          if (actionId === formData.action) {
-            action.onSubmit(formData.formData);
-          }
-        });
+    const listener = event => {
+      if (template.startsWith(event.origin)) {
+        window.alert('message: ' + JSON.stringify(event.data));
       }
-    });
+    };
+    window.addEventListener('message', listener);
+
+    return () => {
+      window.removeEventListener('message', listener);
+    };
   }, []);
 
-  const templateData = {
-    data: JSON.stringify(form.model),
-    schema: JSON.stringify(form.schema),
-    actions: form.actions.map(action => {
-      return {
-        id: action.id ? action.id : '',
-        label: action.label,
-        primary: action.primary ? action.primary : false
-      };
-    })
-  };
-
-  const rendered = mustache.render(form.template, templateData);
-
+  const url = `${template}${
+    !template.endsWith('?') ? '?' : ''
+  }endpoint=${endpoint}`;
   const iframe = (
     <iframe
       className="pf-u-w-100 pf-u-h-100"
-      sandbox="allow-scripts"
-      srcDoc={rendered}
+      sandbox="allow-scripts allow-popups	"
+      src={url}
     />
   );
 

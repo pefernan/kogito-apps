@@ -63,7 +63,7 @@ const schema = {
 };
 
 module.exports = ConfirmTravelForm = {
-  schema: JSON.stringify(schema),
+  schema: schema,
 
   actions: [
     {
