@@ -15,6 +15,8 @@ const data = require('./MockData/graphql');
 const controller = require('./MockData/controllers');
 const typeDefs = require('./MockData/types');
 
+const _ = require('lodash');
+
 function setPort(port = 4000) {
   app.set('port', parseInt(port, 10));
 }
@@ -62,18 +64,26 @@ const resolvers = {
   Query: {
     UserTaskInstances: async (parent, args) => {
       let result = data.UserTaskInstances.filter(datum => {
-        console.log('args', args)
-
+        console.log('args', args['where']);
+        if (args['where'].id && args['where'].id.equal) {
+          return datum.id == args['where'].id.equal;
+        }
         if (args['where'].state && args['where'].state.in) {
           return args['where'].state.in.includes(datum.state);
         } else {
           // searching for tasks assigned to current user
           return true;
         }
-
         return false;
       });
-
+      if (args['orderBy']) {
+        console.log('sort by:', args['orderBy']);
+        result = _.orderBy(
+          result,
+          _.keys(args['orderBy']).map(key => key.toLowerCase()),
+          _.values(args['orderBy']).map(value => value.toLowerCase())
+        );
+      }
       await timeout(2000);
 
       if (args.pagination) {
