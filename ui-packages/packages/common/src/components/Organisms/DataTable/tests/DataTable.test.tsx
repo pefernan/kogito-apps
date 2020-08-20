@@ -83,7 +83,8 @@ const columns: DataTableColumn[] = [
   },
   {
     label: 'Name',
-    path: '$.name'
+    path: '$.name',
+    isSortable: true
   },
   {
     label: 'Priority',
@@ -96,12 +97,13 @@ const columns: DataTableColumn[] = [
   {
     label: 'State',
     path: '$.state',
-    bodyCellTransformer: stateColumnTransformer
+    bodyCellTransformer: stateColumnTransformer,
+    isSortable: true
   }
 ];
 const GET_USER_TASKS_BY_STATE = gql`
-  query getUserTasksByState($state: String) {
-    UserTaskInstances(where: { state: { in: $state } }) {
+  query getUserTasksByState($state: String, $orderBy: UserTaskInstanceOrderBy) {
+    UserTaskInstances(where: { state: { in: $state } }, orderBy: $orderBy) {
       id
       description
       name
@@ -198,7 +200,10 @@ describe('DataTable component tests', () => {
       error: undefined,
       refetch: jest.fn(),
       LoadingComponent: undefined,
-      ErrorComponent: undefined
+      ErrorComponent: undefined,
+      setSortBy: jest.fn(),
+      setOrderByObj: jest.fn(),
+      sortBy: {}
     };
 
     const wrapper = await getWrapperAsync(
@@ -220,7 +225,10 @@ describe('DataTable component tests', () => {
       error: {},
       refetch: jest.fn(),
       LoadingComponent: undefined,
-      ErrorComponent: undefined
+      ErrorComponent: undefined,
+      setSortBy: jest.fn(),
+      setOrderByObj: jest.fn(),
+      sortBy: {}
     };
 
     const wrapper = await getWrapperAsync(
@@ -242,7 +250,10 @@ describe('DataTable component tests', () => {
       error: undefined,
       refetch: jest.fn(),
       LoadingComponent: undefined,
-      ErrorComponent: undefined
+      ErrorComponent: undefined,
+      setSortBy: jest.fn(),
+      setOrderByObj: jest.fn(),
+      sortBy: {}
     };
 
     const wrapper = await getWrapperAsync(
@@ -263,7 +274,10 @@ describe('DataTable component tests', () => {
       error: undefined,
       refetch: jest.fn(),
       LoadingComponent: undefined,
-      ErrorComponent: undefined
+      ErrorComponent: undefined,
+      setSortBy: jest.fn(),
+      setOrderByObj: jest.fn(),
+      sortBy: {}
     };
 
     const wrapper = await getWrapperAsync(

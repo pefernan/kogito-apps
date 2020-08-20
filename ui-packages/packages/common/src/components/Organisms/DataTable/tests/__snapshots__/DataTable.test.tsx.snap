@@ -9,6 +9,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
         "path": "$.processId",
       },
       Object {
+        "isSortable": true,
         "label": "Name",
         "path": "$.name",
       },
@@ -22,6 +23,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
       },
       Object {
         "bodyCellTransformer": [Function],
+        "isSortable": true,
         "label": "State",
         "path": "$.state",
       },
@@ -78,6 +80,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
   isLoading={false}
   networkStatus={1}
   refetch={[MockFunction]}
+  setOrderByObj={[MockFunction]}
+  setSortBy={[MockFunction]}
+  sortBy={Object {}}
 >
   <Table
     aria-label="Data Table"
@@ -89,21 +94,27 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
           "cellTransforms": undefined,
           "data": "$.processId",
           "title": "ProcessId",
+          "transforms": undefined,
         },
         Object {
           "cellTransforms": undefined,
           "data": "$.name",
           "title": "Name",
+          "transforms": Array [
+            [Function],
+          ],
         },
         Object {
           "cellTransforms": undefined,
           "data": "$.priority",
           "title": "Priority",
+          "transforms": undefined,
         },
         Object {
           "cellTransforms": undefined,
           "data": "$.processInstanceId",
           "title": "ProcessInstanceId",
+          "transforms": undefined,
         },
         Object {
           "cellTransforms": Array [
@@ -111,6 +122,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
           ],
           "data": "$.state",
           "title": "State",
+          "transforms": Array [
+            [Function],
+          ],
         },
       ]
     }
@@ -123,6 +137,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
     isStickyHeader={false}
+    onSort={[Function]}
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
@@ -150,6 +165,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
         },
       ]
     }
+    sortBy={Object {}}
     variant={null}
   >
     <Provider
@@ -182,9 +198,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -225,14 +241,15 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
               "label": "Name",
               "transforms": Array [
+                [Function],
                 [Function],
                 [Function],
               ],
@@ -268,9 +285,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -311,9 +328,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -355,14 +372,15 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
               "label": "State",
               "transforms": Array [
+                [Function],
                 [Function],
                 [Function],
               ],
@@ -437,9 +455,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -480,14 +498,15 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
                         "label": "Name",
                         "transforms": Array [
+                          [Function],
                           [Function],
                           [Function],
                         ],
@@ -523,9 +542,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -566,9 +585,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -610,14 +629,15 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
                         "label": "State",
                         "transforms": Array [
+                          [Function],
                           [Function],
                           [Function],
                         ],
@@ -686,9 +706,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -729,14 +749,15 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
                             "label": "Name",
                             "transforms": Array [
+                              [Function],
                               [Function],
                               [Function],
                             ],
@@ -772,9 +793,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -815,9 +836,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -859,14 +880,15 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
                             "label": "State",
                             "transforms": Array [
+                              [Function],
                               [Function],
                               [Function],
                             ],
@@ -899,19 +921,74 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                         </th>
                       </HeaderCell>
                       <HeaderCell
+                        aria-sort="none"
+                        className="pf-c-table__sort"
                         data-key={1}
                         data-label="Name"
                         key="1-header"
                         scope="col"
                       >
                         <th
-                          className=""
+                          aria-sort="none"
+                          className="pf-c-table__sort"
                           data-key={1}
                           data-label="Name"
                           onMouseEnter={[Function]}
                           scope="col"
                         >
-                          Name
+                          <SortColumn
+                            isSortedBy={false}
+                            onSort={[Function]}
+                            sortDirection=""
+                          >
+                            <button
+                              className="pf-c-table__button"
+                              onClick={[Function]}
+                              type="button"
+                            >
+                              <div
+                                className="pf-c-table__button-content"
+                              >
+                                <TableText>
+                                  <span
+                                    className="pf-c-table__text"
+                                    onMouseEnter={[Function]}
+                                  >
+                                    Name
+                                  </span>
+                                </TableText>
+                                <span
+                                  className="pf-c-table__sort-indicator"
+                                >
+                                  <ArrowsAltVIcon
+                                    color="currentColor"
+                                    noVerticalAlign={false}
+                                    size="sm"
+                                  >
+                                    <svg
+                                      aria-hidden={true}
+                                      aria-labelledby={null}
+                                      fill="currentColor"
+                                      height="1em"
+                                      role="img"
+                                      style={
+                                        Object {
+                                          "verticalAlign": "-0.125em",
+                                        }
+                                      }
+                                      viewBox="0 0 256 512"
+                                      width="1em"
+                                    >
+                                      <path
+                                        d="M214.059 377.941H168V134.059h46.059c21.382 0 32.09-25.851 16.971-40.971L144.971 7.029c-9.373-9.373-24.568-9.373-33.941 0L24.971 93.088c-15.119 15.119-4.411 40.971 16.971 40.971H88v243.882H41.941c-21.382 0-32.09 25.851-16.971 40.971l86.059 86.059c9.373 9.373 24.568 9.373 33.941 0l86.059-86.059c15.12-15.119 4.412-40.971-16.97-40.971z"
+                                        transform=""
+                                      />
+                                    </svg>
+                                  </ArrowsAltVIcon>
+                                </span>
+                              </div>
+                            </button>
+                          </SortColumn>
                         </th>
                       </HeaderCell>
                       <HeaderCell
@@ -947,19 +1024,74 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                         </th>
                       </HeaderCell>
                       <HeaderCell
+                        aria-sort="none"
+                        className="pf-c-table__sort"
                         data-key={4}
                         data-label="State"
                         key="4-header"
                         scope="col"
                       >
                         <th
-                          className=""
+                          aria-sort="none"
+                          className="pf-c-table__sort"
                           data-key={4}
                           data-label="State"
                           onMouseEnter={[Function]}
                           scope="col"
                         >
-                          State
+                          <SortColumn
+                            isSortedBy={false}
+                            onSort={[Function]}
+                            sortDirection=""
+                          >
+                            <button
+                              className="pf-c-table__button"
+                              onClick={[Function]}
+                              type="button"
+                            >
+                              <div
+                                className="pf-c-table__button-content"
+                              >
+                                <TableText>
+                                  <span
+                                    className="pf-c-table__text"
+                                    onMouseEnter={[Function]}
+                                  >
+                                    State
+                                  </span>
+                                </TableText>
+                                <span
+                                  className="pf-c-table__sort-indicator"
+                                >
+                                  <ArrowsAltVIcon
+                                    color="currentColor"
+                                    noVerticalAlign={false}
+                                    size="sm"
+                                  >
+                                    <svg
+                                      aria-hidden={true}
+                                      aria-labelledby={null}
+                                      fill="currentColor"
+                                      height="1em"
+                                      role="img"
+                                      style={
+                                        Object {
+                                          "verticalAlign": "-0.125em",
+                                        }
+                                      }
+                                      viewBox="0 0 256 512"
+                                      width="1em"
+                                    >
+                                      <path
+                                        d="M214.059 377.941H168V134.059h46.059c21.382 0 32.09-25.851 16.971-40.971L144.971 7.029c-9.373-9.373-24.568-9.373-33.941 0L24.971 93.088c-15.119 15.119-4.411 40.971 16.971 40.971H88v243.882H41.941c-21.382 0-32.09 25.851-16.971 40.971l86.059 86.059c9.373 9.373 24.568 9.373 33.941 0l86.059-86.059c15.12-15.119 4.412-40.971-16.97-40.971z"
+                                        transform=""
+                                      />
+                                    </svg>
+                                  </ArrowsAltVIcon>
+                                </span>
+                              </div>
+                            </button>
+                          </SortColumn>
                         </th>
                       </HeaderCell>
                     </tr>
@@ -1001,9 +1133,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -1044,14 +1176,15 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
                     "label": "Name",
                     "transforms": Array [
+                      [Function],
                       [Function],
                       [Function],
                     ],
@@ -1087,9 +1220,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -1130,9 +1263,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -1174,14 +1307,15 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
                     "label": "State",
                     "transforms": Array [
+                      [Function],
                       [Function],
                       [Function],
                     ],
@@ -1454,9 +1588,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -1497,14 +1631,15 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
                         "label": "Name",
                         "transforms": Array [
+                          [Function],
                           [Function],
                           [Function],
                         ],
@@ -1540,9 +1675,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -1583,9 +1718,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -1627,14 +1762,15 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
                         "label": "State",
                         "transforms": Array [
+                          [Function],
                           [Function],
                           [Function],
                         ],
@@ -1995,9 +2131,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -2038,14 +2174,15 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
                               "label": "Name",
                               "transforms": Array [
+                                [Function],
                                 [Function],
                                 [Function],
                               ],
@@ -2081,9 +2218,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -2124,9 +2261,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -2168,14 +2305,15 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
                               "label": "State",
                               "transforms": Array [
+                                [Function],
                                 [Function],
                                 [Function],
                               ],
@@ -2432,9 +2570,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -2475,14 +2613,15 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
                               "label": "Name",
                               "transforms": Array [
+                                [Function],
                                 [Function],
                                 [Function],
                               ],
@@ -2518,9 +2657,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -2561,9 +2700,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -2605,14 +2744,15 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
                               "label": "State",
                               "transforms": Array [
+                                [Function],
                                 [Function],
                                 [Function],
                               ],
@@ -2906,6 +3046,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
   isLoading={false}
   networkStatus={1}
   refetch={[MockFunction]}
+  setOrderByObj={[MockFunction]}
+  setSortBy={[MockFunction]}
+  sortBy={Object {}}
 >
   <Table
     aria-label="Data Table"
@@ -3004,6 +3147,7 @@ exports[`DataTable component tests Should render DataTable correctly even no col
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
     isStickyHeader={false}
+    onSort={[Function]}
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
@@ -3061,6 +3205,7 @@ exports[`DataTable component tests Should render DataTable correctly even no col
         },
       ]
     }
+    sortBy={Object {}}
     variant={null}
   >
     <Provider
@@ -3093,9 +3238,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -3136,9 +3281,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -3179,9 +3324,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -3222,9 +3367,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -3265,9 +3410,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -3308,9 +3453,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -3351,9 +3496,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -3394,9 +3539,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -3437,9 +3582,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -3480,9 +3625,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -3523,9 +3668,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -3566,9 +3711,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -3609,9 +3754,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -3652,9 +3797,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -3695,9 +3840,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -3738,9 +3883,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -3781,9 +3926,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -3824,9 +3969,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -3867,9 +4012,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -3910,9 +4055,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
               "onExpand": undefined,
               "onRowEdit": undefined,
               "onSelect": undefined,
-              "onSort": undefined,
+              "onSort": [Function],
               "rowLabeledBy": "simple-node",
-              "sortBy": undefined,
+              "sortBy": Object {},
             },
             "header": Object {
               "formatters": Array [],
@@ -3992,9 +4137,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -4035,9 +4180,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -4078,9 +4223,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -4121,9 +4266,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -4164,9 +4309,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -4207,9 +4352,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -4250,9 +4395,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -4293,9 +4438,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -4336,9 +4481,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -4379,9 +4524,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -4422,9 +4567,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -4465,9 +4610,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -4508,9 +4653,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -4551,9 +4696,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -4594,9 +4739,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -4637,9 +4782,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -4680,9 +4825,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -4723,9 +4868,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -4766,9 +4911,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -4809,9 +4954,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -4885,9 +5030,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -4928,9 +5073,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -4971,9 +5116,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -5014,9 +5159,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -5057,9 +5202,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -5100,9 +5245,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -5143,9 +5288,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -5186,9 +5331,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -5229,9 +5374,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -5272,9 +5417,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -5315,9 +5460,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -5358,9 +5503,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -5401,9 +5546,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -5444,9 +5589,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -5487,9 +5632,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -5530,9 +5675,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -5573,9 +5718,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -5616,9 +5761,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -5659,9 +5804,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -5702,9 +5847,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                             "onExpand": undefined,
                             "onRowEdit": undefined,
                             "onSelect": undefined,
-                            "onSort": undefined,
+                            "onSort": [Function],
                             "rowLabeledBy": "simple-node",
-                            "sortBy": undefined,
+                            "sortBy": Object {},
                           },
                           "header": Object {
                             "formatters": Array [],
@@ -6084,9 +6229,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -6127,9 +6272,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -6170,9 +6315,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -6213,9 +6358,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -6256,9 +6401,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -6299,9 +6444,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -6342,9 +6487,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -6385,9 +6530,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -6428,9 +6573,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -6471,9 +6616,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -6514,9 +6659,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -6557,9 +6702,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -6600,9 +6745,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -6643,9 +6788,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -6686,9 +6831,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -6729,9 +6874,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -6772,9 +6917,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -6815,9 +6960,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -6858,9 +7003,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -6901,9 +7046,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                     "onExpand": undefined,
                     "onRowEdit": undefined,
                     "onSelect": undefined,
-                    "onSort": undefined,
+                    "onSort": [Function],
                     "rowLabeledBy": "simple-node",
-                    "sortBy": undefined,
+                    "sortBy": Object {},
                   },
                   "header": Object {
                     "formatters": Array [],
@@ -7627,9 +7772,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -7670,9 +7815,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -7713,9 +7858,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -7756,9 +7901,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -7799,9 +7944,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -7842,9 +7987,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -7885,9 +8030,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -7928,9 +8073,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -7971,9 +8116,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -8014,9 +8159,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -8057,9 +8202,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -8100,9 +8245,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -8143,9 +8288,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -8186,9 +8331,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -8229,9 +8374,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -8272,9 +8417,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -8315,9 +8460,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -8358,9 +8503,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -8401,9 +8546,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -8444,9 +8589,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                         "onExpand": undefined,
                         "onRowEdit": undefined,
                         "onSelect": undefined,
-                        "onSort": undefined,
+                        "onSort": [Function],
                         "rowLabeledBy": "simple-node",
-                        "sortBy": undefined,
+                        "sortBy": Object {},
                       },
                       "header": Object {
                         "formatters": Array [],
@@ -9436,9 +9581,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -9479,9 +9624,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -9522,9 +9667,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -9565,9 +9710,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -9608,9 +9753,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -9651,9 +9796,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -9694,9 +9839,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -9737,9 +9882,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -9780,9 +9925,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -9823,9 +9968,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -9866,9 +10011,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -9909,9 +10054,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -9952,9 +10097,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -9995,9 +10140,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -10038,9 +10183,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -10081,9 +10226,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -10124,9 +10269,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -10167,9 +10312,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -10210,9 +10355,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -10253,9 +10398,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -10940,9 +11085,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -10983,9 +11128,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -11026,9 +11171,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -11069,9 +11214,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -11112,9 +11257,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -11155,9 +11300,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -11198,9 +11343,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -11241,9 +11386,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -11284,9 +11429,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -11327,9 +11472,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -11370,9 +11515,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -11413,9 +11558,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -11456,9 +11601,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -11499,9 +11644,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -11542,9 +11687,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -11585,9 +11730,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -11628,9 +11773,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -11671,9 +11816,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -11714,9 +11859,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -11757,9 +11902,9 @@ exports[`DataTable component tests Should render DataTable correctly even no col
                               "onExpand": undefined,
                               "onRowEdit": undefined,
                               "onSelect": undefined,
-                              "onSort": undefined,
+                              "onSort": [Function],
                               "rowLabeledBy": "simple-node",
-                              "sortBy": undefined,
+                              "sortBy": Object {},
                             },
                             "header": Object {
                               "formatters": Array [],
@@ -12437,6 +12582,7 @@ exports[`DataTable component tests Should render ErrorComponent 1`] = `
         "path": "$.processId",
       },
       Object {
+        "isSortable": true,
         "label": "Name",
         "path": "$.name",
       },
@@ -12450,6 +12596,7 @@ exports[`DataTable component tests Should render ErrorComponent 1`] = `
       },
       Object {
         "bodyCellTransformer": [Function],
+        "isSortable": true,
         "label": "State",
         "path": "$.state",
       },
@@ -12459,6 +12606,9 @@ exports[`DataTable component tests Should render ErrorComponent 1`] = `
   isLoading={false}
   networkStatus={1}
   refetch={[MockFunction]}
+  setOrderByObj={[MockFunction]}
+  setSortBy={[MockFunction]}
+  sortBy={Object {}}
 >
   <div
     className=".pf-u-my-xl"
@@ -12484,6 +12634,7 @@ exports[`DataTable component tests Should render LoadingComponent 1`] = `
         "path": "$.processId",
       },
       Object {
+        "isSortable": true,
         "label": "Name",
         "path": "$.name",
       },
@@ -12497,6 +12648,7 @@ exports[`DataTable component tests Should render LoadingComponent 1`] = `
       },
       Object {
         "bodyCellTransformer": [Function],
+        "isSortable": true,
         "label": "State",
         "path": "$.state",
       },
@@ -12505,6 +12657,9 @@ exports[`DataTable component tests Should render LoadingComponent 1`] = `
   isLoading={true}
   networkStatus={1}
   refetch={[MockFunction]}
+  setOrderByObj={[MockFunction]}
+  setSortBy={[MockFunction]}
+  sortBy={Object {}}
 >
   <Bullseye>
     <div
