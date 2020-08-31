@@ -35,9 +35,8 @@ interface IOwnProps {
   refetch: () => void;
   LoadingComponent?: React.ReactNode;
   ErrorComponent?: React.ReactNode;
-  setSortBy: (sortBy: object) => void;
-  setOrderByObj: (orderObj: object) => void;
-  sortBy: object;
+  sortBy?: object;
+  onSorting?: (index: number, direction: string) => void;
 }
 
 const getCellData = (dataObj: object, path: string) => {
@@ -113,8 +112,7 @@ const DataTable: React.FC<IOwnProps & OUIAProps> = ({
   ErrorComponent,
   refetch,
   sortBy,
-  setSortBy,
-  setOrderByObj,
+  onSorting,
   ouiaId,
   ouiaSafe
 }) => {
@@ -134,9 +132,9 @@ const DataTable: React.FC<IOwnProps & OUIAProps> = ({
   }, [columnList]);
 
   const onSort = (event, index, direction) => {
-    const sortingColumn = event.target.innerText.toLowerCase();
-    setSortBy({ index, direction }); // This is required by PF4 Table Component
-    setOrderByObj(_.set({}, sortingColumn, direction.toUpperCase()));
+    if (_.isFunction(onSorting)) {
+      onSorting(index, direction);
+    }
   };
 
   if (isLoading) {
