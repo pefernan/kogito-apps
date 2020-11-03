@@ -3,6 +3,7 @@ package org.kogito.html.template.model.impl.select;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.kogito.html.template.model.InputType;
 import org.kogito.html.template.model.impl.AbstractFieldSettings;
 
 public class Select extends AbstractFieldSettings {
@@ -10,7 +11,7 @@ public class Select extends AbstractFieldSettings {
     private List<Option> options = new ArrayList<>();
 
     public Select(String id, String label) {
-        super("select", id, label);
+        super(InputType.SELECT, id, label);
     }
 
     public List<Option> getOptions() {

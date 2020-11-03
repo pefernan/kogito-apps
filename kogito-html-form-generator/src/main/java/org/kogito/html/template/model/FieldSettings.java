@@ -2,10 +2,11 @@ package org.kogito.html.template.model;
 
 public interface FieldSettings {
 
-    String getType();
+    InputType getType();
 
     String getId();
 
     String getLabel();
 
+    boolean isReadOnly();
 }

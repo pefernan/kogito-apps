@@ -1,27 +1,10 @@
 package org.kogito.html.template.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
-public class FormSettings {
+public interface FormSettings {
 
-    private String title;
-    private List<FieldSettings> fields = new ArrayList<>();
+    String getTitle();
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public List<FieldSettings> getFields() {
-        return fields;
-    }
-
-    public FormSettings addField(FieldSettings field) {
-        this.fields.add(field);
-        return this;
-    }
+    Collection<FieldSettings> getFields();
 }

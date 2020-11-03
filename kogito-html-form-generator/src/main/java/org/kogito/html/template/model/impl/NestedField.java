@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.kogito.html.template.model.FieldSettings;
+import org.kogito.html.template.model.InputType;
 
 public class NestedField extends AbstractFieldSettings {
 
     private List<FieldSettings> fields = new ArrayList<>();
 
     public NestedField(String id, String label) {
-        super("nested", id, label);
+        super(InputType.NESTED, id, label);
     }
 
     public String getTitle() {

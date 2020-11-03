@@ -1,11 +1,13 @@
 package org.kogito.html.template.model.impl;
 
+import org.kogito.html.template.model.InputType;
+
 public class DateField extends AbstractFieldSettings {
 
     private String format;
 
     public DateField(String id, String label, String format) {
-        super("date", id, label);
+        super(InputType.DATE, id, label);
         this.format = format;
     }
 

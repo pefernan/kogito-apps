@@ -1,8 +1,10 @@
 package org.kogito.html.template.model.impl;
 
+import org.kogito.html.template.model.InputType;
+
 public class TextField extends AbstractFieldSettings {
 
     public TextField(String id, String label) {
-        super("text", id, label);
+        super(InputType.TEXT, id, label);
     }
 }

@@ -1,21 +1,23 @@
 package org.kogito.html.template.model.impl;
 
 import org.kogito.html.template.model.FieldSettings;
+import org.kogito.html.template.model.InputType;
 
 public abstract class AbstractFieldSettings implements FieldSettings {
 
-    private String type;
+    private InputType type;
     private String id;
     private String label;
+    private boolean readOnly;
 
-    public AbstractFieldSettings(String type, String id, String label) {
+    public AbstractFieldSettings(InputType type, String id, String label) {
         this.type = type;
         this.id = id;
         this.label = label;
     }
 
     @Override
-    public String getType() {
+    public InputType getType() {
         return type;
     }
 
@@ -26,5 +28,15 @@ public abstract class AbstractFieldSettings implements FieldSettings {
     @Override
     public String getLabel() {
         return label;
+    }
+
+    @Override
+    public boolean isReadOnly() {
+        return readOnly;
+    }
+
+    public FieldSettings setReadOnly(boolean readOnly) {
+        this.readOnly = readOnly;
+        return this;
     }
 }
