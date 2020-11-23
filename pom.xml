@@ -101,6 +101,5 @@
     <module>task-assigning</module>
     <module>apps-integration-tests</module>
     <module>kogito-html-form-generator</module>
-    <module>integration-tests</module>
   </modules>
 </project>
