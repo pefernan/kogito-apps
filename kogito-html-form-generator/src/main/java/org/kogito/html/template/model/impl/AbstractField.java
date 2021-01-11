@@ -1,16 +1,16 @@
 package org.kogito.html.template.model.impl;
 
-import org.kogito.html.template.model.FieldSettings;
+import org.kogito.html.template.model.Field;
 import org.kogito.html.template.model.InputType;
 
-public abstract class AbstractFieldSettings implements FieldSettings {
+public abstract class AbstractField implements Field {
 
     private InputType type;
     private String id;
     private String label;
     private boolean readOnly;
 
-    public AbstractFieldSettings(InputType type, String id, String label) {
+    public AbstractField(InputType type, String id, String label) {
         this.type = type;
         this.id = id;
         this.label = label;
@@ -35,7 +35,7 @@ public abstract class AbstractFieldSettings implements FieldSettings {
         return readOnly;
     }
 
-    public FieldSettings setReadOnly(boolean readOnly) {
+    public Field setReadOnly(boolean readOnly) {
         this.readOnly = readOnly;
         return this;
     }

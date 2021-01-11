@@ -1,0 +1,18 @@
+    <article class="pf-c-card">
+@if{form.title != null}
+        <div class="pf-c-card__title">
+             @{form.title}
+        </div>
+@end{}
+        <div class="pf-c-card__body pf-c-form">
+@foreach{field : form.fields}
+    @if{field.type.name == "CHECKBOX"}
+        @includeNamed{'checkbox'; field=field}
+    @else{field.type.name == "NESTED"}
+        @includeNamed{'form'; form=field.nestedForm}
+    @else{}
+        @includeNamed{'formGroup'; field=field}
+    @end{}
+@end{}
+        </div>
+    </article>

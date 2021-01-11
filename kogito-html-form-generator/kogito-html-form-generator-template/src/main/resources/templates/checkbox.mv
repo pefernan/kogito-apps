@@ -1,0 +1,18 @@
+@if{field.isReadOnly}
+    @code{className = 'pf-c-check__label pf-m-disabled'; disabled = 'disabled'}
+@else{}
+    @code{className = 'pf-c-check__input'; disabled = ''}
+@end{}
+    <div class="pf-c-form__group">
+        <div class="pf-c-form__group-control">
+            <div class="pf-c-check">
+                <input class="pf-c-check__input"
+                       type="checkbox"
+                       id="@{field.id}"
+                       name="@{field.id}"
+                       @{disabled}
+                />
+                <label class="@{className}" for="@{field.id}">@{field.label}</label>
+            </div>
+        </div>
+    </div>

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.kogito.html.template.model.InputType;
-import org.kogito.html.template.model.impl.AbstractFieldSettings;
+import org.kogito.html.template.model.impl.AbstractField;
 
-public class Select extends AbstractFieldSettings {
+public class SelectField extends AbstractField {
 
     private List<Option> options = new ArrayList<>();
 
-    public Select(String id, String label) {
+    public SelectField(String id, String label) {
         super(InputType.SELECT, id, label);
     }
 
@@ -18,7 +18,7 @@ public class Select extends AbstractFieldSettings {
         return options;
     }
 
-    public Select addOption(String value, String text) {
+    public SelectField addOption(String value, String text) {
         this.options.add(new Option(value, text));
         return this;
     }

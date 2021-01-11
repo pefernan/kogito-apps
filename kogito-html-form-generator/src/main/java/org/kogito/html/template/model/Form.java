@@ -2,9 +2,11 @@ package org.kogito.html.template.model;
 
 import java.util.Collection;
 
-public interface FormSettings {
+public interface Form {
+
+    String getId();
 
     String getTitle();
 
-    Collection<FieldSettings> getFields();
+    Collection<Field> getFields();
 }

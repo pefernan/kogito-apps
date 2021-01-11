@@ -1,0 +1,12 @@
+<select id="@{field.id}"
+        name="@{field.id}"
+        class="pf-c-form-control"
+@if{field.isReadOnly}
+        disabled
+@end{}>
+@foreach{option : field.options}
+    <option value="@{option.value}">
+        @{option.text}
+    </option>
+@end{}
+</select>

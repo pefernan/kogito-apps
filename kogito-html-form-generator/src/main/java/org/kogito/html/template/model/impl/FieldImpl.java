@@ -3,10 +3,10 @@ package org.kogito.html.template.model.impl;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.kogito.html.template.model.FieldSettings;
+import org.kogito.html.template.model.Field;
 import org.kogito.html.template.model.InputType;
 
-public class FieldSettingsImpl implements FieldSettings {
+public class FieldImpl implements Field {
 
     private String id;
     private InputType type;
@@ -15,7 +15,7 @@ public class FieldSettingsImpl implements FieldSettings {
 
     private Map<String, Object> props = new HashMap<>();
 
-    public FieldSettingsImpl(String id, InputType type, String label) {
+    public FieldImpl(String id, InputType type, String label) {
         this.id = id;
         this.type = type;
         this.label = label;
@@ -45,7 +45,7 @@ public class FieldSettingsImpl implements FieldSettings {
         return readOnly;
     }
 
-    public <T> FieldSettings set(String propery, T value) {
+    public <T> Field set(String propery, T value) {
         props.put(propery, value);
         return this;
     }

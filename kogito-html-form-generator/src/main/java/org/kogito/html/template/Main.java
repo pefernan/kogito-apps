@@ -1,23 +1,5 @@
 package org.kogito.html.template;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.jsoup.Jsoup;
-import org.kogito.html.template.model.impl.FormSettingsImpl;
-import org.kogito.html.template.model.InputType;
-import org.kogito.html.template.model.impl.Checkbox;
-import org.kogito.html.template.model.impl.DateField;
-import org.kogito.html.template.model.impl.FieldSettingsImpl;
-import org.kogito.html.template.model.impl.IntegerField;
-import org.kogito.html.template.model.impl.NestedField;
-import org.kogito.html.template.model.impl.NumberField;
-import org.kogito.html.template.model.impl.select.Option;
-import org.kogito.html.template.model.impl.select.Select;
-import org.kogito.html.template.model.impl.TextField;
-
 public class Main {
 
     public static void main(String[] args) {

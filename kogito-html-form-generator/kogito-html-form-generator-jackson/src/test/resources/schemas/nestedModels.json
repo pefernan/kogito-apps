@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "big form",
+  "properties": {
+    "person": {
+      "type": "object",
+      "title": "person",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "age": {
+          "type": "number"
+        },
+        "married": {
+          "type": "boolean"
+        }
+      }
+    },
+    "car": {
+      "type": "object",
+      "title": "car",
+      "properties": {
+        "brand": {
+          "type": "string"
+        },
+        "wheels": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

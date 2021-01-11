@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <link rel="stylesheet" href="https://unpkg.com/@patternfly/patternfly/patternfly.css" crossorigin="anonymous">
+  <script>
+   const schema = @{schema};
+  </script>
+ </head>
+ <body>
+  <form class="pf-c-form" id="main-form">
+   @includeNamed{'form'; form=form}
+  </form>
+ </body>
+</html>

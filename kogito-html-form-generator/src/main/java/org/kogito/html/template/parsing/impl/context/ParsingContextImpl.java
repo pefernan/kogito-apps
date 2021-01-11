@@ -5,7 +5,7 @@ import org.kogito.html.template.parsing.ParsingContext;
 
 public class ParsingContextImpl<S> implements ParsingContext {
 
-    public static final String NAMESPACE_SEPARATOR = "___";
+    public static final String NAMESPACE_SEPARATOR = ".";
 
     private String namespace;
     private S schema;

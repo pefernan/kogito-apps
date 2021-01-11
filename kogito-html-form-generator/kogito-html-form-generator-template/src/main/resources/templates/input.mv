@@ -1,0 +1,20 @@
+@code{type="TEXT"; custom=""}
+
+@if{field.type.name == "NUMBER"}
+    @code{type="NUMBER"; custom="step=0.01"}
+@else{field.type.name == "INTEGER"}
+    @code{type="NUMBER"; custom="step=1"}
+@else{field.type.name == "DATE"}
+    @code{type=field.format}
+@else{field.type.name == "EMAIL"}
+    @code{type="EMAIL"}
+@end{}
+
+<input type="@{type}"
+       id="@{field.id}"
+       name="@{field.id}"
+       class="pf-c-form-control"
+@if{field.isReadOnly}
+       disabled
+@end{}
+       @{custom} />

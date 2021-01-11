@@ -7,5 +7,7 @@ public enum InputType {
     INTEGER,
     NUMBER,
     CHECKBOX,
-    NESTED
+    NESTED,
+    MULTIPLE,
+    CUSTOM
 }

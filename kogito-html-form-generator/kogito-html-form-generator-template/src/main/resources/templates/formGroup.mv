@@ -1,0 +1,10 @@
+    <div class="pf-c-form__group">
+        <label class="pf-c-form__label" for="@{field.id}">
+            <span class="pf-c-form__label-text">@{field.label}</span>
+        </label>
+@if{field.type.name == "SELECT"}
+    // include select template
+@else{}
+    @includeNamed{'input'; field=field}
+@end{}
+    </div>

@@ -1,6 +1,6 @@
 package org.kogito.html.template.model;
 
-public interface FieldSettings {
+public interface Field {
 
     InputType getType();
 
