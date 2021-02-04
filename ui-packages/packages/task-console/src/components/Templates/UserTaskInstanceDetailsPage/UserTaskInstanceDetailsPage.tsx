@@ -55,11 +55,11 @@ import PageTitle from '../../Molecules/PageTitle/PageTitle';
 import TaskState from '../../Atoms/TaskState/TaskState';
 import TaskForm from '../../Organisms/TaskForm/TaskForm';
 import { NotificationType, TaskStateType } from '../../../util/Variants';
-import TaskDetails from '../../Organisms/TaskDetails/TaskDetails';
 import FormNotification, {
   Notification
 } from '../../Atoms/FormNotification/FormNotification';
 import './UserTaskInstanceDetailsPage.css';
+import { EmbeddedTaskDetails } from '@kogito-apps/task-details/dist/embedded';
 
 interface MatchProps {
   taskId: string;
@@ -131,7 +131,11 @@ const UserTaskInstanceDetailsPage: React.FC<RouteComponentProps<MatchProps> &
         </DrawerActions>
       </DrawerHead>
       <DrawerPanelBody>
-        <TaskDetails userTaskInstance={userTask} />
+        <EmbeddedTaskDetails
+          targetOrigin={window.location.origin}
+          envelopePath={'/envelope/task-details.html'}
+          task={userTask}
+        />
       </DrawerPanelBody>
     </DrawerPanelContent>
   );

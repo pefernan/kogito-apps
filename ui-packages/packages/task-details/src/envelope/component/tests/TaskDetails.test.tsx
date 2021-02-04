@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Red Hat, Inc. and/or its affiliates.
+ * Copyright 2021 Red Hat, Inc. and/or its affiliates.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,18 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import React from 'react';
-import { getWrapper, GraphQL } from '@kogito-apps/common';
+import React, { ReactElement } from 'react';
 
-import UserTaskInstance = GraphQL.UserTaskInstance;
+import { mount, ReactWrapper } from 'enzyme';
 import TaskDetails from '../TaskDetails';
-import { ReactWrapper } from 'enzyme';
+import { UserTaskInstance } from '../../../api';
 
 const MockedComponent = (): React.ReactElement => {
   return <></>;
 };
-
-jest.mock('../../../Atoms/TaskState/TaskState');
 
 jest.mock('@patternfly/react-core', () => ({
   ...jest.requireActual('@patternfly/react-core'),
@@ -32,6 +29,14 @@ jest.mock('@patternfly/react-core', () => ({
     return <MockedComponent />;
   }
 }));
+
+export const getWrapper = (
+  component: ReactElement,
+  name: string
+): ReactWrapper => {
+  const wrapper = mount(component);
+  return wrapper.update().find(name);
+};
 
 const userTaskInstance: UserTaskInstance = {
   id: '45a73767-5da3-49bf-9c40-d533c3e77ef3',
@@ -48,14 +53,14 @@ const userTaskInstance: UserTaskInstance = {
   adminGroups: [],
   adminUsers: [],
   completed: null,
-  started: '2020-02-19T11:11:56.282Z',
+  started: new Date('2020-02-19T11:11:56.282Z'),
   excludedUsers: [],
   potentialGroups: [],
   potentialUsers: [],
   inputs:
     '{"Skippable":"true","trip":{"city":"Boston","country":"US","begin":"2020-02-19T23:00:00.000+01:00","end":"2020-02-26T23:00:00.000+01:00","visaRequired":true},"TaskName":"VisaApplication","NodeName":"Apply for visa","traveller":{"firstName":"Rachel","lastName":"White","email":"rwhite@gorle.com","nationality":"Polish","address":{"street":"Cabalone","city":"Zerf","zipCode":"765756","country":"Poland"}},"Priority":"1"}',
   outputs: '{}',
-  lastUpdate: '2020-02-19T11:11:56.282Z',
+  lastUpdate: new Date('2020-02-19T11:11:56.282Z'),
   endpoint:
     'http://localhost:8080/travels/9ae7ce3b-d49c-4f35-b843-8ac3d22fa427/VisaApplication/45a73767-5da3-49bf-9c40-d533c3e77ef3'
 };
@@ -65,10 +70,11 @@ const getFormGroup = (wrapper: ReactWrapper, fieldId: string): ReactWrapper => {
 };
 
 Date.now = jest.fn(() => 1601881200000); // UTC 2020-10-05 07:00:00
+
 describe('TaskDetails testing', () => {
   it('Snapshot testing', () => {
     const wrapper = getWrapper(
-      <TaskDetails userTaskInstance={userTaskInstance} />,
+      <TaskDetails userTask={userTaskInstance} />,
       'TaskDetails'
     );
 
@@ -91,7 +97,7 @@ describe('TaskDetails testing', () => {
   it('Snapshot testing with description', () => {
     const wrapper = getWrapper(
       <TaskDetails
-        userTaskInstance={{
+        userTask={{
           ...{ ...userTaskInstance, description: 'This is a description' }
         }}
       />,
@@ -108,7 +114,7 @@ describe('TaskDetails testing', () => {
   it('Snapshot testing with owner', () => {
     const wrapper = getWrapper(
       <TaskDetails
-        userTaskInstance={{
+        userTask={{
           ...{ ...userTaskInstance, actualOwner: 'John Snow' }
         }}
       />,
@@ -125,11 +131,11 @@ describe('TaskDetails testing', () => {
   it('Snapshot testing with completed task', () => {
     const wrapper = getWrapper(
       <TaskDetails
-        userTaskInstance={{
+        userTask={{
           ...{
             ...userTaskInstance,
             state: 'completed',
-            completed: '2020-02-19T11:11:56.282Z'
+            completed: new Date('2020-02-19T11:11:56.282Z')
           }
         }}
       />,
@@ -145,7 +151,7 @@ describe('TaskDetails testing', () => {
   it('Snapshot testing with potential groups and potential user', () => {
     const wrapper = getWrapper(
       <TaskDetails
-        userTaskInstance={{
+        userTask={{
           ...{
             ...userTaskInstance,
             potentialGroups: ['group1', 'group2'],

@@ -270,8 +270,10 @@ exports[`UserTaskInstanceDetailsPage tests Test active task 1`] = `
                     </DrawerActions>
                   </DrawerHead>
                   <DrawerPanelBody>
-                    <MockedTaskDetails
-                      userTaskInstance={
+                    <ForwardRef
+                      envelopePath="/envelope/task-details.html"
+                      targetOrigin="http://localhost"
+                      task={
                         Object {
                           "actualOwner": null,
                           "adminGroups": Array [],
@@ -730,8 +732,10 @@ exports[`UserTaskInstanceDetailsPage tests Test submit error notification 1`] = 
                     </DrawerActions>
                   </DrawerHead>
                   <DrawerPanelBody>
-                    <MockedTaskDetails
-                      userTaskInstance={
+                    <ForwardRef
+                      envelopePath="/envelope/task-details.html"
+                      targetOrigin="http://localhost"
+                      task={
                         Object {
                           "actualOwner": null,
                           "adminGroups": Array [],
@@ -1148,8 +1152,10 @@ exports[`UserTaskInstanceDetailsPage tests Test submit error notification 2`] = 
                     </DrawerActions>
                   </DrawerHead>
                   <DrawerPanelBody>
-                    <MockedTaskDetails
-                      userTaskInstance={
+                    <ForwardRef
+                      envelopePath="/envelope/task-details.html"
+                      targetOrigin="http://localhost"
+                      task={
                         Object {
                           "actualOwner": null,
                           "adminGroups": Array [],
@@ -1548,8 +1554,10 @@ exports[`UserTaskInstanceDetailsPage tests Test submit error notification 3`] = 
                     </DrawerActions>
                   </DrawerHead>
                   <DrawerPanelBody>
-                    <MockedTaskDetails
-                      userTaskInstance={
+                    <ForwardRef
+                      envelopePath="/envelope/task-details.html"
+                      targetOrigin="http://localhost"
+                      task={
                         Object {
                           "actualOwner": null,
                           "adminGroups": Array [],
@@ -1948,8 +1956,10 @@ exports[`UserTaskInstanceDetailsPage tests Test submit notification - go to inbo
                     </DrawerActions>
                   </DrawerHead>
                   <DrawerPanelBody>
-                    <MockedTaskDetails
-                      userTaskInstance={
+                    <ForwardRef
+                      envelopePath="/envelope/task-details.html"
+                      targetOrigin="http://localhost"
+                      task={
                         Object {
                           "actualOwner": null,
                           "adminGroups": Array [],
@@ -2348,8 +2358,10 @@ exports[`UserTaskInstanceDetailsPage tests Test submit success notification 1`] 
                     </DrawerActions>
                   </DrawerHead>
                   <DrawerPanelBody>
-                    <MockedTaskDetails
-                      userTaskInstance={
+                    <ForwardRef
+                      envelopePath="/envelope/task-details.html"
+                      targetOrigin="http://localhost"
+                      task={
                         Object {
                           "actualOwner": null,
                           "adminGroups": Array [],
@@ -2766,8 +2778,10 @@ exports[`UserTaskInstanceDetailsPage tests Test submit success notification 2`] 
                     </DrawerActions>
                   </DrawerHead>
                   <DrawerPanelBody>
-                    <MockedTaskDetails
-                      userTaskInstance={
+                    <ForwardRef
+                      envelopePath="/envelope/task-details.html"
+                      targetOrigin="http://localhost"
+                      task={
                         Object {
                           "actualOwner": null,
                           "adminGroups": Array [],
@@ -3166,8 +3180,10 @@ exports[`UserTaskInstanceDetailsPage tests Test submit success notification 3`] 
                     </DrawerActions>
                   </DrawerHead>
                   <DrawerPanelBody>
-                    <MockedTaskDetails
-                      userTaskInstance={
+                    <ForwardRef
+                      envelopePath="/envelope/task-details.html"
+                      targetOrigin="http://localhost"
+                      task={
                         Object {
                           "actualOwner": null,
                           "adminGroups": Array [],
@@ -3393,8 +3409,10 @@ exports[`UserTaskInstanceDetailsPage tests test task details drawer 1`] = `
       <div
         className="pf-c-drawer__body"
       >
-        <MockedTaskDetails
-          userTaskInstance={
+        <ForwardRef
+          envelopePath="/envelope/task-details.html"
+          targetOrigin="http://localhost"
+          task={
             Object {
               "actualOwner": null,
               "adminGroups": Array [],
@@ -3420,7 +3438,9 @@ exports[`UserTaskInstanceDetailsPage tests test task details drawer 1`] = `
               "state": "Ready",
             }
           }
-        />
+        >
+          <MockedComponent />
+        </ForwardRef>
       </div>
     </DrawerPanelBody>
   </div>

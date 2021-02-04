@@ -1,72 +1,71 @@
+/*
+ * Copyright 2021 Red Hat, Inc. and/or its affiliates.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import * as React from 'react';
+import { isEmpty } from 'lodash';
 import Moment from 'react-moment';
+import { Form, FormGroup, Text, TextVariants } from '@patternfly/react-core';
 import {
-  Form,
-  FormGroup,
-  Text,
-  TextVariants,
-  Tooltip
-} from '@patternfly/react-core';
-import React, { useContext, useState } from 'react';
-import {
-  componentOuiaProps,
-  EndpointLink,
-  GraphQL,
-  KogitoEmptyState,
-  KogitoEmptyStateType,
-  OUIAProps
-} from '@kogito-apps/common';
-import TaskConsoleContext, {
-  ITaskConsoleContext
-} from '../../../context/TaskConsoleContext/TaskConsoleContext';
-import TaskState from '../../Atoms/TaskState/TaskState';
-import { resolveTaskPriority, trimTaskEndpoint } from '../../../util/Utils';
-import _ from 'lodash';
-import './TaskDetails.css';
-import UserTaskInstance = GraphQL.UserTaskInstance;
+  BanIcon,
+  CheckCircleIcon,
+  OnRunningIcon
+} from '@patternfly/react-icons';
+
+import { UserTaskInstance } from '../../api';
 
 interface IOwnProps {
-  userTaskInstance?: UserTaskInstance;
+  userTask: UserTaskInstance;
 }
 
-const TaskDetails: React.FC<IOwnProps & OUIAProps> = ({
-  userTaskInstance,
-  ouiaId,
-  ouiaSafe
-}) => {
-  const context: ITaskConsoleContext<UserTaskInstance> = useContext(
-    TaskConsoleContext
-  );
-  const [userTask, setUserTask] = useState<UserTaskInstance>();
-
+const TaskDetails: React.FC<IOwnProps> = ({ userTask }) => {
   if (!userTask) {
-    if (userTaskInstance) {
-      setUserTask(userTaskInstance);
-    } else {
-      if (context.getActiveItem()) {
-        setUserTask(context.getActiveItem());
-      }
-    }
+    return <></>;
   }
 
-  if (!userTask) {
-    return (
-      <KogitoEmptyState
-        type={KogitoEmptyStateType.Info}
-        title="Cannot show details"
-        body="Unable to show details for empty task"
-      />
-    );
+  const resolveTaskPriority = (priority?: string): string => {
+    switch (priority) {
+      case '0':
+        return '0 - High';
+      case '5':
+        return '5 - Medium';
+      case '10':
+        return '10 - Low';
+    }
+
+    return priority || '-';
+  };
+
+  function resolveTaskStateIcon(task: UserTaskInstance): JSX.Element {
+    if (task.state === 'Aborted') {
+      return <BanIcon className="pf-u-mr-sm" />;
+    } else if (task.completed) {
+      return (
+        <CheckCircleIcon
+          className="pf-u-mr-sm"
+          color="var(--pf-global--success-color--100)"
+        />
+      );
+    } else {
+      return <OnRunningIcon className="pf-u-mr-sm" />;
+    }
   }
 
   return (
     <React.Fragment>
-      <div
-        {...componentOuiaProps(
-          ouiaId ? ouiaId : userTask.id,
-          'task-details',
-          ouiaSafe
-        )}
-      >
+      <div>
         <Form>
           <FormGroup label="Name" fieldId="name">
             <Text component={TextVariants.p}>{userTask.referenceName}</Text>
@@ -80,7 +79,7 @@ const TaskDetails: React.FC<IOwnProps & OUIAProps> = ({
             <Text component={TextVariants.p}>{userTask.id}</Text>
           </FormGroup>
           <FormGroup label="State" fieldId="state">
-            <TaskState task={userTask} />
+            {resolveTaskStateIcon(userTask)} <span>{userTask.state}</span>
           </FormGroup>
           <FormGroup label="Priority" fieldId="priority">
             <Text component={TextVariants.p}>
@@ -92,14 +91,14 @@ const TaskDetails: React.FC<IOwnProps & OUIAProps> = ({
               {userTask.actualOwner || '-'}
             </Text>
           </FormGroup>
-          {!_.isEmpty(userTask.potentialUsers) && (
+          {!isEmpty(userTask.potentialUsers) && (
             <FormGroup label="Potential users" fieldId="potential_users">
               <Text component={TextVariants.p}>
                 {userTask.potentialUsers.join(', ')}
               </Text>
             </FormGroup>
           )}
-          {!_.isEmpty(userTask.potentialGroups) && (
+          {!isEmpty(userTask.potentialGroups) && (
             <FormGroup label="Potential groups" fieldId="potential_groups">
               <Text component={TextVariants.p}>
                 {userTask.potentialGroups.join(', ')}
@@ -133,15 +132,6 @@ const TaskDetails: React.FC<IOwnProps & OUIAProps> = ({
           </FormGroup>
           <FormGroup label="Process Instance ID" fieldId="processInstance">
             <Text component={TextVariants.p}>{userTask.processInstanceId}</Text>
-          </FormGroup>
-          <FormGroup label="Endpoint" fieldId="endpoint">
-            <Tooltip content={userTask.endpoint}>
-              <EndpointLink
-                serviceUrl={userTask.endpoint}
-                linkLabel={trimTaskEndpoint(userTask)}
-                isLinkShown={false}
-              />
-            </Tooltip>
           </FormGroup>
         </Form>
       </div>

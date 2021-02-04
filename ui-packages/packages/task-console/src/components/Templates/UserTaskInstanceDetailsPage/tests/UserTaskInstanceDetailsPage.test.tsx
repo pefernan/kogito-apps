@@ -17,12 +17,11 @@
 import React from 'react';
 import * as H from 'history';
 import {
+  getWrapperAsync,
   GraphQL,
   KogitoEmptyState,
-  getWrapperAsync,
   ServerErrors
 } from '@kogito-apps/common';
-import UserTaskInstance = GraphQL.UserTaskInstance;
 import TaskConsoleContext, {
   TaskConsoleContextImpl
 } from '../../../../context/TaskConsoleContext/TaskConsoleContext';
@@ -30,8 +29,8 @@ import UserTaskInstanceDetailsPage from '../UserTaskInstanceDetailsPage';
 import { BrowserRouter } from 'react-router-dom';
 import {
   Breadcrumb,
-  DrawerPanelContent,
-  DrawerCloseButton
+  DrawerCloseButton,
+  DrawerPanelContent
 } from '@patternfly/react-core';
 import PageTitle from '../../../Molecules/PageTitle/PageTitle';
 import TaskForm from '../../../Organisms/TaskForm/TaskForm';
@@ -42,6 +41,7 @@ import { GraphQLError } from 'graphql';
 import FormNotification, {
   Notification
 } from '../../../Atoms/FormNotification/FormNotification';
+import UserTaskInstance = GraphQL.UserTaskInstance;
 
 const MockedComponent = (): React.ReactElement => {
   return <></>;
@@ -50,7 +50,6 @@ const MockedComponent = (): React.ReactElement => {
 jest.mock('../../../Atoms/FormNotification/FormNotification');
 jest.mock('../../../Atoms/TaskState/TaskState');
 jest.mock('../../../Molecules/PageTitle/PageTitle');
-jest.mock('../../../Organisms/TaskDetails/TaskDetails');
 jest.mock('../../../Organisms/TaskForm/TaskForm');
 
 jest.mock('@kogito-apps/common', () => ({
@@ -61,6 +60,13 @@ jest.mock('@kogito-apps/common', () => ({
   ServerErrors: () => {
     return <MockedComponent />;
   }
+}));
+
+jest.mock('@kogito-apps/task-details/dist/embedded', () => ({
+  ...jest.requireActual('@kogito-apps/task-details/dist/embedded'),
+  EmbeddedTaskDetails: React.forwardRef<any, any>((props, ref) => {
+    return <MockedComponent />;
+  })
 }));
 
 jest.mock('@patternfly/react-core', () => ({
@@ -381,9 +387,9 @@ describe('UserTaskInstanceDetailsPage tests', () => {
     const detailsPanel = wrapper.find(DrawerPanelContent);
     expect(detailsPanel).toMatchSnapshot();
     expect(detailsPanel.exists()).toBeTruthy();
-    expect(
-      detailsPanel.find('MockedTaskDetails').props().userTaskInstance
-    ).toStrictEqual(userTaskInstance);
+    expect(detailsPanel.find('ForwardRef').props().task).toStrictEqual(
+      userTaskInstance
+    );
     // close details drawer
     await act(async () => {
       detailsPanel
