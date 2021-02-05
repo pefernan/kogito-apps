@@ -1,8 +1,7 @@
 import React from 'react';
 import { Nav, NavList, NavItem, OUIAProps } from '@patternfly/react-core';
 import { KogitoPageLayout, ouiaAttribute } from '@kogito-apps/common';
-import { Redirect, Route, Link, Switch } from 'react-router-dom';
-import taskConsoleLogo from '../../../static/taskConsoleLogo.svg';
+import { Route, Link, Switch } from 'react-router-dom';
 
 import UserTaskInstanceDetailsPage from '../UserTaskInstanceDetailsPage/UserTaskInstanceDetailsPage';
 import UserTaskDataTableContainer from '../UserTaskDataTableContainer/UserTaskDataTableContainer';
@@ -39,12 +38,11 @@ const PageLayout: React.FC<IOwnProps & OUIAProps> = ({ ouiaId, ...props }) => {
     <KogitoPageLayout
       PageNav={PageNav}
       pageNavOpen={false}
-      BrandSrc={taskConsoleLogo}
+      BrandSrc="https://pefernan.github.io/task-console/fonts/taskConsoleLogo.svg"
       BrandAltText="Task Console Logo"
       BrandClick={BrandClick}
     >
       <Switch>
-        <Route exact path="/" render={() => <Redirect to="/TaskInbox" />} />
         <Route exact path="/TaskInbox" component={TaskInboxContainer} />
         <Route
           exact
@@ -56,6 +54,7 @@ const PageLayout: React.FC<IOwnProps & OUIAProps> = ({ ouiaId, ...props }) => {
           path="/UserTasksTable"
           component={UserTaskDataTableContainer}
         />
+        <Route component={TaskInboxContainer} />
       </Switch>
     </KogitoPageLayout>
   );

@@ -15,7 +15,6 @@ import DomainExplorerPage from '../DomainExplorerPage/DomainExplorerPage';
 import DomainExplorerLandingPage from '../DomainExplorerLandingPage/DomainExplorerLandingPage';
 import JobsManagementPage from '../JobsManagementPage/JobsManagementPage';
 import './PageLayout.css';
-import managementConsoleLogo from '../../../static/managementConsoleLogo.svg';
 import { History, Location } from 'history';
 
 interface IOwnProps {
@@ -68,8 +67,11 @@ const PageLayout: React.FC<IOwnProps & OUIAProps> = ({ ...props }) => {
   return (
     <React.Fragment>
       <KogitoPageLayout
+        pageNavOpen={false}
         PageNav={PageNav}
-        BrandSrc={managementConsoleLogo}
+        BrandSrc={
+          'https://pefernan.github.io/mgmt-console/fonts/managementConsoleLogo.svg'
+        }
         BrandAltText="Management Console Logo"
         BrandClick={BrandClick}
       >
@@ -102,20 +104,11 @@ const PageLayout: React.FC<IOwnProps & OUIAProps> = ({ ...props }) => {
             )}
           />
           <Route exact path="/JobsManagement" component={JobsManagementPage} />
+          <Route component={ProcessListPage} />
           <Route
             path="/NoData"
             render={_props => (
               <NoData
-                {..._props}
-                defaultPath="/ProcessInstances"
-                defaultButton="Go to process instances"
-              />
-            )}
-          />
-          <Route
-            path="*"
-            render={_props => (
-              <PageNotFound
                 {..._props}
                 defaultPath="/ProcessInstances"
                 defaultButton="Go to process instances"

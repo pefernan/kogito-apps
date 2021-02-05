@@ -16,7 +16,6 @@ import {
 import { HttpLink } from 'apollo-link-http';
 import { onError } from 'apollo-link-error';
 import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
-import managementConsoleLogo from './static/managementConsoleLogo.svg';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PageLayout from './components/Templates/PageLayout/PageLayout';
 
@@ -43,7 +42,9 @@ const appRender = (ctx: UserContext) => {
           <KogitoAppContextProvider userContext={ctx}>
             <ServerUnavailable
               PageNav={PageNav}
-              src={managementConsoleLogo}
+              src={
+                'https://pefernan.github.io/mgmt-console/fonts/managementConsoleLogo.svg'
+              }
               alt={'Management Console Logo'}
             />
           </KogitoAppContextProvider>

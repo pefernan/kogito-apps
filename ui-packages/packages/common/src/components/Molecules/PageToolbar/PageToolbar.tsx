@@ -29,7 +29,6 @@ import accessibleStyles from '@patternfly/react-styles/css/utilities/Accessibili
 import { css } from '@patternfly/react-styles';
 import AboutModalBox from '../AboutModalBox/AboutModalBox';
 import { componentOuiaProps, OUIAProps } from '../../../utils/OuiaUtils';
-import userImage from '../../../static/avatar.svg';
 import {
   AppContext,
   useKogitoAppContext
@@ -150,7 +149,12 @@ const PageToolbar: React.FunctionComponent<OUIAProps> = ({
               toggle={
                 <DropdownToggle
                   onToggle={onDropdownToggle}
-                  icon={<Avatar src={userImage} alt="User Avatar" />}
+                  icon={
+                    <Avatar
+                      src="https://pefernan.github.io/task-console/fonts/avatar.svg"
+                      alt="User Avatar"
+                    />
+                  }
                 >
                   {getUserName()}
                 </DropdownToggle>
