@@ -18,7 +18,9 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "webpack-node-externals": "^2.5.2"
+    "webpack-node-externals": "^2.5.2",
+    "@kogito-tooling/envelope": "^0.8.3",
+    "@kogito-tooling/envelope-bus": "^0.8.3"
   },
   "jest": {
     "preset": "ts-jest/presets/js-with-ts",
