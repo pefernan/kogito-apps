@@ -1,6 +1,7 @@
 import { ChannelType } from '@kogito-tooling/channel-common-api';
 import { EditorEnvelopeLocator } from '@kogito-tooling/editor/dist/api';
-import { EmbeddedViewer, File } from '@kogito-tooling/editor/dist/embedded';
+import { EmbeddedViewer } from '@kogito-tooling/editor/dist/embedded';
+import { File } from '@kogito-tooling/editor/dist/channel';
 import React from 'react';
 import { ModelData } from '../../../types';
 

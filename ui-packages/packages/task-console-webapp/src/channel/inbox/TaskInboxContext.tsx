@@ -15,30 +15,11 @@
  */
 
 import React, { useContext } from 'react';
-import { GraphQL } from '@kogito-apps/consoles-common';
+import { TaskInboxGatewayApi } from './TaskInboxGatewayApi';
 
-export interface ITaskConsoleContext<T> {
-  setActiveItem(item: T);
-  getActiveItem(): T;
-}
+const TaskInboxContext = React.createContext<TaskInboxGatewayApi>(null);
 
-export class TaskConsoleContextImpl<T> implements ITaskConsoleContext<T> {
-  private item: T;
+export const useTaskInboxGatewayApi = (): TaskInboxGatewayApi =>
+  useContext<TaskInboxGatewayApi>(TaskInboxContext);
 
-  getActiveItem(): T {
-    return this.item;
-  }
-
-  setActiveItem(item: T) {
-    this.item = item;
-  }
-}
-
-const TaskConsoleContext = React.createContext<
-  ITaskConsoleContext<GraphQL.UserTaskInstance>
->(null);
-
-export const useTaskConsoleContext = (): ITaskConsoleContext<GraphQL.UserTaskInstance> =>
-  useContext<ITaskConsoleContext<GraphQL.UserTaskInstance>>(TaskConsoleContext);
-
-export default TaskConsoleContext;
+export default TaskInboxContext;

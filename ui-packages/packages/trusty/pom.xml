@@ -35,7 +35,7 @@
     </repositories>
 
     <properties>
-        <version.dmn.webapp>7.41.0.Final</version.dmn.webapp>
+        <version.dmn.webapp>7.49.0.Final</version.dmn.webapp>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

@@ -18,7 +18,10 @@ export {
   default as DataTable,
   DataTableColumn
 } from './src/components/DataTable/DataTable';
-export * from './src/components/ItemDescriptor/ItemDescriptor';
+export {
+  default as ItemDescriptor,
+  ItemDescription
+} from './src/components/ItemDescriptor/ItemDescriptor';
 export {
   default as KogitoEmptyState,
   KogitoEmptyStateType
