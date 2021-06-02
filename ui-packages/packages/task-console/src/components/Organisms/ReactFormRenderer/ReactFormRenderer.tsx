@@ -22,8 +22,14 @@ import {
   Button,
   Form,
   FormGroup,
-  TextArea
+  TextArea,
+  TextInput,
+  Grid,
+  GridItem
 } from '@patternfly/react-core';
+import * as Babel from '@babel/standalone';
+import ReactDOM from 'react-dom';
+import * as Patternfly from '@patternfly/react-core';
 
 const ReactFormRenderer: React.FC<any> = props => {
   const [formName, setFormName] = useState<string>();
@@ -31,15 +37,19 @@ const ReactFormRenderer: React.FC<any> = props => {
 
   const renderform = () => {
     if (source) {
+      window.React = React;
+      window.ReactDOM = ReactDOM;
+
+      // @ts-ignore
+      window.PatternFlyReact = Patternfly;
+
       const container: HTMLElement = document.getElementById('formContainer');
       container.innerHTML = '';
       const id = uuidv4();
-      const formContainer: HTMLElement = document.getElementById('form');
+      const formContainer: HTMLElement = document.createElement('div');
       formContainer.id = id;
 
       container.appendChild(formContainer);
-
-      //ReactDOM.render(<Form__hiring_ITInterview />, target);
 
       try {
         const scriptElement: HTMLScriptElement = document.createElement(
@@ -47,20 +57,21 @@ const ReactFormRenderer: React.FC<any> = props => {
         );
         scriptElement.type = 'text/babel';
         scriptElement.dataset.type = 'module';
-        scriptElement.dataset.presets = 'react,stage-0';
+        scriptElement.dataset.presets = 'react';
 
         scriptElement.textContent = `
-        
-        const { useState } = React;
-        const { Form, Checkbox, Card, CardBody, FormGroup, TextInput } = PatternFlyReact;
+        const { useState } = window.React;
+        const { Form, Checkbox, Card, CardBody, FormGroup, TextInput } = window.PatternFlyReact;
         
         ${source}
-        
         const target = document.getElementById('${id}');
         
-        const element = React.createElement(${formName}, {});
-        ReactDOM.render(element, target);
+        const element = window.React.createElement(${formName}, {});
+        window.ReactDOM.render(element, target);
         `;
+        container.appendChild(scriptElement);
+        Babel.transformScriptTags();
+        console.log(Babel);
       } catch (e) {
         console.error(e);
       }
@@ -68,29 +79,22 @@ const ReactFormRenderer: React.FC<any> = props => {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-        padding: 8
-      }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          height: '100%',
-          marginBottom: '1rem',
-          flex: 2
-        }}
-      >
+    <Grid hasGutter>
+      <GridItem span={6}>
         <Form>
           <FormGroup fieldId={'formName'} label={'Form Name'}>
-            <TextArea onChange={setFormName}>{formName}</TextArea>
+            <TextInput onChange={setFormName} value={formName} />
           </FormGroup>
           <FormGroup fieldId={'source'} label={'Source Code'}>
-            <TextArea onChange={setSource}>{source}</TextArea>
+            <TextArea
+              onChange={setSource}
+              rows={20}
+              style={{
+                fontFamily: 'monospace'
+              }}
+            >
+              {source}
+            </TextArea>
           </FormGroup>
           <ActionGroup>
             <Button variant="primary" onClick={renderform}>
@@ -98,20 +102,18 @@ const ReactFormRenderer: React.FC<any> = props => {
             </Button>
           </ActionGroup>
         </Form>
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          height: '100%',
-          marginBottom: '1rem',
-          flex: 2
-        }}
-        id={'formContainer'}
-      >
-        {}
-      </div>
-    </div>
+      </GridItem>
+      <GridItem span={6}>
+        <div
+          style={{
+            height: '100%'
+          }}
+          id={'formContainer'}
+        >
+          {}
+        </div>
+      </GridItem>
+    </Grid>
   );
 };
 

@@ -23,9 +23,7 @@
     "url": "https://github.com/kiegroup/kogito-apps.git"
   },
   "dependencies": {},
-  "devDependencies": {
-    "lodash": "^4.14.2"
-  },
+  "devDependencies": {},
   "files": [
     "dist"
   ],

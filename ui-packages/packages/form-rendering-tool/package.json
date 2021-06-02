@@ -24,7 +24,6 @@
   },
   "dependencies": {
     "directory-tree": "^2.2.9",
-    "node-html-parser": "^3.2.0",
     "underscore": "1.11.0",
     "unescape": "^1.0.1",
     "uniforms": "3.0.0",

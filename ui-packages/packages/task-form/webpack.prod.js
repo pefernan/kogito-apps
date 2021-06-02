@@ -62,8 +62,7 @@ module.exports = merge(common, {
           options: {
             publicPath: '../',
           }
-        },'to-string-loader',
-          'css-loader']
+        }, 'css-loader']
       }
     ]
   }
