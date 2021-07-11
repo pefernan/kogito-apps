@@ -15,7 +15,7 @@
  */
 
 import React from 'react';
-import { GraphQL, OUIAProps } from '@kogito-apps/common';
+import { GraphQL } from '@kogito-apps/common';
 import ReactFormRenderer from '../ReactFormRenderer/ReactFormRenderer';
 import UserTaskInstance = GraphQL.UserTaskInstance;
 
@@ -25,12 +25,10 @@ interface IOwnProps {
   onSubmitError: (message: string, details?: string) => void;
 }
 
-const TaskForm: React.FC<IOwnProps & OUIAProps> = ({
+const TaskForm: React.FC<IOwnProps> = ({
   userTaskInstance,
   onSubmitSuccess,
-  onSubmitError,
-  ouiaId,
-  ouiaSafe
+  onSubmitError
 }) => {
   return <ReactFormRenderer />;
 };
