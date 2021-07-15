@@ -28,6 +28,14 @@
     <i class="fa fa-clock fa-fw"></i>
     Jobs <span id="jobsCount" class="badge badge-light"/>
 </a>
+<br/>
+<a href="{urlbase}/jobs" class="badge badge-light">
+    <i class="fa fa-clock fa-fw"></i>
+    Forms <span id="formsCount" class="badge badge-light"/>
+    <div id="formsContainer">
+
+    </div>
+</a>
 <script>
     const fillCount = (resourceType) => {
         fetch("http://localhost:8080/dataindex/" + resourceType + "/count")
@@ -38,8 +46,24 @@
             console.log("Error while trying to fetch " + resourceType + " count.");
         });
     };
-
+    const fillForms = () => {
+      fetch("http://localhost:8080/forms/list")
+        .then(response => response.json())
+        .then(forms => {
+          console.log(forms);
+          var result = ""
+          forms.forEach(form => {
+            console.log(form.name);
+            result += "<div>" + form.name  +"</div>";
+          })
+          document.getElementById("formsContainer").innerHTML = result;
+        }).catch(function () {
+        console.log("Error while trying to fetch forms.");
+      });
+    };
     fillCount("processInstances");
     fillCount("tasks");
     fillCount("jobs");
+    fillCount("forms");
+    fillForms()
 </script>
