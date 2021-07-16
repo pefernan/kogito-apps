@@ -52,32 +52,61 @@ const ReactFormRenderer: React.FC<any> = props => {
       container.appendChild(formContainer);
 
       try {
-
         const ts = Babel.transform(source, {
-          presets: [["typescript", {
-            allExtensions:true,
-            isTSX: true
-          }]]}).code;
+          presets: [
+            [
+              'typescript',
+              {
+                allExtensions: true,
+                isTSX: true
+              }
+            ]
+          ]
+        }).code;
 
         const react = Babel.transform(source, {
-          presets: ["react", ["typescript", {
-            allExtensions:true,
-            isTSX: true
-          }]]}).code;
+          presets: [
+            'react',
+            [
+              'typescript',
+              {
+                allExtensions: true,
+                isTSX: true
+              }
+            ]
+          ]
+        }).code;
 
         const env = Babel.transform(source, {
-          presets: ["env","react", ["typescript", {
-            allExtensions:true,
-            isTSX: true
-          }]]}).code;
+          presets: [
+            'env',
+            'react',
+            [
+              'typescript',
+              {
+                allExtensions: true,
+                isTSX: true
+              }
+            ]
+          ]
+        }).code;
 
         const result = Babel.transform(source, {
-          presets: ["es2015", "env","react", ["typescript", {
-            allExtensions:true,
-            isTSX: true
-          }]]});
+          presets: [
+            'es2015',
+            'env',
+            'react',
+            [
+              'typescript',
+              {
+                allExtensions: true,
+                isTSX: true
+              }
+            ]
+          ]
+        });
 
-        console.log(ts, react, env, result.code)
+        console.log(ts, react, env, result.code);
 
         const compiledReact = react;
 
@@ -88,18 +117,21 @@ const ReactFormRenderer: React.FC<any> = props => {
         // @ts-ignore
         window.PatternFly = window.PatternFlyReact;
 
-        scriptElement.type = "module";
+        scriptElement.type = 'module';
 
-        var content = `
+        const content = `
+         const { useState } = React;
+        const { Form, Checkbox, Card, CardBody, FormGroup, TextInput } = PatternFlyReact;
+       
+        
         ${compiledReact}
         const target = document.getElementById("${id}");
-        const element = React.createElement(${formName}, {});
-        ReactDOM.render(element, target);
+        const element = window.React.createElement(${formName}, {});
+        window.ReactDOM.render(element, target);
         `;
         scriptElement.text = content;
 
         container.appendChild(scriptElement);
-
       } catch (e) {
         console.error(e);
       }
