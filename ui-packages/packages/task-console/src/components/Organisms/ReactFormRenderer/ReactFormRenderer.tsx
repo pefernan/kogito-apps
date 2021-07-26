@@ -52,18 +52,6 @@ const ReactFormRenderer: React.FC<any> = props => {
       container.appendChild(formContainer);
 
       try {
-        const ts = Babel.transform(source, {
-          presets: [
-            [
-              'typescript',
-              {
-                allExtensions: true,
-                isTSX: true
-              }
-            ]
-          ]
-        }).code;
-
         const react = Babel.transform(source, {
           presets: [
             'react',
@@ -76,37 +64,6 @@ const ReactFormRenderer: React.FC<any> = props => {
             ]
           ]
         }).code;
-
-        const env = Babel.transform(source, {
-          presets: [
-            'env',
-            'react',
-            [
-              'typescript',
-              {
-                allExtensions: true,
-                isTSX: true
-              }
-            ]
-          ]
-        }).code;
-
-        const result = Babel.transform(source, {
-          presets: [
-            'es2015',
-            'env',
-            'react',
-            [
-              'typescript',
-              {
-                allExtensions: true,
-                isTSX: true
-              }
-            ]
-          ]
-        });
-
-        console.log(ts, react, env, result.code);
 
         const compiledReact = react;
 
