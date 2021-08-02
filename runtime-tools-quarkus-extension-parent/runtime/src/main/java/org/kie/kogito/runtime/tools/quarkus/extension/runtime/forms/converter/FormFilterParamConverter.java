@@ -13,30 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.kie.kogito.runtime.tools.quarkus.extension.runtime.forms;
 
-import java.util.Date;
+package org.kie.kogito.runtime.tools.quarkus.extension.runtime.forms.converter;
 
-public class FormInfo {
-    private final String name;
-    private final String type;
-    private final Date lastModified;
+import java.util.Arrays;
 
-    public FormInfo(String name, String type, Date lastModified) {
-        this.name = name;
-        this.type = type;
-        this.lastModified = lastModified;
+import javax.ws.rs.ext.ParamConverter;
+import javax.ws.rs.ext.Provider;
+
+import org.kie.kogito.runtime.tools.quarkus.extension.runtime.forms.model.FormFilter;
+
+@Provider
+public class FormFilterParamConverter implements ParamConverter<FormFilter> {
+    public FormFilter fromString(String names) {
+        return new FormFilter(Arrays.asList(names.split(";")));
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public Date getLastModified() {
-        return lastModified;
+    public String toString(FormFilter names) {
+        return names.toString();
     }
 }
