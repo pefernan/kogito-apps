@@ -33,7 +33,8 @@
     "@kogito-apps/consoles-common": "^1.0.0",
     "@kogito-apps/task-details": "1.0.0",
     "@kogito-apps/task-form": "^1.0.0",
-    "@kogito-apps/task-inbox": "^1.0.0"
+    "@kogito-apps/task-inbox": "^1.0.0",
+    "@kogito-apps/form-api": "^1.0.0"
   },
   "devDependencies": {
     "@kogito-apps/ouia-tools": "^1.0.0"
