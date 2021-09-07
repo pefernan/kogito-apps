@@ -23,6 +23,10 @@ module.exports = {
       KOGITO_TASK_ACTIVE_STATES_LIST: 'Ready,Reserved',
       TEST_USER_SYSTEM_ENABLED: false
     }),
+    new CopyPlugin({
+    patterns: [
+      { from: "../form-api/dist/index.js", to: "./static" }],
+  }),
   ],
   module: {
     rules: [

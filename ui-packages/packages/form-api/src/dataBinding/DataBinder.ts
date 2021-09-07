@@ -17,11 +17,13 @@
 import set from 'lodash/set';
 import get from 'lodash/get';
 
-import { Binding } from './Binding';
+import { Binding, CustomBinding } from './Binding';
 
 import { lookupPropertyBindings } from './bindings/BindingFactory';
 import { DeepProxy } from './DeepProxy';
 import { flattenSchema } from './utils';
+import { BindingImpl } from './bindings/BindingImpl';
+import { CustomBindingAdapter } from './bindings/adapters/CustomBindingAdapter';
 
 export interface DataBinder {
   getModel: () => any;
@@ -100,12 +102,21 @@ class DefaultDataBinder implements DataBinder {
   }
 }
 
-function lookupBindings(schema: any, container?: HTMLElement): Binding<any>[] {
+function lookupBindings(
+  schema: any,
+  container?: HTMLElement,
+  customBindings?: CustomBinding<any>[]
+): Binding<any>[] {
+  if (customBindings && customBindings.length > 0) {
+    return customBindings.map(
+      custom => new BindingImpl(custom.path, new CustomBindingAdapter(custom))
+    );
+  }
+
   const flatSchema = flattenSchema(schema);
-
   const formContainer = container ?? document;
-
   const bindings = [];
+
   // @ts-ignore
   for (const [path, props] of flatSchema.entries()) {
     if (props.type === 'object') {
@@ -126,14 +137,13 @@ function lookupBindings(schema: any, container?: HTMLElement): Binding<any>[] {
 
 export function loadBinder(args: {
   container?: HTMLElement;
-  bindings?: Binding<any>[];
+  bindings?: CustomBinding<any>[];
   model?: any;
   schema: any;
 }): DataBinder {
-  console.log('loadbinder');
   return new DefaultDataBinder(
     args.model ?? {},
     args.schema,
-    lookupBindings(args.schema, args.container)
+    lookupBindings(args.schema, args.container, args.bindings)
   );
 }

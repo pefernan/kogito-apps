@@ -25,7 +25,8 @@
     "format": "prettier --config ../../.prettierrc --check --write './src/**/*.{tsx,ts,js}'",
     "clean": "rimraf dist",
     "build:dev": "yarn run clean && yarn run lint && yarn run build",
-    "build:prod": "yarn run clean && yarn run lint && yarn run build && yarn test"
+    "build:prod": "yarn run clean && yarn run lint && yarn run build && yarn test",
+    "build:watch": "tsc -m commonjs --outDir ./dist -w && webpack --config webpack.prod.js --watch"
   },
   "dependencies": {
     "lodash": "^4.17.15"

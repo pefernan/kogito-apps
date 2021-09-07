@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { Form, FormApi } from './form';
-import { Binding, loadBinder } from './dataBinding';
+import { FormApi, FormContext, loadFormApi } from './form';
+import { CustomBinding } from './dataBinding';
 
 declare global {
   interface Window {
@@ -23,38 +23,21 @@ declare global {
   }
 }
 
+export interface Form {
+  open(args: {
+    container?: HTMLElement;
+    bindings?: CustomBinding<any>[];
+  }): FormApi;
+}
+
 export function open(args: {
-  container?: HTMLElement;
-  bindings?: Binding<any>[];
-  model?: any;
   schema: any;
+  container?: HTMLElement;
+  bindings?: CustomBinding<any>[];
+  model?: any;
+  onOpen?: (ctx: FormContext) => void;
 }): FormApi {
-  const binder = loadBinder(args);
-  return {
-    // restart(): void {},
-
-    dispose(): void {
-      binder.dispose();
-    },
-
-    getModel(): any {
-      return binder.getModel();
-    },
-
-    submit(params: Record<string, string>): void {
-      console.log('submit');
-    },
-
-    updateModelProperty(path: string, newValue: any): void {
-      binder.updateModelProperty(path, newValue);
-    },
-
-    onModelChangeListener(
-      listener: (path: string, newValue: any, oldValue: any) => void
-    ): void {
-      binder.onModelChangeListener(listener);
-    }
-  };
+  return loadFormApi(args);
 }
 
 window.Form = {

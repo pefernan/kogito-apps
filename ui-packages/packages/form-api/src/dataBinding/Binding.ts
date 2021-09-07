@@ -24,3 +24,11 @@ export interface Binding<T> {
 
   onChangeListener: (listener: () => void) => void;
 }
+
+export interface CustomBinding<T> {
+  path: string;
+  container(): HTMLElement;
+
+  getValue: () => T;
+  setValue: (value: T) => void;
+}

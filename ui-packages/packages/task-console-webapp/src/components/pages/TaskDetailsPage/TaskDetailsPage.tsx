@@ -53,12 +53,12 @@ import { PageTitle } from '@kogito-apps/consoles-common';
 import { UserTaskInstance, TaskState } from '@kogito-apps/task-console-shared';
 import { TaskInboxGatewayApi } from '../../../channel/inbox';
 import { useTaskInboxGatewayApi } from '../../../channel/inbox/TaskInboxContext';
-import TaskFormContainer from './components/TaskFormContainer/TaskFormContainer';
 import FormNotification, {
   Notification
 } from './components/FormNotification/FormNotification';
 import '../../styles.css';
 import { EmbeddedTaskDetails } from '@kogito-apps/task-details';
+import Form__HRInterview from './Form__HRInterview';
 
 interface Props {
   taskId: string;
@@ -124,12 +124,14 @@ const TaskDetailsPage: React.FC<RouteComponentProps<Props> & OUIAProps> = ({
     props.history.push('/');
   };
 
+  // @ts-ignore
   const onSubmitSuccess = (phase: string) => {
     const message = `Task '${userTask.referenceName}' successfully transitioned to phase '${phase}'.`;
 
     showNotification('success', message);
   };
 
+  // @ts-ignore
   const onSubmitError = (phase, details?: string) => {
     const message = `Task '${userTask.referenceName}' couldn't transition to phase '${phase}'.`;
 
@@ -304,11 +306,7 @@ const TaskDetailsPage: React.FC<RouteComponentProps<Props> & OUIAProps> = ({
                 >
                   <Card className={'kogito-task-console__full-size'}>
                     <CardBody className="pf-u-h-100">
-                      <TaskFormContainer
-                        userTask={userTask}
-                        onSubmitSuccess={onSubmitSuccess}
-                        onSubmitError={onSubmitError}
-                      />
+                      <Form__HRInterview />
                     </CardBody>
                   </Card>
                 </GridItem>
