@@ -63,8 +63,7 @@ const FormView: React.FC<FormViewProps & OUIAProps> = ({
   };
 
   const editorDidMount = (editor, monaco): void => {
-    console.log('mount', editor, monaco);
-    if (formType && formType.toLowerCase() === 'tsx') {
+    if (isSource && formType.toLowerCase() === 'tsx') {
       monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
         jsx: 'react'
       });
@@ -74,9 +73,6 @@ const FormView: React.FC<FormViewProps & OUIAProps> = ({
         noSyntaxValidation: false
       });
     }
-    setTimeout(() => {
-      editor.trigger('anyString', 'editor.action.formatDocument');
-    }, 500);
   };
 
   const handleChange = (value): void => {
@@ -117,7 +113,7 @@ const FormView: React.FC<FormViewProps & OUIAProps> = ({
         customControls={customControl}
         code={code}
         language={getFormLanguage()}
-        height="800px"
+        height="700px"
         onEditorDidMount={editorDidMount}
         onChange={handleChange}
       />

@@ -52,7 +52,6 @@ const FormDetails: React.FC<FormDetailsProps & OUIAProps> = ({
   const [formContent, setFormContent] = useState<Form>(null);
   const [error, setError] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-
   useEffect(() => {
     /* istanbul ignore else */
     if (isEnvelopeConnectedToChannel) {
@@ -106,7 +105,7 @@ const FormDetails: React.FC<FormDetailsProps & OUIAProps> = ({
   const getConfig = (): string => {
     /* istanbul ignore else */
     if (!_.isEmpty(formContent)) {
-      return JSON.stringify(formContent.formConfiguration.resources);
+      return JSON.stringify(formContent.formConfiguration.resources, null, 2);
     }
   };
 

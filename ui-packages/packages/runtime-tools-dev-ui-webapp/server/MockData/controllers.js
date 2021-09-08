@@ -6,7 +6,7 @@ const confirmTravelForm = require('./forms/ConfirmTravel');
 const applyForVisaForm = require('./forms/ApplyForVisa');
 const emptyForm = require('./forms/EmptyForm');
 const formData = require('../MockData/forms/formData');
-const formContentData = require('../MockData/forms/FormContent');
+const fs = require('fs')
 const tasksUnableToTransition = [
   '047ec38d-5d57-4330-8c8d-9bd67b53a529',
   '841b9dba-3d91-4725-9de3-f9f4853b417e'
@@ -303,10 +303,27 @@ module.exports = controller = {
 
   getFormContent: (req, res) => {
     const formName = req.params.formName;
-    const formContent = formContentData.filter((content) => content.Form.name === formName);
-    if (formContent) {
-      res.send(formContent[0]);
+    const formInfo = formData.filter(form => form.name === formName);
+    let sourceString;
+    let configString;
+    if (formInfo[0].type.toLowerCase() === 'html') {
+      sourceString = fs.readFileSync(path.join(__dirname, 'forms', 'examples', 'html', `${formName}.html`), "utf8");
+      configString = fs.readFileSync(path.join(__dirname, 'forms', 'examples', 'html', `${formName}.config`), "utf8");
+    } else if (formInfo[0].type.toLowerCase() === 'tsx') {
+      sourceString = fs.readFileSync(path.join(__dirname, 'forms', 'examples', 'tsx', `${formName}.tsx`), "utf8");
+      configString = fs.readFileSync(path.join(__dirname, 'forms', 'examples', 'tsx', `${formName}.config`), "utf8");
     }
+    const formContent = {
+      Form: {
+        name: formName,
+        source: {
+
+          "source-content": sourceString
+        },
+        formConfiguration: JSON.parse(configString)
+      }
+    }
+    res.send(formContent)
   }
 };
 
