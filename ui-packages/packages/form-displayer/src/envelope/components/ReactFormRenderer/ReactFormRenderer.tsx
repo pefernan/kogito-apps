@@ -14,113 +14,107 @@
  * limitations under the License.
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useImperativeHandle, useState } from 'react';
 import _ from 'lodash';
-import uuidv4 from 'uuid';
-import * as Babel from '@babel/standalone';
 import ReactDOM from 'react-dom';
 import * as Patternfly from '@patternfly/react-core';
 import { FormArgs } from '../../../api';
+import { FormDisplayerInitArgs } from '../FormDisplayer/FormDisplayer';
+import {
+  FormApi,
+  FormBridge,
+  FormConfig,
+  SubmitResult
+} from '../api/FormBridge';
+import { transpileReactCode } from './utils/ReactDisplayerUtils';
+
 import Text = Patternfly.Text;
 import TextContent = Patternfly.TextContent;
 import TextVariants = Patternfly.TextVariants;
 interface ReactFormRendererProps {
   content: FormArgs;
+  doInitForm: () => void;
 }
 
-const ReactFormRenderer: React.FC<ReactFormRendererProps> = ({ content }) => {
+window.React = React;
+window.ReactDOM = ReactDOM;
+// @ts-ignore
+window.PatternFlyReact = Patternfly;
+
+export const ReactFormRenderer = React.forwardRef<
+  FormBridge,
+  ReactFormRendererProps
+>(({ content, doInitForm }, forwardedRef) => {
+  const [source, setSource] = useState<string>(null);
   const [errorMessage, setErrorMessage] = useState<any>(null);
-  let source;
+  const [formBridge, setFormBridge] = useState<FormBridge>(null);
+
+  const doOpenForm = (config: FormConfig): FormApi => {
+    console.log('react form renderer: open form', config);
+    setFormBridge(config.bridge);
+    return {};
+  };
+
+  useEffect(() => {
+    window.Form = {
+      openForm: doOpenForm
+    };
+  }, []);
 
   useEffect(() => {
     if (content && content.source) {
-      source = content.source['source-content'];
-      renderform();
+      try {
+        const transpiledCode = transpileReactCode(content.source['source-content'], content.name);
+        setSource(transpiledCode);
+      } catch (e) {
+        setErrorMessage(e);
+      }
     }
   }, [content]);
 
-  const renderform = () => {
+  useEffect(() => {
     if (source) {
-      window.React = React;
-      window.ReactDOM = ReactDOM;
-
-      // @ts-ignore
-      window.PatternFlyReact = Patternfly;
-
       const container: HTMLElement = document.getElementById('formContainer');
       container.innerHTML = '';
-      const id = uuidv4();
+      const id = content.name;
       const formContainer: HTMLElement = document.createElement('div');
       formContainer.id = id;
 
       container.appendChild(formContainer);
+      const scriptElement: HTMLScriptElement = document.createElement('script');
+      scriptElement.type = 'module';
+      scriptElement.text = source;
 
-      const reactReg = /import React, {[^}]*}.*(?='react').*/gim;
-      const patternflyReg = /import {[^}]*}.*(?='@patternfly\/react-core').*/gim;
-      const regexvalueReact = new RegExp(reactReg);
-      const reactImport = regexvalueReact.exec(source);
-      const reg = /\{([^)]+)\}/;
-      const reactElements = reg.exec(reactImport[0])[1];
-      console.log('react', reactElements);
-      const regexvaluePat = new RegExp(patternflyReg);
-      const patternflyImport = regexvaluePat.exec(source);
-      const patternflyElements = reg.exec(patternflyImport[0])[1];
-      console.log('pat', patternflyElements);
-      const trimmedSource = source
-        .split(reactReg)
-        .join('')
-        .trim()
-        .split(patternflyReg)
-        .join('')
-        .trim();
-      const tempSource = trimmedSource;
-      const formName = tempSource.split(':')[0].split('const ')[1];
-      try {
-        // const compiledReact = react;
-
-        const compiledReact = trimmedSource;
-
-        const scriptElement: HTMLScriptElement = document.createElement(
-          'script'
-        );
-
-        // @ts-ignore
-        window.PatternFly = window.PatternFlyReact;
-
-        scriptElement.type = 'module';
-
-        const content = `
-        const {${reactElements}} = React;
-        const {${patternflyElements}} = PatternFlyReact;
-        ${compiledReact}
-        const target = document.getElementById("${id}");
-        const element = window.React.createElement(${formName}, {});
-        window.ReactDOM.render(element, target);
-        `;
-        console.log('cone', content);
-        const react = Babel.transform(content.trim(), {
-          presets: [
-            'react',
-            [
-              'typescript',
-              {
-                allExtensions: true,
-                isTSX: true
-              }
-            ]
-          ]
-        }).code;
-        scriptElement.text = react;
-
-        container.appendChild(scriptElement);
-      } catch (e) {
-        console.log('here on error id:', e);
-        setErrorMessage(e);
-      }
+      container.appendChild(scriptElement);
     }
-  };
+  }, [source]);
 
-  return (
+  useImperativeHandle(
+    forwardedRef,
+    () => ({
+      onOpen(args: FormDisplayerInitArgs) {
+        formBridge?.onOpen(args);
+      },
+      beforeSubmit(): void {
+        return formBridge?.beforeSubmit();
+      },
+      afterSubmit(result: SubmitResult): void {
+        return formBridge?.afterSubmit(result);
+      },
+      getFormData(): any {
+        return formBridge?.getFormData();
+      }
+    }),
+    [formBridge]
+  );
+
+  useEffect(() => {
+    if (formBridge) {
+      doInitForm();
+    }
+  }, [formBridge]);
+
+return (
     <>
       {_.isEmpty(errorMessage) ? (
         <div
@@ -149,7 +143,7 @@ const ReactFormRenderer: React.FC<ReactFormRendererProps> = ({ content }) => {
         </>
       )}
     </>
-  );
-};
+);
+});
 
 export default ReactFormRenderer;

@@ -14,7 +14,7 @@
 
       <div class="form-group">
         <label for="uniforms-0000-0005">Salary</label>
-        <input type="number" class="form-control" id="uniforms-0000-0005" name="candidate.salary" disabled step="1" value="" />
+        <input type="number" class="form-control" id="uniforms-0000-0005" name="candidate.salary" step="1" value="" />
       </div>
 
       <div class="form-group">
@@ -28,4 +28,47 @@
     <input type="checkbox" id="uniforms-0000-0008" name="approve" class="form-check-input" />
     <label class="form-check-label" for="uniforms-0000-0008">Approve</label>
   </div>
+  <script>
+    function bindData(data) {
+      document.getElementById("uniforms-0000-0002").value = data?.candidate?.email;
+      document.getElementById("uniforms-0000-0003").value = data?.candidate?.name;
+      document.getElementById("uniforms-0000-0005").value = data?.candidate?.salary;
+      document.getElementById("uniforms-0000-0006").value = data?.candidate?.skills;
+    }
+
+    function getFormData() {
+      return {
+        approve: document.getElementById("uniforms-0000-0008").checked
+      }
+    }
+
+    const validateForm = () => {
+      if(document.getElementById("uniforms-0000-0005").value > 1000000) {
+        throw new Error("Salary too high " + document.getElementById("uniforms-0000-0005").value);
+      }
+    }
+
+    console.log('before open form');
+    const api = window.Form.openForm({
+      bridge: {
+        onOpen: (args) => {
+          console.log('ON OPEN', args)
+          bindData(args.data);
+        },
+        getFormData: () => getFormData(),
+        beforeSubmit: () => {
+          validateForm();
+        },
+        afterSubmit: (result) => {
+          if(result.result === 'error') {
+            window.alert(result.info);
+          } else {
+            console.log("submitted: ", result);
+          }
+        }
+      }
+    });
+
+    console.log("api: ", api);
+  </script>
 </div>

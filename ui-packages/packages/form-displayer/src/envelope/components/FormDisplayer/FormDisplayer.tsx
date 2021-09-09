@@ -14,10 +14,30 @@
  * limitations under the License.
  */
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { FormArgs, FormInfo } from '../../../api';
 import ReactFormRenderer from '../ReactFormRenderer/ReactFormRenderer';
 import HtmlFormRenderer from '../HtmlFormRenderer/HtmlFormRenderer';
+import { FormBridge, SubmitResult, SubmitResultType } from '../api/FormBridge';
+import { ActionList, Button } from '@patternfly/react-core';
+
+export interface InnerFormDisplayerApi {
+  init: (args: FormDisplayerInitArgs) => void;
+
+  beforeSubmit?: () => void;
+  afterSubmit?: (result: SubmitResult) => void;
+
+  getFormData: () => any;
+}
+
+export interface FormDisplayerInitArgs {
+  data: any;
+  ctx: any;
+}
+
+export interface FormDisplayerSubmitArgs {
+  ctx: any;
+}
 
 interface FormDisplayerProps {
   isEnvelopeConnectedToChannel: boolean;
@@ -30,13 +50,85 @@ const FormDisplayer: React.FC<FormDisplayerProps> = ({
   content,
   config
 }) => {
+  // @ts-ignore
+  const formBridge = useRef<FormBridge>(null);
+
+  const init = () => {
+    const args: FormDisplayerInitArgs = {
+      data: {
+        candidate: {
+          name: 'User',
+          email: 'user@email.com',
+          salary: 15000,
+          skills: 'Java, Kogito'
+        }
+      },
+      ctx: {
+        task: {
+          id: 123456,
+          name: 'Task Name'
+        },
+        schema: {},
+        phases: ['complete', 'start']
+      }
+    };
+    formBridge.current?.onOpen(args);
+  };
+
+  const doSubmit = (success: boolean) => {
+    const bridge: FormBridge = formBridge.current;
+
+    if (!bridge) {
+      console.error('Cannot submit form: Form FormBridge is missing');
+      return;
+    }
+
+    if (bridge.beforeSubmit) {
+      try {
+        bridge.beforeSubmit();
+        const data = bridge.getFormData();
+        console.log('Submitting Form: ', data);
+        bridge.afterSubmit({
+          result: success ? SubmitResultType.SUCCESS : SubmitResultType.ERROR,
+          info: 'bla bla bla'
+        });
+      } catch (err) {
+        console.error('Cannot submit form: error on bridge', err);
+      }
+    }
+  };
+
+  if (!isEnvelopeConnectedToChannel || !config) {
+    return <></>;
+  }
+
   return (
     <>
-      {isEnvelopeConnectedToChannel && config && config.type === 'TSX' ? (
-        <ReactFormRenderer content={content} />
+      {config.type === 'TSX' ? (
+        <ReactFormRenderer
+          content={content}
+          doInitForm={() => init()}
+          ref={formBridge}
+        />
       ) : (
-        <HtmlFormRenderer content={content} config={config} />
+        <HtmlFormRenderer
+          content={content}
+          config={config}
+          doInitForm={() => init()}
+          ref={formBridge}
+        />
       )}
+      <ActionList>
+        <Button onClick={() => init()} isDisabled={true}>
+          Init
+        </Button>
+        <Button onClick={() => doSubmit(true)} variant="secondary">
+          Submit Success
+        </Button>
+        <Button onClick={() => doSubmit(false)} variant="secondary">
+          Submit Failure
+        </Button>
+      </ActionList>
     </>
   );
 };

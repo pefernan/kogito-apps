@@ -14,17 +14,67 @@
  * limitations under the License.
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useImperativeHandle } from 'react';
+import InnerHTML from 'dangerously-set-html-content';
 import { FormArgs, FormInfo } from '../../../api';
-// import uuidv4 from 'uuid';
+import {
+  FormApi,
+  FormBridge,
+  FormConfig,
+  SubmitResult
+} from '../api/FormBridge';
+import { FormDisplayerInitArgs } from '../FormDisplayer/FormDisplayer';
 
 interface HtmlFormRendererProps {
   content: FormArgs;
   config: FormInfo;
+  doInitForm: () => void;
 }
 
-const HtmlFormRenderer: React.FC<HtmlFormRendererProps> = ({ content }) => {
+export const HtmlFormRenderer = React.forwardRef<
+  FormBridge,
+  HtmlFormRendererProps
+>(({ content, doInitForm }, forwardedRef) => {
   const [source, setSource] = useState<string>();
+  const [formBridge, setFormBridge] = useState<FormBridge>(null);
+
+  const doOpenForm = (config: FormConfig): FormApi => {
+    console.log('HTML form renderer: open form', config);
+    setFormBridge(config.bridge);
+    return {};
+  };
+
+  useEffect(() => {
+    window.Form = {
+      openForm: doOpenForm
+    };
+  }, []);
+
+  useImperativeHandle(
+    forwardedRef,
+    () => ({
+      onOpen(args: FormDisplayerInitArgs) {
+        formBridge?.onOpen(args);
+      },
+      beforeSubmit(): void {
+        return formBridge?.beforeSubmit();
+      },
+      afterSubmit(result: SubmitResult): void {
+        return formBridge?.afterSubmit(result);
+      },
+      getFormData(): any {
+        return formBridge?.getFormData();
+      }
+    }),
+    [formBridge]
+  );
+
+  useEffect(() => {
+    if (formBridge) {
+      doInitForm();
+    }
+  }, [formBridge]);
+
   let resources = {} as any;
 
   useEffect(() => {
@@ -54,9 +104,9 @@ const HtmlFormRenderer: React.FC<HtmlFormRendererProps> = ({ content }) => {
 
   return (
     <div id="script-container">
-      <div dangerouslySetInnerHTML={{ __html: source }} />
+      <InnerHTML html={source} />
     </div>
   );
-};
+});
 
 export default HtmlFormRenderer;
