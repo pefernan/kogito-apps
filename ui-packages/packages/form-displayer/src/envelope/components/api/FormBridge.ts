@@ -23,19 +23,53 @@ declare global {
 }
 
 export interface FormConfig {
-  bridge: FormBridge;
+  onOpen?: (args: InitArgs) => void;
   [key: string]: any;
 }
 
-export interface FormApi {}
-
-export interface FormBridge {
-  onOpen?: (args: InitArgs) => void;
-
+export interface FormApi {
   beforeSubmit?: () => void;
   afterSubmit?: (result: SubmitResult) => void;
+  getFormData?: () => any;
+}
 
-  getFormData: () => any;
+export interface InternalFormDisplayerApi extends FormApi {
+  onOpen: (args: InitArgs) => void;
+}
+
+export class InternalFormDisplayerApiImpl implements InternalFormDisplayerApi {
+  private readonly wrapped: FormApi;
+  private readonly onOpenCallback: (args: InitArgs) => void;
+
+  constructor(api: FormApi, onOpenCallback: (args: InitArgs) => void) {
+    this.wrapped = api;
+    this.onOpenCallback = onOpenCallback;
+  }
+
+  onOpen(args: InitArgs): void {
+    if (this.onOpenCallback) {
+      this.onOpenCallback(args);
+    }
+  }
+
+  afterSubmit(result: SubmitResult): void {
+    if (this.wrapped.afterSubmit) {
+      this.wrapped.afterSubmit(result);
+    }
+  }
+
+  beforeSubmit(): void {
+    if (this.wrapped.beforeSubmit) {
+      this.wrapped.beforeSubmit();
+    }
+  }
+
+  getFormData(): any {
+    if (this.wrapped.getFormData) {
+      this.wrapped.getFormData();
+    }
+    return null;
+  }
 }
 
 export interface InitArgs {

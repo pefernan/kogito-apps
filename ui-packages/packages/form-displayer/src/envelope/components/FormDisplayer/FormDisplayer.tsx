@@ -14,30 +14,17 @@
  * limitations under the License.
  */
 
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { FormArgs, FormInfo } from '../../../api';
 import ReactFormRenderer from '../ReactFormRenderer/ReactFormRenderer';
 import HtmlFormRenderer from '../HtmlFormRenderer/HtmlFormRenderer';
-import { FormBridge, SubmitResult, SubmitResultType } from '../api/FormBridge';
+import {
+  FormApi,
+  InitArgs,
+  InternalFormDisplayerApi,
+  SubmitResultType
+} from '../api';
 import { ActionList, Button } from '@patternfly/react-core';
-
-export interface InnerFormDisplayerApi {
-  init: (args: FormDisplayerInitArgs) => void;
-
-  beforeSubmit?: () => void;
-  afterSubmit?: (result: SubmitResult) => void;
-
-  getFormData: () => any;
-}
-
-export interface FormDisplayerInitArgs {
-  data: any;
-  ctx: any;
-}
-
-export interface FormDisplayerSubmitArgs {
-  ctx: any;
-}
 
 interface FormDisplayerProps {
   isEnvelopeConnectedToChannel: boolean;
@@ -51,10 +38,10 @@ const FormDisplayer: React.FC<FormDisplayerProps> = ({
   config
 }) => {
   // @ts-ignore
-  const formBridge = useRef<FormBridge>(null);
+  const formApiRef = useRef<InternalFormDisplayerApi>(null);
 
   const init = () => {
-    const args: FormDisplayerInitArgs = {
+    const args: InitArgs = {
       data: {
         candidate: {
           name: 'User',
@@ -72,23 +59,27 @@ const FormDisplayer: React.FC<FormDisplayerProps> = ({
         phases: ['complete', 'start']
       }
     };
-    formBridge.current?.onOpen(args);
+    formApiRef.current?.onOpen(args);
   };
 
-  const doSubmit = (success: boolean) => {
-    const bridge: FormBridge = formBridge.current;
+  useEffect(() => {
+    console.log('FormDisplayer: ', formApiRef);
+  }, [formApiRef]);
 
-    if (!bridge) {
+  const doSubmit = (success: boolean) => {
+    const formApi: FormApi = formApiRef.current;
+
+    if (!formApi) {
       console.error('Cannot submit form: Form FormBridge is missing');
       return;
     }
 
-    if (bridge.beforeSubmit) {
+    if (formApi.beforeSubmit) {
       try {
-        bridge.beforeSubmit();
-        const data = bridge.getFormData();
+        formApi.beforeSubmit();
+        const data = formApi.getFormData();
         console.log('Submitting Form: ', data);
-        bridge.afterSubmit({
+        formApi.afterSubmit({
           result: success ? SubmitResultType.SUCCESS : SubmitResultType.ERROR,
           info: 'bla bla bla'
         });
@@ -108,14 +99,14 @@ const FormDisplayer: React.FC<FormDisplayerProps> = ({
         <ReactFormRenderer
           content={content}
           doInitForm={() => init()}
-          ref={formBridge}
+          ref={formApiRef}
         />
       ) : (
         <HtmlFormRenderer
           content={content}
           config={config}
           doInitForm={() => init()}
-          ref={formBridge}
+          ref={formApiRef}
         />
       )}
       <ActionList>

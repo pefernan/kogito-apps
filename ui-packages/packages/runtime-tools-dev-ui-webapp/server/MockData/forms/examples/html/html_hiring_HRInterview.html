@@ -1,74 +1,71 @@
 <div>
-  <fieldset disabled>
-    <legend>Candidate</legend>
-    <div>
-      <div class="form-group">
-        <label for="uniforms-0000-0002">Email</label>
-        <input type="text" id="uniforms-0000-0002" name="candidate.email" class="form-control" disabled value="" />
-      </div>
+    <fieldset disabled>
+        <legend>Candidate</legend>
+        <div>
+            <div class="form-group">
+                <label for="uniforms-0000-0002">Email</label>
+                <input type="text" id="uniforms-0000-0002" name="candidate.email" class="form-control" disabled
+                       value=""/>
+            </div>
 
-      <div class="form-group">
-        <label for="uniforms-0000-0003">Name</label>
-        <input type="text" id="uniforms-0000-0003" name="candidate.name" class="form-control" disabled value="" />
-      </div>
+            <div class="form-group">
+                <label for="uniforms-0000-0003">Name</label>
+                <input type="text" id="uniforms-0000-0003" name="candidate.name" class="form-control" disabled
+                       value=""/>
+            </div>
 
-      <div class="form-group">
-        <label for="uniforms-0000-0005">Salary</label>
-        <input type="number" class="form-control" id="uniforms-0000-0005" name="candidate.salary" step="1" value="" />
-      </div>
+            <div class="form-group">
+                <label for="uniforms-0000-0005">Salary</label>
+                <input type="number" class="form-control" id="uniforms-0000-0005" name="candidate.salary" step="1"
+                       value=""/>
+            </div>
 
-      <div class="form-group">
-        <label for="uniforms-0000-0006">Skills</label>
-        <input type="text" id="uniforms-0000-0006" name="candidate.skills" class="form-control" disabled value="" />
-      </div>
+            <div class="form-group">
+                <label for="uniforms-0000-0006">Skills</label>
+                <input type="text" id="uniforms-0000-0006" name="candidate.skills" class="form-control" disabled
+                       value=""/>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="form-check">
+        <input type="checkbox" id="uniforms-0000-0008" name="approve" class="form-check-input"/>
+        <label class="form-check-label" for="uniforms-0000-0008">Approve</label>
     </div>
-  </fieldset>
-
-  <div class="form-check">
-    <input type="checkbox" id="uniforms-0000-0008" name="approve" class="form-check-input" />
-    <label class="form-check-label" for="uniforms-0000-0008">Approve</label>
-  </div>
-  <script>
-    function bindData(data) {
-      document.getElementById("uniforms-0000-0002").value = data?.candidate?.email;
-      document.getElementById("uniforms-0000-0003").value = data?.candidate?.name;
-      document.getElementById("uniforms-0000-0005").value = data?.candidate?.salary;
-      document.getElementById("uniforms-0000-0006").value = data?.candidate?.skills;
-    }
-
-    function getFormData() {
-      return {
-        approve: document.getElementById("uniforms-0000-0008").checked
+    <script>
+      function bindData(data) {
+        document.getElementById('uniforms-0000-0002').value = data?.candidate?.email;
+        document.getElementById('uniforms-0000-0003').value = data?.candidate?.name;
+        document.getElementById('uniforms-0000-0005').value = data?.candidate?.salary;
+        document.getElementById('uniforms-0000-0006').value = data?.candidate?.skills;
       }
-    }
 
-    const validateForm = () => {
-      if(document.getElementById("uniforms-0000-0005").value > 1000000) {
-        throw new Error("Salary too high " + document.getElementById("uniforms-0000-0005").value);
+      function getFormData() {
+        return {
+          approve: document.getElementById('uniforms-0000-0008').checked
+        };
       }
-    }
 
-    console.log('before open form');
-    const api = window.Form.openForm({
-      bridge: {
-        onOpen: (args) => {
-          console.log('ON OPEN', args)
-          bindData(args.data);
-        },
-        getFormData: () => getFormData(),
-        beforeSubmit: () => {
-          validateForm();
-        },
-        afterSubmit: (result) => {
-          if(result.result === 'error') {
-            window.alert(result.info);
-          } else {
-            console.log("submitted: ", result);
-          }
+      const validateForm = () => {
+        if (document.getElementById('uniforms-0000-0005').value > 1000000) {
+          throw new Error('Salary too high ' + document.getElementById('uniforms-0000-0005').value);
         }
-      }
-    });
+      };
 
-    console.log("api: ", api);
-  </script>
+      const api = window.Form.openForm({
+        onOpen: (args) => {
+          bindData(args.data);
+        }
+      });
+
+      api.getFormData = () => getFormData();
+      api.beforeSubmit = () => validateForm();
+      api.afterSubmit = (result) => {
+        if (result.result === 'error') {
+          window.alert(result.info);
+        } else {
+          console.log('submitted: ', result);
+        }
+      };
+    </script>
 </div>

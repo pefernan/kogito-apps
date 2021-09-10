@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 
-import React, { useState, useEffect, useImperativeHandle } from 'react';
+import React, { useEffect, useImperativeHandle, useState } from 'react';
 import InnerHTML from 'dangerously-set-html-content';
 import { FormArgs, FormInfo } from '../../../api';
 import {
   FormApi,
-  FormBridge,
   FormConfig,
-  SubmitResult
-} from '../api/FormBridge';
-import { FormDisplayerInitArgs } from '../FormDisplayer/FormDisplayer';
+  InternalFormDisplayerApi,
+  InternalFormDisplayerApiImpl
+} from '../api';
 
 interface HtmlFormRendererProps {
   content: FormArgs;
@@ -32,16 +31,17 @@ interface HtmlFormRendererProps {
 }
 
 export const HtmlFormRenderer = React.forwardRef<
-  FormBridge,
+  InternalFormDisplayerApi,
   HtmlFormRendererProps
 >(({ content, doInitForm }, forwardedRef) => {
   const [source, setSource] = useState<string>();
-  const [formBridge, setFormBridge] = useState<FormBridge>(null);
+  const [formApi, setFormApi] = useState<InternalFormDisplayerApi>(null);
 
   const doOpenForm = (config: FormConfig): FormApi => {
     console.log('HTML form renderer: open form', config);
-    setFormBridge(config.bridge);
-    return {};
+    const api: FormApi = {};
+    setFormApi(new InternalFormDisplayerApiImpl(api, config.onOpen));
+    return api;
   };
 
   useEffect(() => {
@@ -50,30 +50,7 @@ export const HtmlFormRenderer = React.forwardRef<
     };
   }, []);
 
-  useImperativeHandle(
-    forwardedRef,
-    () => ({
-      onOpen(args: FormDisplayerInitArgs) {
-        formBridge?.onOpen(args);
-      },
-      beforeSubmit(): void {
-        return formBridge?.beforeSubmit();
-      },
-      afterSubmit(result: SubmitResult): void {
-        return formBridge?.afterSubmit(result);
-      },
-      getFormData(): any {
-        return formBridge?.getFormData();
-      }
-    }),
-    [formBridge]
-  );
-
-  useEffect(() => {
-    if (formBridge) {
-      doInitForm();
-    }
-  }, [formBridge]);
+  useImperativeHandle(forwardedRef, () => formApi, [formApi]);
 
   let resources = {} as any;
 
@@ -84,6 +61,13 @@ export const HtmlFormRenderer = React.forwardRef<
       renderResources();
     }
   }, [content]);
+
+  useEffect(() => {
+    // TODO: remove me this is for testing
+    if (formApi) {
+      doInitForm();
+    }
+  }, [formApi]);
 
   const renderResources = () => {
     const container: HTMLElement = document.getElementById('script-container');

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   Card,
   CardBody,
@@ -15,8 +15,6 @@ const Form__hiring_HRInterview: React.FC<any> = (props: any) => {
   const [candidate__skills, set__candidate__skills] = useState<string>('');
   const [approve, set__approve] = useState<boolean>(false);
 
-  const salaryRef = useRef();
-
   const bindModel = model => {
     set__candidate__name(model?.candidate?.name);
     set__candidate__email(model?.candidate?.email);
@@ -25,22 +23,26 @@ const Form__hiring_HRInterview: React.FC<any> = (props: any) => {
   };
 
   const validateForm = useCallback(() => {
-    // @ts-ignore
-    console.log('validate form', candidate__salary);
-    // @ts-ignore
-    if (salaryRef.current.value > 1000000) {
-      // @ts-ignore
-      throw new Error('Salary too high ' + salaryRef.current!.value);
-      return candidate__salary;
+    if (candidate__salary > 1000000) {
+      throw new Error('Salary too high ' + candidate__salary);
     }
   }, [candidate__salary]);
 
-  console.log('render salary: ' + candidate__salary);
-  try {
-    console.log('render salary: ' + validateForm());
-  } catch (err) {
-    console.log(err);
-  }
+  useEffect(() => {
+    if (formApi) {
+      formApi.getFormData = () => getFormData();
+      formApi.beforeSubmit = () => {
+        validateForm();
+      };
+      formApi.afterSubmit = result => {
+        if (result.result === 'error') {
+          window.alert(result.info);
+        } else {
+          console.log('submitted: ', result);
+        }
+      };
+    }
+  });
 
   useEffect(() => {
     console.log('salary change: ' + candidate__salary);
@@ -58,25 +60,10 @@ const Form__hiring_HRInterview: React.FC<any> = (props: any) => {
 
   useEffect(() => {
     const api = window.Form.openForm({
-      bridge: {
-        onOpen: args => {
-          console.log('ON OPEN', args);
-          bindModel(args.data);
-        },
-        getFormData: () => getFormData(),
-        beforeSubmit: () => {
-          validateForm();
-        },
-        afterSubmit: result => {
-          if (result.result === 'error') {
-            window.alert(result.info);
-          } else {
-            console.log('submitted: ', result);
-          }
-        }
+      onOpen: args => {
+        bindModel(args.data);
       }
     });
-    console.log('the api', api);
     set__formApi(api);
   }, []);
 
@@ -131,7 +118,6 @@ const Form__hiring_HRInterview: React.FC<any> = (props: any) => {
               step={1}
               value={candidate__salary}
               onChange={newValue => set__candidate__salary(Number(newValue))}
-              ref={salaryRef}
             />
           </FormGroup>
           <FormGroup

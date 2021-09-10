@@ -19,18 +19,18 @@ import _ from 'lodash';
 import ReactDOM from 'react-dom';
 import * as Patternfly from '@patternfly/react-core';
 import { FormArgs } from '../../../api';
-import { FormDisplayerInitArgs } from '../FormDisplayer/FormDisplayer';
 import {
   FormApi,
-  FormBridge,
   FormConfig,
-  SubmitResult
-} from '../api/FormBridge';
+  InternalFormDisplayerApi,
+  InternalFormDisplayerApiImpl
+} from '../api';
 import { transpileReactCode } from './utils/ReactDisplayerUtils';
 
 import Text = Patternfly.Text;
 import TextContent = Patternfly.TextContent;
 import TextVariants = Patternfly.TextVariants;
+
 interface ReactFormRendererProps {
   content: FormArgs;
   doInitForm: () => void;
@@ -42,17 +42,19 @@ window.ReactDOM = ReactDOM;
 window.PatternFlyReact = Patternfly;
 
 export const ReactFormRenderer = React.forwardRef<
-  FormBridge,
+  InternalFormDisplayerApi,
   ReactFormRendererProps
 >(({ content, doInitForm }, forwardedRef) => {
   const [source, setSource] = useState<string>(null);
+  const [formApi, setFormApi] = useState<InternalFormDisplayerApi>(null);
   const [errorMessage, setErrorMessage] = useState<any>(null);
-  const [formBridge, setFormBridge] = useState<FormBridge>(null);
 
   const doOpenForm = (config: FormConfig): FormApi => {
     console.log('react form renderer: open form', config);
-    setFormBridge(config.bridge);
-    return {};
+
+    const api: FormApi = {};
+    setFormApi(new InternalFormDisplayerApiImpl(api, config.onOpen));
+    return api;
   };
 
   useEffect(() => {
@@ -89,30 +91,14 @@ export const ReactFormRenderer = React.forwardRef<
     }
   }, [source]);
 
-  useImperativeHandle(
-    forwardedRef,
-    () => ({
-      onOpen(args: FormDisplayerInitArgs) {
-        formBridge?.onOpen(args);
-      },
-      beforeSubmit(): void {
-        return formBridge?.beforeSubmit();
-      },
-      afterSubmit(result: SubmitResult): void {
-        return formBridge?.afterSubmit(result);
-      },
-      getFormData(): any {
-        return formBridge?.getFormData();
-      }
-    }),
-    [formBridge]
-  );
+  useImperativeHandle(forwardedRef, () => formApi, [formApi]);
 
   useEffect(() => {
-    if (formBridge) {
+    // TODO: remove me this is for testing
+    if (formApi) {
       doInitForm();
     }
-  }, [formBridge]);
+  }, [formApi]);
 
 return (
     <>
