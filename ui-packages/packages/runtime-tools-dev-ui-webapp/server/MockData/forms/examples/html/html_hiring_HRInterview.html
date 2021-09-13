@@ -1,28 +1,31 @@
 <div>
-    <fieldset disabled>
+    <fieldset>
         <legend>Candidate</legend>
         <div>
             <div class="form-group">
                 <label for="uniforms-0000-0002">Email</label>
-                <input type="text" id="uniforms-0000-0002" name="candidate.email" class="form-control" disabled
+                <input type="text" id="uniforms-0000-0002" name="candidate.email" class="form-control"
                        value=""/>
             </div>
 
             <div class="form-group">
                 <label for="uniforms-0000-0003">Name</label>
-                <input type="text" id="uniforms-0000-0003" name="candidate.name" class="form-control" disabled
+                <input type="text" id="uniforms-0000-0003" name="candidate.name" class="form-control"
                        value=""/>
             </div>
 
             <div class="form-group">
                 <label for="uniforms-0000-0005">Salary</label>
-                <input type="number" class="form-control" id="uniforms-0000-0005" name="candidate.salary" step="1"
+                <input type="number"
+                       class="form-control"
+                       id="uniforms-0000-0005"
+                       name="candidate.salary" step="1"
                        value=""/>
             </div>
 
             <div class="form-group">
                 <label for="uniforms-0000-0006">Skills</label>
-                <input type="text" id="uniforms-0000-0006" name="candidate.skills" class="form-control" disabled
+                <input type="text" id="uniforms-0000-0006" name="candidate.skills" class="form-control"
                        value=""/>
             </div>
         </div>
@@ -46,13 +49,10 @@
         };
       }
 
-      const validateForm = () => {
-        if (document.getElementById('uniforms-0000-0005').value > 1000000) {
-          throw new Error('Salary too high ' + document.getElementById('uniforms-0000-0005').value);
-        }
-      };
+      function validateForm () {
+      }
 
-      const api = window.Form.openForm({
+      var api = window.Form.openForm({
         onOpen: (args) => {
           bindData(args.data);
         }
@@ -60,11 +60,11 @@
 
       api.getFormData = () => getFormData();
       api.beforeSubmit = () => validateForm();
-      api.afterSubmit = (result) => {
-        if (result.result === 'error') {
-          window.alert(result.info);
+      api.afterSubmit = (response) => {
+        if(response.result === 'success') {
+          alert('Form has been successfully submited!');
         } else {
-          console.log('submitted: ', result);
+          alert("Couldn't submit form: " + response.info);
         }
       };
     </script>
