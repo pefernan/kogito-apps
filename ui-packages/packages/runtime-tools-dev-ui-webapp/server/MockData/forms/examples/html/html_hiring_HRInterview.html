@@ -1,71 +1,318 @@
 <div>
     <fieldset>
-        <legend>Candidate</legend>
+        <legend>Personal data</legend>
         <div>
-            <div class="form-group">
-                <label for="uniforms-0000-0002">Email</label>
-                <input type="text" id="uniforms-0000-0002" name="candidate.email" class="form-control"
-                       value=""/>
+            <div className="form-group">
+                <label htmlFor="personalData.name">Name</label>
+                <input type="text" id="personalData.name" name="personalData.name" className="form-control" value=""/>
             </div>
-
-            <div class="form-group">
-                <label for="uniforms-0000-0003">Name</label>
-                <input type="text" id="uniforms-0000-0003" name="candidate.name" class="form-control"
-                       value=""/>
-            </div>
-
-            <div class="form-group">
-                <label for="uniforms-0000-0005">Salary</label>
-                <input type="number"
-                       class="form-control"
-                       id="uniforms-0000-0005"
-                       name="candidate.salary" step="1"
-                       value=""/>
-            </div>
-
-            <div class="form-group">
-                <label for="uniforms-0000-0006">Skills</label>
-                <input type="text" id="uniforms-0000-0006" name="candidate.skills" class="form-control"
-                       value=""/>
+            <div className="form-group">
+                <label htmlFor="personalData.email">Email</label>
+                <input type="text" id="personalData.email" name="personalData.email" className="form-control" value=""/>
             </div>
         </div>
     </fieldset>
-
-    <div class="form-check">
-        <input type="checkbox" id="uniforms-0000-0008" name="approve" class="form-check-input"/>
-        <label class="form-check-label" for="uniforms-0000-0008">Approve</label>
+    <fieldset>
+        <legend>Address</legend>
+        <div>
+            <div className="form-group">
+                <label htmlFor="address.street">Street</label>
+                <input type="text" id="address.street" name="address.street" className="form-control" value=""/>
+            </div>
+            <div className="form-group">
+                <label htmlFor="address.num">Num</label>
+                <input type="number" className="form-control" id="address.num" name="address.num" step="1" value=""/>
+            </div>
+            <div className="form-group">
+                <label htmlFor="address.cp">Cp</label>
+                <input type="text" id="address.cp" name="address.cp" className="form-control" value=""/>
+            </div>
+            <div className="form-group">
+                <label htmlFor="address.city">City</label>
+                <input type="text" id="address.city" name="address.city" className="form-control" value=""/>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Interview</legend>
+        <div>
+            <div className="form-group">
+                <label htmlFor="interview.position">Position</label>
+                <select className="form-control" id="interview.position" name="interview.position">
+                    <option value="Developer">Developer</option>
+                    <option value="HR">HR</option>
+                    <option value="UX">UX</option>
+                </select>
+            </div>
+            <div className="form-group">
+                <label htmlFor="interview.otherPositions">Other positions</label>
+                <select className="form-control" id="interview.otherPositions" name="interview.otherPositions" multiple>
+                    <option value="Developer">Developer</option>
+                    <option value="HR">HR</option>
+                    <option value="UX">UX</option>
+                </select>
+            </div>
+            <div className="form-group">
+                <label htmlFor="interview.skills">Skills</label>
+                <div className="form-check">
+                    <input type="checkbox" className="form-check-input" id="interview.skills__Java"
+                           name="interview.skills" value="Java"/>
+                    <label className="form-check-label" htmlFor="interview.skills__Java">Java</label>
+                </div>
+                <div className="form-check">
+                    <input type="checkbox" className="form-check-input" id="interview.skills__React"
+                           name="interview.skills" value="React"/>
+                    <label className="form-check-label" htmlFor="interview.skills__React">React</label>
+                </div>
+                <div className="form-check">
+                    <input type="checkbox" className="form-check-input" id="interview.skills__TypeScript"
+                           name="interview.skills" value="TypeScript"/>
+                    <label className="form-check-label" htmlFor="interview.skills__TypeScript">TypeScript</label>
+                </div>
+                <div className="form-check">
+                    <input type="checkbox" className="form-check-input" id="interview.skills__Quarkus"
+                           name="interview.skills" value="Quarkus"/>
+                    <label className="form-check-label" htmlFor="interview.skills__Quarkus">Quarkus</label>
+                </div>
+            </div>
+            <div className="form-group">
+                <label htmlFor="interview.age">Age</label>
+                <input type="number" className="form-control" id="interview.age" name="interview.age" min="18" max="99"
+                       step="1" value=""/>
+            </div>
+            <div className="form-group">
+                <label htmlFor="interview.salary">Salary</label>
+                <input type="number" className="form-control" id="interview.salary" name="interview.salary" max="1000.5"
+                       step="0.01" value=""/>
+            </div>
+            <div className="form-group">
+                <label htmlFor="interview.rating">Rating</label>
+                <div className="form-check">
+                    <input type="radio" className="form-check-input" id="interview.rating__1" name="interview.rating"
+                           value="1"/>
+                    <label className="form-check-label" htmlFor="interview.rating__1">1</label>
+                </div>
+                <div className="form-check">
+                    <input type="radio" className="form-check-input" id="interview.rating__2" name="interview.rating"
+                           value="2"/>
+                    <label className="form-check-label" htmlFor="interview.rating__2">2</label>
+                </div>
+                <div className="form-check">
+                    <input type="radio" className="form-check-input" id="interview.rating__3" name="interview.rating"
+                           value="3"/>
+                    <label className="form-check-label" htmlFor="interview.rating__3">3</label>
+                </div>
+                <div className="form-check">
+                    <input type="radio" className="form-check-input" id="interview.rating__4" name="interview.rating"
+                           value="4"/>
+                    <label className="form-check-label" htmlFor="interview.rating__4">4</label>
+                </div>
+                <div className="form-check">
+                    <input type="radio" className="form-check-input" id="interview.rating__5" name="interview.rating"
+                           value="5"/>
+                    <label className="form-check-label" htmlFor="interview.rating__5">5</label>
+                </div>
+            </div>
+            <div className="form-group">
+                <label htmlFor="interview.hrrating">Hrrating</label>
+                <div className="form-check">
+                    <input type="radio" className="form-check-input" id="interview.hrrating__1"
+                           name="interview.hrrating" value="1"/>
+                    <label className="form-check-label" htmlFor="interview.hrrating__1">1</label>
+                </div>
+                <div className="form-check">
+                    <input type="radio" className="form-check-input" id="interview.hrrating__2"
+                           name="interview.hrrating" value="2"/>
+                    <label className="form-check-label" htmlFor="interview.hrrating__2">2</label>
+                </div>
+                <div className="form-check">
+                    <input type="radio" className="form-check-input" id="interview.hrrating__3"
+                           name="interview.hrrating" value="3"/>
+                    <label className="form-check-label" htmlFor="interview.hrrating__3">3</label>
+                </div>
+                <div className="form-check">
+                    <input type="radio" className="form-check-input" id="interview.hrrating__4"
+                           name="interview.hrrating" value="4"/>
+                    <label className="form-check-label" htmlFor="interview.hrrating__4">4</label>
+                </div>
+                <div className="form-check">
+                    <input type="radio" className="form-check-input" id="interview.hrrating__5"
+                           name="interview.hrrating" value="5"/>
+                    <label className="form-check-label" htmlFor="interview.hrrating__5">5</label>
+                </div>
+            </div>
+            <div className="form-check">
+                <input type="checkbox" id="interview.hire" name="interview.hire" className="form-check-input"/>
+                <label className="form-check-label" htmlFor="interview.hire">Hire</label>
+            </div>
+            <div className="form-group">
+                <label htmlFor="interview.hidingDate">Hiding date</label>
+                <input type="datetime-local" id="interview.hidingDate" name="interview.hidingDate"
+                       className="form-control"/>
+            </div>
+        </div>
+    </fieldset>
+    <div className="alert alert-warning" role="alert">
+        <h4 className="alert-heading">Unsupported field type: Array</h4>
+        <p>Cannot find form control for property <code>friends</code> with type <code>Array</code>.</p>
+        <hr/>
+        <p className="mb-0">
+            Some complex property types, such as <code>Array</code> aren't yet supported, however, you can still write
+            your own component into the
+            form and manually bind it.
+        </p>
     </div>
     <script>
-      function bindData(data) {
-        document.getElementById('uniforms-0000-0002').value = data?.candidate?.email;
-        document.getElementById('uniforms-0000-0003').value = data?.candidate?.name;
-        document.getElementById('uniforms-0000-0005').value = data?.candidate?.salary;
-        document.getElementById('uniforms-0000-0006').value = data?.candidate?.skills;
+      /* Utility function that fills the form with the data received from the kogito runtime */
+      function setFormData(data) {
+        if (!data) {
+          return;
+        }
+
+        function setSelectValue(fieldId, value) {
+          const select = document.getElementById(fieldId);
+          if (!select || !value) {
+            return;
+          }
+          select.value = value;
+        }
+
+        function setMultipleSelectValues(fieldId, values) {
+          const select = document.getElementById(fieldId);
+          if (!select || !values) {
+            return;
+          }
+          const options = select.options;
+          for (let i = 0; i < options.length; i++) {
+            options[i].selected = values.includes(options[i].value);
+          }
+        }
+
+        function setCheckboxGroupValues(fieldName, values) {
+          if (!values || !values.length) {
+            return;
+          }
+          const checkboxes = document.querySelectorAll(`[name="${fieldName}"]`);
+          checkboxes.forEach((checkbox) => {
+            checkbox.checked = values.includes(checkbox.value);
+          });
+        }
+
+        function setRadioButtonGroupValue(fieldName, value) {
+          if (!value) {
+            return;
+          }
+          const radioButtons = document.querySelectorAll(`[name="${fieldName}"]`);
+          radioButtons.forEach((radioButton) => {
+            radioButton.checked = radioButton.value === value;
+          });
+        }
+
+        document.getElementById("personalData.name").value = data?.personalData?.name ?? "";
+        document.getElementById("personalData.email").value = data?.personalData?.email ?? "";
+        document.getElementById("address.street").value = data?.address?.street ?? "";
+        document.getElementById("address.num").value = data?.address?.num ?? "";
+        document.getElementById("address.cp").value = data?.address?.cp ?? "";
+        document.getElementById("address.city").value = data?.address?.city ?? "";
+        setSelectValue("interview.position", data?.interview?.position);
+        setMultipleSelectValues("interview.otherPositions", data?.interview?.otherPositions);
+        setCheckboxGroupValues("interview.skills", data?.interview?.skills);
+        document.getElementById("interview.age").value = data?.interview?.age ?? "";
+        document.getElementById("interview.salary").value = data?.interview?.salary ?? "";
+        setRadioButtonGroupValue("interview.rating", data?.interview?.rating);
+        setRadioButtonGroupValue("interview.hrrating", data?.interview?.hrrating);
+        document.getElementById("interview.hire").checked = data?.interview?.hire;
+        document.getElementById("interview.hidingDate").value = data?.interview?.hidingDate ?? "";
       }
 
+      /* Utility function to generate the expected form output as a json object */
       function getFormData() {
-        return {
-          approve: document.getElementById('uniforms-0000-0008').checked
-        };
-      }
+        const formData = {};
 
-      function validateForm () {
-      }
-
-      var api = window.Form.openForm({
-        onOpen: (args) => {
-          bindData(args.data);
+        function getMultipleSelectValues(fieldId) {
+          const select = document.getElementById(fieldId);
+          if (!select) {
+            return [];
+          }
+          const selectedValues = [];
+          const options = select.selectedOptions;
+          for (let i = 0; i < options.length; i++) {
+            selectedValues.push(options[i].value);
+          }
+          return selectedValues;
         }
+
+        function getCheckboxGroupValues(fieldName) {
+          const checkboxes = document.querySelectorAll(`[name="${fieldName}"]`);
+          const selectedValues = [];
+          checkboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+              selectedValues.push(checkbox.value);
+            }
+          });
+          return selectedValues;
+        }
+
+        function getRadioButtonGroupValue(fieldName) {
+          const radioButtons = document.querySelectorAll(`[name="${fieldName}"]`);
+          for (let i = 0; i < radioButtons.length; i++) {
+            if (radioButtons[i].checked) {
+              return radioButtons[i].value;
+            }
+          }
+          return null;
+        }
+
+        formData.personalData = {};
+        formData.personalData.name = document.getElementById("personalData.name").value;
+        formData.personalData.email = document.getElementById("personalData.email").value;
+        formData.address = {};
+        formData.address.street = document.getElementById("address.street").value;
+        formData.address.num = Number(document.getElementById("address.num").value);
+        formData.address.cp = document.getElementById("address.cp").value;
+        formData.address.city = document.getElementById("address.city").value;
+        formData.interview = {};
+        formData.interview.position = document.getElementById("interview.position").value;
+        formData.interview.otherPositions = getMultipleSelectValues("interview.otherPositions");
+        formData.interview.skills = getCheckboxGroupValues("interview.skills");
+        formData.interview.age = Number(document.getElementById("interview.age").value);
+        formData.interview.salary = Number(document.getElementById("interview.salary").value);
+        formData.interview.rating = getRadioButtonGroupValue("interview.rating");
+        formData.interview.hrrating = getRadioButtonGroupValue("interview.hrrating");
+        formData.interview.hire = document.getElementById("interview.hire").checked;
+        formData.interview.hidingDate = document.getElementById("interview.hidingDate").value;
+        return formData;
+      }
+
+      /* Utility function to validate the form. Any error thrown here will stop the form submit */
+      function validateForm() {
+      }
+
+      /*
+          Call to the Kogito console form engine. It will establish the connection with the console embeding the form
+          and return an instance of FormAPI that will allow hook custom code into the form lifecycle.
+          The `window.Form.openForm` call expects an object with the following entries:
+              - onOpen: Callback that will be called after the connection with the console is established. The callback
+              will receive the following arguments:
+                  - data: the data to be bound into the form
+                  - ctx: info about the context where the form is being displayed. This will contain information such as the form JSON Schema, process/task, user...
+      */
+      const formApi = window.Form.openForm({
+        onOpen: (data, context) => setFormData(data)
       });
-
-      api.getFormData = () => getFormData();
-      api.beforeSubmit = () => validateForm();
-      api.afterSubmit = (response) => {
-        if(response.result === 'success') {
-          alert('Form has been successfully submited!');
-        } else {
-          alert("Couldn't submit form: " + response.info);
-        }
+      /*
+          Form Lifecycle Hook that will be executed before the form is submitted.
+          Throwing an error will stop the form submit. Usually should be used to validate the form.
+      */
+      formApi.beforeSubmit = () => validateForm();
+      /*
+          Form Lifecycle Hook that will be executed after the form is submitted.
+          It will receive a response object containing the `type` flag indicating if the submit has been successful and `info` with extra information about the submit result.
+      */
+      formApi.afterSubmit = (response) => {
       };
+      
+      /* Generates the expected form output object to be posted */
+      formApi.getFormData = () => getFormData();
     </script>
 </div>

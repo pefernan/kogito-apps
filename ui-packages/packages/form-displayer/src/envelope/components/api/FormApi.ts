@@ -39,16 +39,16 @@ export interface InternalFormDisplayerApi extends FormApi {
 
 export class InternalFormDisplayerApiImpl implements InternalFormDisplayerApi {
   private readonly wrapped: FormApi;
-  private readonly onOpenCallback: (args: InitArgs) => void;
+  private readonly onOpenCallback: (data: any, ctx: any) => void;
 
-  constructor(api: FormApi, onOpenCallback: (args: InitArgs) => void) {
+  constructor(api: FormApi, onOpenCallback: (data: any, ctx: any) => void) {
     this.wrapped = api;
     this.onOpenCallback = onOpenCallback;
   }
 
   onOpen(args: InitArgs): void {
     if (this.onOpenCallback) {
-      this.onOpenCallback(args);
+      this.onOpenCallback(args.data, args.ctx);
     }
   }
 
@@ -66,7 +66,7 @@ export class InternalFormDisplayerApiImpl implements InternalFormDisplayerApi {
 
   getFormData(): any {
     if (this.wrapped.getFormData) {
-      this.wrapped.getFormData();
+      return this.wrapped.getFormData();
     }
     return null;
   }

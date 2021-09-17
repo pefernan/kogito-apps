@@ -38,7 +38,6 @@ export const HtmlFormRenderer = React.forwardRef<
   const [formApi, setFormApi] = useState<InternalFormDisplayerApi>(null);
 
   const doOpenForm = (config: FormConfig): FormApi => {
-    console.log('HTML form renderer: open form', config);
     const api: FormApi = {};
     setFormApi(new InternalFormDisplayerApiImpl(api, config.onOpen));
     return api;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { FormArgs, FormInfo } from '../../../api';
 import ReactFormRenderer from '../ReactFormRenderer/ReactFormRenderer';
 import HtmlFormRenderer from '../HtmlFormRenderer/HtmlFormRenderer';
@@ -43,11 +43,23 @@ const FormDisplayer: React.FC<FormDisplayerProps> = ({
   const init = () => {
     const args: InitArgs = {
       data: {
-        candidate: {
-          name: 'User',
-          email: 'user@email.com',
-          salary: 15000,
-          skills: 'Java, Kogito'
+        personalData: {
+          name: 'Pere',
+          email: 'user@email.com'
+        },
+        address: {
+          street: 'lluna',
+          num: 10,
+          cp: '08870'
+        },
+        interview: {
+          position: 'Developer',
+          otherPositions: ['UX', 'HR'],
+          skills: ['Java', 'Kogito'],
+          age: 40,
+          rating: 5,
+          hire: true,
+          hiringDate: new Date()
         }
       },
       ctx: {
@@ -62,15 +74,10 @@ const FormDisplayer: React.FC<FormDisplayerProps> = ({
     formApiRef.current?.onOpen(args);
   };
 
-  useEffect(() => {
-    console.log('FormDisplayer: ', formApiRef);
-  }, [formApiRef]);
-
   const doSubmit = (success: boolean) => {
     const formApi: FormApi = formApiRef.current;
 
     if (!formApi) {
-      console.error('Cannot submit form: Form FormBridge is missing');
       return;
     }
 
@@ -81,7 +88,7 @@ const FormDisplayer: React.FC<FormDisplayerProps> = ({
         console.log('Submitting Form: ', data);
         formApi.afterSubmit({
           result: success ? SubmitResultType.SUCCESS : SubmitResultType.ERROR,
-          info: 'bla bla bla'
+          info: 'some information about the submit result'
         });
       } catch (err) {
         console.error('Cannot submit form: error on bridge', err);

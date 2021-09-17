@@ -82,7 +82,9 @@ const FormView: React.FC<FormViewProps & OUIAProps> = ({
       temp.source['source-content'] = value;
       setContentChange({ ...formContent, ...temp });
     } else {
-      setContentChange((formContent.formConfiguration['resources'] = value));
+      setContentChange(
+        (formContent.formConfiguration['resources'] = JSON.parse(value))
+      );
     }
   };
 

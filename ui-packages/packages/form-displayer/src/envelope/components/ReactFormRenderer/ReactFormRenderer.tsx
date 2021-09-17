@@ -50,8 +50,6 @@ export const ReactFormRenderer = React.forwardRef<
   const [errorMessage, setErrorMessage] = useState<any>(null);
 
   const doOpenForm = (config: FormConfig): FormApi => {
-    console.log('react form renderer: open form', config);
-
     const api: FormApi = {};
     setFormApi(new InternalFormDisplayerApiImpl(api, config.onOpen));
     return api;
@@ -66,7 +64,10 @@ export const ReactFormRenderer = React.forwardRef<
   useEffect(() => {
     if (content && content.source) {
       try {
-        const transpiledCode = transpileReactCode(content.source['source-content'], content.name);
+        const transpiledCode = transpileReactCode(
+          content.source['source-content'],
+          content.name
+        );
         setSource(transpiledCode);
       } catch (e) {
         setErrorMessage(e);
@@ -100,7 +101,7 @@ export const ReactFormRenderer = React.forwardRef<
     }
   }, [formApi]);
 
-return (
+  return (
     <>
       {_.isEmpty(errorMessage) ? (
         <div
@@ -129,7 +130,7 @@ return (
         </>
       )}
     </>
-);
+  );
 });
 
 export default ReactFormRenderer;

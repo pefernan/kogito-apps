@@ -32,6 +32,7 @@
     "**/webpack.*.js",
     "**/jest.config.js",
     "**/server/**/*.js",
+    "**/server/**/*.tsx",
     "**/api-mock/**/*.js"
   ],
   "settings": {
