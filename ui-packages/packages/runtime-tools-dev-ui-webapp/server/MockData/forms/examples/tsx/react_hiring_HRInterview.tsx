@@ -19,12 +19,12 @@ import {
 } from '@patternfly/react-core';
 const Form__HRInterview: React.FC<any> = (props: any) => {
   const [formApi, setFormApi] = useState<any>();
-  const [personalData__name, set__personalData__name] = useState<string>();
-  const [personalData__email, set__personalData__email] = useState<string>();
-  const [address__street, set__address__street] = useState<string>();
-  const [address__num, set__address__num] = useState<string>();
-  const [address__cp, set__address__cp] = useState<string>();
-  const [address__city, set__address__city] = useState<string>();
+  const [personalData__name, set__personalData__name] = useState<string>('');
+  const [personalData__email, set__personalData__email] = useState<string>('');
+  const [address__street, set__address__street] = useState<string>('');
+  const [address__num, set__address__num] = useState<number>();
+  const [address__cp, set__address__cp] = useState<string>('');
+  const [address__city, set__address__city] = useState<string>('');
   const [interview__position, set__interview__position] = useState<string>('');
   const [
     interview__position__expanded,
@@ -38,31 +38,33 @@ const Form__HRInterview: React.FC<any> = (props: any) => {
     set__interview__otherPositions__expanded
   ] = useState<boolean>(false);
   const [interview__skills, set__interview__skills] = useState<string[]>([]);
-  const [interview__age, set__interview__age] = useState<string>();
-  const [interview__salary, set__interview__salary] = useState<string>();
-  const [interview__rating, set__interview__rating] = useState<string>();
-  const [interview__hire, set__interview__hire] = useState<boolean>();
-  const [interview__hidingDate, set__interview__hidingDate] = useState<Date>();
-  const [friends, set__friends] = useState<any[]>([]);
+  const [interview__age, set__interview__age] = useState<number>();
+  const [interview__salary, set__interview__salary] = useState<number>();
+  const [interview__rating, set__interview__rating] = useState<string>('');
+  const [interview__hire, set__interview__hire] = useState<boolean>(false);
+  const [interview__hiringDate, set__interview__hiringDate] = useState<
+    string
+  >();
+  const [friends, set__friends] = useState<any[]>();
   /* Utility function that fills the form with the data received from the kogito runtime */
   const setFormData = data => {
     if (!data) {
       return;
     }
-    set__personalData__name(data?.personalData?.name);
-    set__personalData__email(data?.personalData?.email);
-    set__address__street(data?.address?.street);
+    set__personalData__name(data?.personalData?.name ?? '');
+    set__personalData__email(data?.personalData?.email ?? '');
+    set__address__street(data?.address?.street ?? '');
     set__address__num(data?.address?.num);
-    set__address__cp(data?.address?.cp);
-    set__address__city(data?.address?.city);
-    set__interview__position(data?.interview?.position);
-    set__interview__otherPositions(data?.interview?.otherPositions);
-    set__interview__skills(data?.interview?.skills);
+    set__address__cp(data?.address?.cp ?? '');
+    set__address__city(data?.address?.city ?? '');
+    set__interview__position(data?.interview?.position ?? '');
+    set__interview__otherPositions(data?.interview?.otherPositions ?? []);
+    set__interview__skills(data?.interview?.skills ?? []);
     set__interview__age(data?.interview?.age);
     set__interview__salary(data?.interview?.salary);
-    set__interview__rating(data?.interview?.rating);
-    set__interview__hire(data?.interview?.hire);
-    set__interview__hidingDate(data?.interview?.hidingDate);
+    set__interview__rating(data?.interview?.rating ?? '');
+    set__interview__hire(data?.interview?.hire ?? false);
+    set__interview__hiringDate(data?.interview?.hiringDate);
     set__friends(data?.friends);
   };
   /* Utility function to generate the expected form output as a json object */
@@ -84,10 +86,26 @@ const Form__HRInterview: React.FC<any> = (props: any) => {
     formData.interview.salary = interview__salary;
     formData.interview.rating = interview__rating;
     formData.interview.hire = interview__hire;
-    formData.interview.hidingDate = interview__hidingDate;
+    formData.interview.hiringDate = interview__hiringDate;
     formData.friends = friends;
     return formData;
-  }, []);
+  }, [
+    personalData__name,
+    personalData__email,
+    address__street,
+    address__num,
+    address__cp,
+    address__city,
+    interview__position,
+    interview__otherPositions,
+    interview__skills,
+    interview__age,
+    interview__salary,
+    interview__rating,
+    interview__hire,
+    interview__hiringDate,
+    friends
+  ]);
   /* Utility function to validate the form on the 'beforeSubmit' Lifecycle Hook */
   const validateForm = useCallback(() => {}, []);
   /* Utility function to perform actions on the on the 'afterSubmit' Lifecycle Hook */
@@ -95,14 +113,14 @@ const Form__HRInterview: React.FC<any> = (props: any) => {
   useEffect(() => {
     if (formApi) {
       /*
-              Form Lifecycle Hook that will be executed before the form is submitted.
-              Throwing an error will stop the form submit. Usually should be used to validate the form.
-            */
+        Form Lifecycle Hook that will be executed before the form is submitted.
+        Throwing an error will stop the form submit. Usually should be used to validate the form.
+      */
       formApi.beforeSubmit = () => validateForm();
       /*
-              Form Lifecycle Hook that will be executed after the form is submitted.
-              It will receive a response object containing the `type` flag indicating if the submit has been successful and `info` with extra information about the submit result.
-            */
+        Form Lifecycle Hook that will be executed after the form is submitted.
+        It will receive a response object containing the `type` flag indicating if the submit has been successful and `info` with extra information about the submit result.
+      */
       formApi.afterSubmit = result => afterSubmit(result);
       /* Generates the expected form output object to be posted */
       formApi.getFormData = () => getFormData();
@@ -110,14 +128,14 @@ const Form__HRInterview: React.FC<any> = (props: any) => {
   }, [getFormData, validateForm, afterSubmit]);
   useEffect(() => {
     /*
-              Call to the Kogito console form engine. It will establish the connection with the console embeding the form
-              and return an instance of FormAPI that will allow hook custom code into the form lifecycle.
-              The `window.Form.openForm` call expects an object with the following entries:
-                  - onOpen: Callback that will be called after the connection with the console is established. The callback
-                  will receive the following arguments:
-                      - data: the data to be bound into the form
-                      - ctx: info about the context where the form is being displayed. This will contain information such as the form JSON Schema, process/task, user...
-          */
+      Call to the Kogito console form engine. It will establish the connection with the console embeding the form
+      and return an instance of FormAPI that will allow hook custom code into the form lifecycle.
+      The `window.Form.openForm` call expects an object with the following entries:
+        - onOpen: Callback that will be called after the connection with the console is established. The callback
+        will receive the following arguments:
+          - data: the data to be bound into the form
+          - ctx: info about the context where the form is being displayed. This will contain information such as the form JSON Schema, process/task, user...
+    */
     const api = window.Form.openForm({
       onOpen: (data, context) => {
         setFormData(data);
@@ -178,16 +196,17 @@ const Form__HRInterview: React.FC<any> = (props: any) => {
     }
     setter(newValues);
   };
-  const parseDate = (date?: Date): string => {
+  const parseDate = (date?: string): string => {
     if (!date) {
       return '';
     }
-    return date.toISOString().slice(0, -14);
+    const dateValue: Date = new Date(Date.parse(date));
+    return dateValue.toISOString().slice(0, -14);
   };
   const onDateChange = (
     newValue: string,
-    setter: (date: Date) => void,
-    previousValue?: Date
+    setter: (newValue: string) => void,
+    previousValue?: string
   ) => {
     if (newValue) {
       const newDate = new Date(newValue);
@@ -196,20 +215,21 @@ const Form__HRInterview: React.FC<any> = (props: any) => {
         newDate.setHours(parseInt(time && time.split(':')[0]));
         newDate.setMinutes(parseInt(time && time.split(':')[1].split(' ')[0]));
       }
-      setter(newDate);
+      setter(newDate.toISOString());
     }
   };
-  const parseTime = (date?: Date): string => {
+  const parseTime = (date?: string): string => {
     if (!date) {
       return '';
     }
+    const dateValue: Date = new Date(Date.parse(date));
     let isAm = true;
-    let hours = date.getHours();
+    let hours = dateValue.getHours();
     if (hours > 12) {
       hours %= 12;
       isAm = false;
     }
-    let minutes = date.getMinutes().toString();
+    let minutes = dateValue.getMinutes().toString();
     if (minutes.length == 1) {
       minutes = '0' + minutes;
     }
@@ -217,13 +237,13 @@ const Form__HRInterview: React.FC<any> = (props: any) => {
   };
   const onTimeChange = (
     time: string,
-    setter: (date: Date) => void,
-    previousValue?: Date,
+    setter: (newValue: string) => void,
+    previousValue?: string,
     hours?: number,
     minutes?: number
   ) => {
     if (previousValue) {
-      const newDate = new Date(previousValue);
+      const newDate = new Date(Date.parse(previousValue));
       if (hours && minutes) {
         newDate.setHours(hours);
         newDate.setMinutes(minutes);
@@ -237,7 +257,7 @@ const Form__HRInterview: React.FC<any> = (props: any) => {
           newDate.setMinutes(localeMinutes);
         }
       }
-      setter(newDate);
+      setter(newDate.toISOString());
     }
   };
   return (
@@ -312,7 +332,7 @@ const Form__HRInterview: React.FC<any> = (props: any) => {
               placeholder={''}
               step={1}
               value={address__num}
-              onChange={set__address__num}
+              onChange={newValue => set__address__num(Number(newValue))}
             />
           </FormGroup>
           <FormGroup
@@ -514,7 +534,7 @@ const Form__HRInterview: React.FC<any> = (props: any) => {
               max={99}
               min={18}
               value={interview__age}
-              onChange={set__interview__age}
+              onChange={newValue => set__interview__age(Number(newValue))}
             />
           </FormGroup>
           <FormGroup
@@ -531,7 +551,7 @@ const Form__HRInterview: React.FC<any> = (props: any) => {
               step={0.01}
               max={1000.5}
               value={interview__salary}
-              onChange={set__interview__salary}
+              onChange={newValue => set__interview__salary(Number(newValue))}
             />
           </FormGroup>
           <FormGroup
@@ -604,7 +624,7 @@ const Form__HRInterview: React.FC<any> = (props: any) => {
           </FormGroup>
           <FormGroup
             fieldId={'uniforms-0000-000s'}
-            label={'Hiding date'}
+            label={'Hiring date'}
             isRequired={true}
           >
             <Flex direction={{ default: 'column' }} id={'uniforms-0000-000s'}>
@@ -613,31 +633,31 @@ const Form__HRInterview: React.FC<any> = (props: any) => {
                   <DatePicker
                     id={'date-picker-uniforms-0000-000s'}
                     isDisabled={false}
-                    name={'interview.hidingDate'}
+                    name={'interview.hiringDate'}
                     onChange={newDate =>
                       onDateChange(
                         newDate,
-                        set__interview__hidingDate,
-                        interview__hidingDate
+                        set__interview__hiringDate,
+                        interview__hiringDate
                       )
                     }
-                    value={parseDate(interview__hidingDate)}
+                    value={parseDate(interview__hiringDate)}
                   />
                   <TimePicker
                     id={'time-picker-uniforms-0000-000s'}
                     isDisabled={false}
-                    name={'interview.hidingDate'}
+                    name={'interview.hiringDate'}
                     onChange={(time, hours?, minutes?) =>
                       onTimeChange(
                         time,
-                        set__interview__hidingDate,
-                        interview__hidingDate,
+                        set__interview__hiringDate,
+                        interview__hiringDate,
                         hours,
                         minutes
                       )
                     }
                     style={{ width: '120px' }}
-                    defaultTime={parseTime(interview__hidingDate)}
+                    time={parseTime(interview__hiringDate)}
                   />
                 </InputGroup>
               </FlexItem>
