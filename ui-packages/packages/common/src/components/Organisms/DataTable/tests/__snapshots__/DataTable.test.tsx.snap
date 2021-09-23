@@ -134,6 +134,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
     dropdownPosition="right"
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
+    isNested={false}
     isStickyHeader={false}
     isTreeTable={false}
     onSort={[Function]}
@@ -416,6 +417,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
       data-ouia-component-type="data-table"
       data-ouia-safe={true}
       gridBreakPoint="grid-md"
+      isNested={false}
       isStickyHeader={false}
       isTreeTable={false}
       ouiaSafe={true}
@@ -441,6 +443,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
         data-ouia-component-type="data-table"
         data-ouia-safe={true}
         gridBreakPoint="grid-md"
+        isNested={false}
         isStickyHeader={false}
         isTreeTable={false}
         ouiaSafe={true}
@@ -455,6 +458,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
           data-ouia-safe={true}
           gridBreakPoint="grid-md"
           innerRef={null}
+          isNested={false}
           isStickyHeader={false}
           isTreeTable={false}
           ouiaSafe={true}
@@ -473,7 +477,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
               <ContextHeader
                 headerRows={null}
               >
-                <Component
+                <Header
                   className=""
                   headerRows={null}
                 >
@@ -1345,10 +1349,10 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                       </TheadBase>
                     </Thead>
                   </BaseHeader>
-                </Component>
+                </Header>
               </ContextHeader>
             </TableHeader>
-            <Component
+            <TableBody
               rowKey="rowKey"
             >
               <ContextBody
@@ -1624,7 +1628,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                   ]
                 }
               >
-                <Component
+                <Body
                   className=""
                   headerRows={null}
                   mappedRows={
@@ -2771,7 +2775,8 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                             >
                               <RowWrapper
                                 className=""
-                                onMouseDown={[Function]}
+                                onClick={[Function]}
+                                onKeyDown={[Function]}
                                 row={
                                   Object {
                                     "cells": Array [
@@ -2835,12 +2840,14 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                               >
                                 <Tr
                                   className=""
-                                  onMouseDown={[Function]}
+                                  onClick={[Function]}
+                                  onKeyDown={[Function]}
                                 >
                                   <TrBase
                                     className=""
                                     innerRef={null}
-                                    onMouseDown={[Function]}
+                                    onClick={[Function]}
+                                    onKeyDown={[Function]}
                                   >
                                     <tr
                                       className=""
@@ -2848,7 +2855,8 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                       data-ouia-component-type="PF4/TableRow"
                                       data-ouia-safe={true}
                                       hidden={false}
-                                      onMouseDown={[Function]}
+                                      onClick={[Function]}
+                                      onKeyDown={[Function]}
                                     >
                                       <BodyCell
                                         data-key={0}
@@ -3346,7 +3354,8 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                             >
                               <RowWrapper
                                 className=""
-                                onMouseDown={[Function]}
+                                onClick={[Function]}
+                                onKeyDown={[Function]}
                                 row={
                                   Object {
                                     "cells": Array [
@@ -3410,12 +3419,14 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                               >
                                 <Tr
                                   className=""
-                                  onMouseDown={[Function]}
+                                  onClick={[Function]}
+                                  onKeyDown={[Function]}
                                 >
                                   <TrBase
                                     className=""
                                     innerRef={null}
-                                    onMouseDown={[Function]}
+                                    onClick={[Function]}
+                                    onKeyDown={[Function]}
                                   >
                                     <tr
                                       className=""
@@ -3423,7 +3434,8 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                       data-ouia-component-type="PF4/TableRow"
                                       data-ouia-safe={true}
                                       hidden={false}
-                                      onMouseDown={[Function]}
+                                      onClick={[Function]}
+                                      onKeyDown={[Function]}
                                     >
                                       <BodyCell
                                         data-key={0}
@@ -3615,9 +3627,9 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                       </Tbody>
                     </BodyWrapper>
                   </BaseBody>
-                </Component>
+                </Body>
               </ContextBody>
-            </Component>
+            </TableBody>
           </table>
         </TableComposableBase>
       </TableComposable>

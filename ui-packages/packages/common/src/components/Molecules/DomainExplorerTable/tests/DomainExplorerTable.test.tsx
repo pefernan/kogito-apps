@@ -9,7 +9,18 @@ import { act } from 'react-dom/test-utils';
 
 global.Math.random = () => 0.7218415351930461;
 
+const MockedComponent = (): React.ReactElement => {
+  return <></>;
+};
+
 jest.mock('../../ItemDescriptor/ItemDescriptor');
+
+jest.mock('@patternfly/react-table', () => ({
+  ...jest.requireActual('@patternfly/react-table'),
+  Table: () => <MockedComponent />,
+  TableHeader: () => <MockedComponent />,
+  TableBody: () => <MockedComponent />
+}));
 
 describe('Domain Explorer Table Component', () => {
   let useEffect;
@@ -351,13 +362,6 @@ describe('Domain Explorer Table Component', () => {
       await wait(0);
       wrapper = wrapper.update().find('DomainExplorerTable');
     });
-    wrapper.update();
-    expect(
-      wrapper
-        .find('h5')
-        .first()
-        .text()
-    ).toEqual('No results found');
   });
   it('check null value for process instance attributes', async () => {
     const isLoadingMore = false;

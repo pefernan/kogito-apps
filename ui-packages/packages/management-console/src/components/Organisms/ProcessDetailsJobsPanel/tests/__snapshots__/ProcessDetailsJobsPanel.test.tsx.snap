@@ -88,6 +88,7 @@ exports[`Processdetails jobs pannel component tests Snapshot testing 1`] = `
             dropdownPosition="right"
             expandId="expandable-toggle"
             gridBreakPoint="grid-md"
+            isNested={false}
             isStickyHeader={false}
             isTreeTable={false}
             ouiaSafe={true}
@@ -351,6 +352,7 @@ exports[`Processdetails jobs pannel component tests Snapshot testing 1`] = `
                 ]
               }
               gridBreakPoint="grid-md"
+              isNested={false}
               isStickyHeader={false}
               isTreeTable={false}
               ouiaSafe={true}
@@ -375,6 +377,7 @@ exports[`Processdetails jobs pannel component tests Snapshot testing 1`] = `
                 borders={true}
                 className=""
                 gridBreakPoint="grid-md"
+                isNested={false}
                 isStickyHeader={false}
                 isTreeTable={false}
                 ouiaSafe={true}
@@ -388,6 +391,7 @@ exports[`Processdetails jobs pannel component tests Snapshot testing 1`] = `
                   className=""
                   gridBreakPoint="grid-md"
                   innerRef={null}
+                  isNested={false}
                   isStickyHeader={false}
                   isTreeTable={false}
                   ouiaSafe={true}
@@ -407,7 +411,7 @@ exports[`Processdetails jobs pannel component tests Snapshot testing 1`] = `
                       <ContextHeader
                         headerRows={null}
                       >
-                        <Component
+                        <Header
                           className=""
                           headerRows={null}
                         >
@@ -1030,10 +1034,10 @@ exports[`Processdetails jobs pannel component tests Snapshot testing 1`] = `
                               </TheadBase>
                             </Thead>
                           </BaseHeader>
-                        </Component>
+                        </Header>
                       </ContextHeader>
                     </TableHeader>
-                    <Component>
+                    <TableBody>
                       <ContextBody
                         className=""
                         headerData={
@@ -1290,7 +1294,7 @@ exports[`Processdetails jobs pannel component tests Snapshot testing 1`] = `
                           ]
                         }
                       >
-                        <Component
+                        <Body
                           className=""
                           headerRows={null}
                           mappedRows={
@@ -2515,7 +2519,8 @@ exports[`Processdetails jobs pannel component tests Snapshot testing 1`] = `
                                     >
                                       <RowWrapper
                                         className=""
-                                        onMouseDown={[Function]}
+                                        onClick={[Function]}
+                                        onKeyDown={[Function]}
                                         row={
                                           Object {
                                             "actions": Object {
@@ -2652,12 +2657,14 @@ exports[`Processdetails jobs pannel component tests Snapshot testing 1`] = `
                                       >
                                         <Tr
                                           className=""
-                                          onMouseDown={[Function]}
+                                          onClick={[Function]}
+                                          onKeyDown={[Function]}
                                         >
                                           <TrBase
                                             className=""
                                             innerRef={null}
-                                            onMouseDown={[Function]}
+                                            onClick={[Function]}
+                                            onKeyDown={[Function]}
                                           >
                                             <tr
                                               className=""
@@ -2665,7 +2672,8 @@ exports[`Processdetails jobs pannel component tests Snapshot testing 1`] = `
                                               data-ouia-component-type="PF4/TableRow"
                                               data-ouia-safe={true}
                                               hidden={false}
-                                              onMouseDown={[Function]}
+                                              onClick={[Function]}
+                                              onKeyDown={[Function]}
                                             >
                                               <BodyCell
                                                 data-key={0}
@@ -2910,9 +2918,9 @@ exports[`Processdetails jobs pannel component tests Snapshot testing 1`] = `
                               </Tbody>
                             </BodyWrapper>
                           </BaseBody>
-                        </Component>
+                        </Body>
                       </ContextBody>
-                    </Component>
+                    </TableBody>
                   </table>
                 </TableComposableBase>
               </TableComposable>
@@ -3014,6 +3022,7 @@ exports[`Processdetails jobs pannel component tests test expiration time 1`] = `
             dropdownPosition="right"
             expandId="expandable-toggle"
             gridBreakPoint="grid-md"
+            isNested={false}
             isStickyHeader={false}
             isTreeTable={false}
             ouiaSafe={true}
@@ -3300,6 +3309,7 @@ exports[`Processdetails jobs pannel component tests test expiration time 1`] = `
                 ]
               }
               gridBreakPoint="grid-md"
+              isNested={false}
               isStickyHeader={false}
               isTreeTable={false}
               ouiaSafe={true}
@@ -3324,6 +3334,7 @@ exports[`Processdetails jobs pannel component tests test expiration time 1`] = `
                 borders={true}
                 className=""
                 gridBreakPoint="grid-md"
+                isNested={false}
                 isStickyHeader={false}
                 isTreeTable={false}
                 ouiaSafe={true}
@@ -3337,6 +3348,7 @@ exports[`Processdetails jobs pannel component tests test expiration time 1`] = `
                   className=""
                   gridBreakPoint="grid-md"
                   innerRef={null}
+                  isNested={false}
                   isStickyHeader={false}
                   isTreeTable={false}
                   ouiaSafe={true}
@@ -3356,7 +3368,7 @@ exports[`Processdetails jobs pannel component tests test expiration time 1`] = `
                       <ContextHeader
                         headerRows={null}
                       >
-                        <Component
+                        <Header
                           className=""
                           headerRows={null}
                         >
@@ -3979,10 +3991,10 @@ exports[`Processdetails jobs pannel component tests test expiration time 1`] = `
                               </TheadBase>
                             </Thead>
                           </BaseHeader>
-                        </Component>
+                        </Header>
                       </ContextHeader>
                     </TableHeader>
-                    <Component>
+                    <TableBody>
                       <ContextBody
                         className=""
                         headerData={
@@ -4262,7 +4274,7 @@ exports[`Processdetails jobs pannel component tests test expiration time 1`] = `
                           ]
                         }
                       >
-                        <Component
+                        <Body
                           className=""
                           headerRows={null}
                           mappedRows={
@@ -5763,7 +5775,8 @@ exports[`Processdetails jobs pannel component tests test expiration time 1`] = `
                                     >
                                       <RowWrapper
                                         className=""
-                                        onMouseDown={[Function]}
+                                        onClick={[Function]}
+                                        onKeyDown={[Function]}
                                         row={
                                           Object {
                                             "actions": Object {
@@ -5946,12 +5959,14 @@ exports[`Processdetails jobs pannel component tests test expiration time 1`] = `
                                       >
                                         <Tr
                                           className=""
-                                          onMouseDown={[Function]}
+                                          onClick={[Function]}
+                                          onKeyDown={[Function]}
                                         >
                                           <TrBase
                                             className=""
                                             innerRef={null}
-                                            onMouseDown={[Function]}
+                                            onClick={[Function]}
+                                            onKeyDown={[Function]}
                                           >
                                             <tr
                                               className=""
@@ -5959,7 +5974,8 @@ exports[`Processdetails jobs pannel component tests test expiration time 1`] = `
                                               data-ouia-component-type="PF4/TableRow"
                                               data-ouia-safe={true}
                                               hidden={false}
-                                              onMouseDown={[Function]}
+                                              onClick={[Function]}
+                                              onKeyDown={[Function]}
                                             >
                                               <BodyCell
                                                 data-key={0}
@@ -6229,9 +6245,9 @@ exports[`Processdetails jobs pannel component tests test expiration time 1`] = `
                               </Tbody>
                             </BodyWrapper>
                           </BaseBody>
-                        </Component>
+                        </Body>
                       </ContextBody>
-                    </Component>
+                    </TableBody>
                   </table>
                 </TableComposableBase>
               </TableComposable>

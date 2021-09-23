@@ -266,9 +266,6 @@ exports[`Domain Explorer Table Component check null value for process instance a
                 Object {
                   "title": <Table
                     aria-label="Process Instances"
-                    borders={true}
-                    canSelectAll={true}
-                    canSortFavorites={true}
                     cells={
                       Array [
                         "Process name",
@@ -278,16 +275,6 @@ exports[`Domain Explorer Table Component check null value for process instance a
                       ]
                     }
                     className="kogito-common__embedded-table"
-                    contentId="expanded-content"
-                    dropdownDirection="down"
-                    dropdownPosition="right"
-                    expandId="expandable-toggle"
-                    gridBreakPoint="grid-md"
-                    isStickyHeader={false}
-                    isTreeTable={false}
-                    ouiaSafe={true}
-                    role="grid"
-                    rowLabeledBy="simple-node"
                     rows={
                       Array [
                         Object {
@@ -500,11 +487,10 @@ exports[`Domain Explorer Table Component check null value for process instance a
                         },
                       ]
                     }
-                    selectVariant="checkbox"
                     variant="compact"
                   >
                     <TableHeader />
-                    <Unknown />
+                    <TableBody />
                   </Table>,
                 },
               ],
@@ -527,9 +513,6 @@ exports[`Domain Explorer Table Component check null value for process instance a
                 Object {
                   "title": <Table
                     aria-label="Process Instances"
-                    borders={true}
-                    canSelectAll={true}
-                    canSortFavorites={true}
                     cells={
                       Array [
                         "Process name",
@@ -539,16 +522,6 @@ exports[`Domain Explorer Table Component check null value for process instance a
                       ]
                     }
                     className="kogito-common__embedded-table"
-                    contentId="expanded-content"
-                    dropdownDirection="down"
-                    dropdownPosition="right"
-                    expandId="expandable-toggle"
-                    gridBreakPoint="grid-md"
-                    isStickyHeader={false}
-                    isTreeTable={false}
-                    ouiaSafe={true}
-                    role="grid"
-                    rowLabeledBy="simple-node"
                     rows={
                       Array [
                         Object {
@@ -761,11 +734,10 @@ exports[`Domain Explorer Table Component check null value for process instance a
                         },
                       ]
                     }
-                    selectVariant="checkbox"
                     variant="compact"
                   >
                     <TableHeader />
-                    <Unknown />
+                    <TableBody />
                   </Table>,
                 },
               ],
@@ -795,9 +767,6 @@ exports[`Domain Explorer Table Component check null value for process instance a
                 Object {
                   "title": <Table
                     aria-label="Process Instances"
-                    borders={true}
-                    canSelectAll={true}
-                    canSortFavorites={true}
                     cells={
                       Array [
                         "Process name",
@@ -807,16 +776,6 @@ exports[`Domain Explorer Table Component check null value for process instance a
                       ]
                     }
                     className="kogito-common__embedded-table"
-                    contentId="expanded-content"
-                    dropdownDirection="down"
-                    dropdownPosition="right"
-                    expandId="expandable-toggle"
-                    gridBreakPoint="grid-md"
-                    isStickyHeader={false}
-                    isTreeTable={false}
-                    ouiaSafe={true}
-                    role="grid"
-                    rowLabeledBy="simple-node"
                     rows={
                       Array [
                         Object {
@@ -1029,11 +988,10 @@ exports[`Domain Explorer Table Component check null value for process instance a
                         },
                       ]
                     }
-                    selectVariant="checkbox"
                     variant="compact"
                   >
                     <TableHeader />
-                    <Unknown />
+                    <TableBody />
                   </Table>,
                 },
               ],
@@ -1056,9 +1014,6 @@ exports[`Domain Explorer Table Component check null value for process instance a
                 Object {
                   "title": <Table
                     aria-label="Process Instances"
-                    borders={true}
-                    canSelectAll={true}
-                    canSortFavorites={true}
                     cells={
                       Array [
                         "Process name",
@@ -1068,16 +1023,6 @@ exports[`Domain Explorer Table Component check null value for process instance a
                       ]
                     }
                     className="kogito-common__embedded-table"
-                    contentId="expanded-content"
-                    dropdownDirection="down"
-                    dropdownPosition="right"
-                    expandId="expandable-toggle"
-                    gridBreakPoint="grid-md"
-                    isStickyHeader={false}
-                    isTreeTable={false}
-                    ouiaSafe={true}
-                    role="grid"
-                    rowLabeledBy="simple-node"
                     rows={
                       Array [
                         Object {
@@ -1290,11 +1235,10 @@ exports[`Domain Explorer Table Component check null value for process instance a
                         },
                       ]
                     }
-                    selectVariant="checkbox"
                     variant="compact"
                   >
                     <TableHeader />
-                    <Unknown />
+                    <TableBody />
                   </Table>,
                 },
               ],
