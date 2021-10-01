@@ -21,11 +21,13 @@ import * as Babel from '@babel/standalone';
 import ReactDOM from 'react-dom';
 import * as Patternfly from '@patternfly/react-core';
 import { FormResources } from '../../../api';
-import { renderResources, sourceHandler } from '../../../utils';
+import { sourceHandler } from '../../../utils';
 import Text = Patternfly.Text;
 import TextContent = Patternfly.TextContent;
 import TextVariants = Patternfly.TextVariants;
 import '@patternfly/patternfly/patternfly.css';
+import ResourcesContainer from '../ResourcesContainer/ResourcesContainer';
+
 interface ReactFormRendererProps {
   source: string;
   resources: FormResources;
@@ -64,7 +66,6 @@ const ReactFormRenderer: React.FC<ReactFormRendererProps> = ({
         formContainer.id = id;
 
         container.appendChild(formContainer);
-        renderResources('formContainer', resources);
         const {
           reactElements,
           patternflyElements,
@@ -116,13 +117,16 @@ const ReactFormRenderer: React.FC<ReactFormRendererProps> = ({
   return (
     <>
       {isEmpty(errorMessage) ? (
-        <div
-          style={{
-            height: '100%'
-          }}
-          id={'formContainer'}
-        >
-          {}
+        <div>
+          <ResourcesContainer resources={resources} />
+          <div
+            style={{
+              height: '100%'
+            }}
+            id={'formContainer'}
+          >
+            {}
+          </div>
         </div>
       ) : (
         <>
