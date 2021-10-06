@@ -16,14 +16,6 @@
 
 package org.kie.kogito.runtime.tools.quarkus.extension.runtime.forms.impl;
 
-import org.apache.commons.io.FileUtils;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.io.TempDir;
-import org.kie.kogito.runtime.tools.quarkus.extension.runtime.forms.FormsStorage;
-import org.kie.kogito.runtime.tools.quarkus.extension.runtime.forms.model.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -31,6 +23,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+
+import org.apache.commons.io.FileUtils;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.io.TempDir;
+import org.kie.kogito.runtime.tools.quarkus.extension.runtime.forms.FormsStorage;
+import org.kie.kogito.runtime.tools.quarkus.extension.runtime.forms.model.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 

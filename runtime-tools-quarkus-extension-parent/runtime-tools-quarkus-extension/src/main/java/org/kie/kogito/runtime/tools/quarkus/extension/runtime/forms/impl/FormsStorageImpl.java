@@ -19,7 +19,6 @@ package org.kie.kogito.runtime.tools.quarkus.extension.runtime.forms.impl;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -68,6 +67,7 @@ public class FormsStorageImpl implements FormsStorage {
         try {
             this.classLoaderFormsUrl = Thread.currentThread().getContextClassLoader().getResource(FORMS_STORAGE_PATH);
             this.formsStorageUrl = new File(classLoaderFormsUrl.getFile().replace(CLASSLOADER_FORMS_STORAGE_PATH, FS_FORMS_STORAGE_PATH)).toURI().toURL();
+            reloadFormBaseInfoList();
         } catch (Exception ex) {
             throw new RuntimeException("Cannot start FormStorage due to: ", ex);
         }
