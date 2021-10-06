@@ -16,14 +16,14 @@
 
 package org.kie.kogito.runtime.tools.quarkus.extension.runtime.forms.model;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class FormResources {
 
-    private Map<String, String> scripts = new HashMap<>();
+    private Map<String, String> scripts = new LinkedHashMap<>();
 
-    private Map<String, String> styles = new HashMap<>();
+    private Map<String, String> styles = new LinkedHashMap<>();
 
     public FormResources() {
     }
