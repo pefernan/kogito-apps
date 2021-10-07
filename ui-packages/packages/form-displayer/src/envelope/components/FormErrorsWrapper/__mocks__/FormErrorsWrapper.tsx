@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-.kogito-form-displayer__ball-beats {
-    margin-top: 50% !important;
-}
+import React from 'react';
 
-.kogito-form-displayer-error-wrapper__align-left {
-    text-align: left !important;
-}
+const FormErrorsWrapper = () => {
+  return <></>;
+};
+
+export default FormErrorsWrapper;

@@ -22,6 +22,7 @@ import { componentOuiaProps, OUIAProps } from '@kogito-apps/ouia-tools';
 import {
   EmbeddedFormDisplayer,
   FormDisplayerApi,
+  FormOpenedState,
   FormSubmitResponseType
 } from '@kogito-apps/form-displayer';
 import { UserTaskInstance } from '@kogito-apps/task-console-shared';
@@ -160,7 +161,7 @@ const CustomTaskFormDisplayer: React.FC<CustomTaskFormDisplayerProps &
           ref={formDisplayerApiRef}
         />
       </div>
-      {formOpened && (
+      {formOpened && formOpened.state === FormOpenedState.OPENED && (
         <Flex>
           <FlexItem>
             <FormFooter actions={formActions} enabled={!submitted} />

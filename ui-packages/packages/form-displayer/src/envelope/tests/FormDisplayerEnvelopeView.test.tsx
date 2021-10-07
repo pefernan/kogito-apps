@@ -24,6 +24,7 @@ import {
   FormDisplayerEnvelopeViewApi
 } from '../FormDisplayerEnvelopeView';
 import { FormType } from '../../api';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 
 jest.mock('../components/FormDisplayer/FormDisplayer');
 
@@ -38,6 +39,7 @@ describe('FormDisplayerEnvelopeView tests', () => {
     ).find('FormDisplayerEnvelopeView');
 
     expect(wrapper).toMatchSnapshot();
+
     const formContent = {
       formInfo: {
         lastModified: new Date('2021-08-23T13:26:02.130Z'),
@@ -67,6 +69,9 @@ describe('FormDisplayerEnvelopeView tests', () => {
     const envelopeView = wrapper.find(FormDisplayerEnvelopeView);
 
     expect(envelopeView).toMatchSnapshot();
+
+    const boundary = wrapper.find(ErrorBoundary);
+    expect(boundary.exists()).toBeTruthy();
 
     const formDisplayer = envelopeView.find(FormDisplayer);
 

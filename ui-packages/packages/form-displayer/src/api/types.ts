@@ -24,7 +24,13 @@ export type FormSubmitContext = {
   params?: Record<string, string>;
 };
 
+export enum FormOpenedState {
+  OPENED = 'opened',
+  ERROR = 'error'
+}
+
 export type FormOpened = {
+  state: FormOpenedState;
   size: FormSize;
 };
 

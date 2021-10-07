@@ -27,6 +27,10 @@ const taskWithEmptyForm = [
   '809aae9e-f0bf-4892-b0c9-4be80664d2aa'
 ];
 
+const formsUnableToSave = [
+  'html_hiring_ITInterview',
+  'react_hiring_ITInterview'
+];
 
 const processSvg = ['8035b580-6ae4-4aa8-9ec0-e18e19809e0b', '8035b580-6ae4-4aa8-9ec0-e18e19809e0blmnop', '2d962eef-45b8-48a9-ad4e-9cde0ad6af88', 'c54ca5b0-b975-46e2-a9a0-6a86bf7ac21e']
 module.exports = controller = {
@@ -328,7 +332,18 @@ module.exports = controller = {
     }
 
     res.send(response);
-  }
+  },
+
+  saveFormContent: (req, res) => {
+    console.log(
+      `......Save Form Content: --formName:${req.params.formName}`
+    );
+    if (formsUnableToSave.includes(req.params.formName)) {
+      res.status(500).send('Unexpected failure saving form!');
+    } else {
+      res.send('Saved!');
+    }
+  },
 };
 
 
