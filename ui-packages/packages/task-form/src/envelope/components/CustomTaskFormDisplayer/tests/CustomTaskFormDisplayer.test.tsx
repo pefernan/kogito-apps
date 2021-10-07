@@ -29,6 +29,7 @@ import { KogitoSpinner } from '@kogito-apps/components-common';
 import FormFooter from '../../FormFooter/FormFooter';
 import {
   EmbeddedFormDisplayer,
+  FormOpenedState,
   FormSubmitResponse
 } from '@kogito-apps/form-displayer';
 import { act } from 'react-dom/test-utils';
@@ -153,6 +154,7 @@ describe('CustomTaskFormDisplayer Test', () => {
 
     act(() => {
       form.props().onOpenForm({
+        state: FormOpenedState.OPENED,
         size: {
           height: 450,
           width: 250
@@ -174,6 +176,44 @@ describe('CustomTaskFormDisplayer Test', () => {
     expect(formFooter.exists()).toBeTruthy();
   });
 
+  it('Rendering form with error', async () => {
+    let wrapper = getWrapper();
+
+    expect(wrapper).toMatchSnapshot();
+
+    let spinner = wrapper.find(KogitoSpinner);
+    expect(spinner.exists()).toBeTruthy();
+
+    let form = wrapper.find(EmbeddedFormDisplayer);
+    expect(form.exists()).toBeTruthy();
+
+    let formFooter = wrapper.find(FormFooter);
+    expect(formFooter.exists()).toBeFalsy();
+
+    act(() => {
+      form.props().onOpenForm({
+        state: FormOpenedState.ERROR,
+        size: {
+          height: 450,
+          width: 250
+        }
+      });
+    });
+
+    wrapper = wrapper.update();
+
+    expect(wrapper).toMatchSnapshot();
+
+    spinner = wrapper.find(KogitoSpinner);
+    expect(spinner.exists()).toBeFalsy();
+
+    form = wrapper.find(EmbeddedFormDisplayer);
+    expect(form.exists()).toBeTruthy();
+
+    formFooter = wrapper.find(FormFooter);
+    expect(formFooter.exists()).toBeFalsy();
+  });
+
   it('Successful form submit', async () => {
     let wrapper = getWrapper();
 
@@ -185,6 +225,7 @@ describe('CustomTaskFormDisplayer Test', () => {
 
     act(() => {
       form.props().onOpenForm({
+        state: FormOpenedState.OPENED,
         size: {
           height: 450,
           width: 250
@@ -241,6 +282,7 @@ describe('CustomTaskFormDisplayer Test', () => {
 
     act(() => {
       form.props().onOpenForm({
+        state: FormOpenedState.OPENED,
         size: {
           height: 450,
           width: 250
@@ -300,6 +342,7 @@ describe('CustomTaskFormDisplayer Test', () => {
 
     act(() => {
       form.props().onOpenForm({
+        state: FormOpenedState.OPENED,
         size: {
           height: 450,
           width: 250

@@ -22,11 +22,13 @@ import {
   Form,
   FormSubmitContext,
   FormSubmitResponse,
-  FormDisplayerInitArgs
+  FormDisplayerInitArgs,
+  FormOpened
 } from '../api';
 import { FormLifecycleApi } from './components/FormDisplayer/apis';
 import { MessageBusClientApi } from '@kogito-tooling/envelope-bus/dist/api';
 import FormDisplayer from './components/FormDisplayer/FormDisplayer';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 export interface FormDisplayerEnvelopeViewApi {
   initForm: (args: FormDisplayerInitArgs) => void;
@@ -83,16 +85,20 @@ export const FormDisplayerEnvelopeView = React.forwardRef<
     []
   );
 
+  const onOpen = (opened: FormOpened) => {
+    props.channelApi.notifications.notifyOnOpenForm(opened);
+  };
+
   return (
-    <FormDisplayer
-      isEnvelopeConnectedToChannel={isEnvelopeConnectedToChannel}
-      content={content}
-      data={data}
-      context={context}
-      onOpenForm={opened =>
-        props.channelApi.notifications.notifyOnOpenForm(opened)
-      }
-      ref={formDisplayerApiRef}
-    />
+    <ErrorBoundary notifyOnError={onOpen}>
+      <FormDisplayer
+        isEnvelopeConnectedToChannel={isEnvelopeConnectedToChannel}
+        content={content}
+        data={data}
+        context={context}
+        onOpenForm={onOpen}
+        ref={formDisplayerApiRef}
+      />
+    </ErrorBoundary>
   );
 });

@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-import React, { useState, useEffect, useImperativeHandle } from 'react';
+import React, { useEffect, useImperativeHandle, useState } from 'react';
 import { Bullseye } from '@patternfly/react-core';
-import { OUIAProps, componentOuiaProps } from '@kogito-apps/ouia-tools';
+import { componentOuiaProps, OUIAProps } from '@kogito-apps/ouia-tools';
 import { BallBeat } from 'react-pure-loaders';
-import { Form, FormOpened } from '../../../api';
+import { Form, FormOpened, FormOpenedState } from '../../../api';
 import ReactFormRenderer from '../ReactFormRenderer/ReactFormRenderer';
 import HtmlFormRenderer from '../HtmlFormRenderer/HtmlFormRenderer';
 import '../styles.css';
 import {
-  FormLifecycleApi,
   FormConfig,
+  FormLifecycleApi,
   InternalFormDisplayerApi,
   InternalFormDisplayerApiImpl
 } from './apis';
@@ -88,6 +88,7 @@ export const FormDisplayer = React.forwardRef<
         });
         setTimeout(() => {
           onOpenForm({
+            state: FormOpenedState.OPENED,
             size: {
               height: document.body.scrollHeight,
               width: document.body.scrollWidth
