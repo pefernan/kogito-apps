@@ -151,7 +151,7 @@ const CustomTaskFormDisplayer: React.FC<CustomTaskFormDisplayerProps &
           <KogitoSpinner spinnerText={`Loading task form...`} />
         </Bullseye>
       )}
-      <Stack>
+      <Stack hasGutter>
         <StackItem
           id={`${formUUID}-form`}
           style={{ visibility: 'hidden', height: 'inherit' }}
