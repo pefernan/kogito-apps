@@ -101,3 +101,15 @@ export const getActiveTaskStates = (): string[] => {
   }
   return ['Ready', 'Reserved'];
 };
+
+export const getFormTypeLabel = value => {
+  switch (value) {
+    case 'HTML':
+      return 'HTML';
+    case 'TSX':
+      return 'REACT';
+    /* istanbul ignore next */
+    default:
+      return value;
+  }
+};

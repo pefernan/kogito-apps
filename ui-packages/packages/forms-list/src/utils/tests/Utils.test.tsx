@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-import { FormType } from '../../../../api/FormsListEnvelopeApi';
+import { FormType } from '../../api/FormsListEnvelopeApi';
 import {
   getDateColumn,
   getFormNameColumn,
   getFormTypeColumn,
   getFormTypeLabel
-} from '../FormsListUtils';
+} from '../Utils';
 
 describe('forms list utils tests', () => {
   it('get form name column', () => {

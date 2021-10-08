@@ -32,6 +32,7 @@ import Moment from 'react-moment';
 import FormNotification, {
   Notification
 } from '../TaskDetailsPage/components/FormNotification/FormNotification';
+import { getFormTypeLabel } from '../../../utils/Utils';
 
 const FormDetailsPage: React.FC<OUIAProps> = () => {
   const [notification, setNotification] = useState<Notification>();
@@ -74,7 +75,9 @@ const FormDetailsPage: React.FC<OUIAProps> = () => {
       <PageSection variant="light">
         <PageTitle
           title={formData.name}
-          extra={<Label variant="outline">{formData.type}</Label>}
+          extra={
+            <Label variant="outline">{getFormTypeLabel(formData.type)}</Label>
+          }
         />
         <Text component={TextVariants.p} style={{ marginTop: '10px' }}>
           <span style={{ fontWeight: 'bold' }}>Last modified:</span>{' '}

@@ -17,7 +17,7 @@
 import React from 'react';
 import Moment from 'react-moment';
 import { DataTableColumn } from '@kogito-apps/components-common';
-import { FormInfo } from '../../../api/FormsListEnvelopeApi';
+import { FormInfo } from '../api/FormsListEnvelopeApi';
 import { Label } from '@patternfly/react-core';
 
 export const getFormTypeLabel = value => {

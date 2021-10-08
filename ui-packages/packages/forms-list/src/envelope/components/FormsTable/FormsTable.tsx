@@ -22,13 +22,16 @@ import {
 } from '@kogito-apps/components-common';
 import { OUIAProps, componentOuiaProps } from '@kogito-apps/ouia-tools';
 import { FormInfo } from '../../../api/FormsListEnvelopeApi';
-import { FormsListDriver } from 'packages/forms-list/src/api';
+import { FormsListDriver } from '../../../api';
 import {
   getFormNameColumn,
   getDateColumn,
   getFormTypeColumn
-} from '../FormsListUtils/FormsListUtils';
-import _ from 'lodash';
+} from '../../../utils';
+import isEmpty from 'lodash/isEmpty';
+import orderBy from 'lodash/orderBy';
+import keys from 'lodash/keys';
+import values from 'lodash/values';
 import { Bullseye } from '@patternfly/react-core';
 import { ISortBy } from '@patternfly/react-table';
 
@@ -65,7 +68,7 @@ const FormsTable: React.FC<FormsTableProps & OUIAProps> = ({
 
   useEffect(() => {
     /* istanbul ignore else */
-    if (!_.isEmpty(formsData)) {
+    if (!isEmpty(formsData)) {
       onSort(2, 'desc');
     }
   }, [isLoading]);
@@ -83,12 +86,12 @@ const FormsTable: React.FC<FormsTableProps & OUIAProps> = ({
       direction: direction.toLowerCase()
     };
 
-    const sortedData = _.orderBy(
+    const sortedData = orderBy(
       formsData,
-      _.keys({
+      keys({
         [sortObj.property]: sortObj.direction
       }).map(key => key),
-      _.values({
+      values({
         [sortObj.property]: sortObj.direction
       }).map(value => value.toLowerCase())
     );

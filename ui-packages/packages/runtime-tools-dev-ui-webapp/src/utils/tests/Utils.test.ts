@@ -19,8 +19,10 @@ import {
   getTaskEndpointSecurityParams,
   getTaskSchemaEndPoint,
   resolveTaskPriority,
-  trimTaskEndpoint
+  trimTaskEndpoint,
+  getFormTypeLabel
 } from '../Utils';
+import { FormType } from '@kogito-apps/forms-list';
 
 describe('Utils tests', () => {
   process.env = Object.assign(process.env, { CUSTOM_VAR: 'value' });
@@ -96,5 +98,12 @@ describe('Utils tests', () => {
     expect(LowResult).toEqual('10 - Low');
     const OtherResult = resolveTaskPriority('15');
     expect(OtherResult).toEqual('15');
+  });
+
+  it('get form lable', () => {
+    const result1 = getFormTypeLabel(FormType.HTML);
+    expect(result1.props.children).toEqual(FormType.HTML);
+    const result2 = getFormTypeLabel(FormType.TSX);
+    expect(result2.props.children).toEqual('REACT');
   });
 });
