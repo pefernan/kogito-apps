@@ -60,23 +60,49 @@ public class FormsStorageImpl implements FormsStorage {
     private final Map<String, FormInfo> formInfoMap = new HashMap<>();
     private final Map<String, Form> modifiedForms = new HashMap<>();
 
-    private final URL classLoaderFormsUrl;
-    private final URL formsStorageUrl;
+    private URL classLoaderFormsUrl;
+    private URL formsStorageUrl;
 
     public FormsStorageImpl() {
-        try {
-            this.classLoaderFormsUrl = Thread.currentThread().getContextClassLoader().getResource(FORMS_STORAGE_PATH);
-            this.formsStorageUrl = new File(classLoaderFormsUrl.getFile().replace(CLASSLOADER_FORMS_STORAGE_PATH, FS_FORMS_STORAGE_PATH)).toURI().toURL();
-            reloadFormBaseInfoList();
-        } catch (Exception ex) {
-            throw new RuntimeException("Cannot start FormStorage due to: ", ex);
-        }
+        start(Thread.currentThread().getContextClassLoader().getResource(FORMS_STORAGE_PATH));
     }
 
     FormsStorageImpl(final URL classLoaderFormsUrl, final URL formsStorageUrl) {
-        this.classLoaderFormsUrl = classLoaderFormsUrl;
-        this.formsStorageUrl = formsStorageUrl;
-        reloadFormBaseInfoList();
+        start(classLoaderFormsUrl, formsStorageUrl);
+    }
+
+    private void start(final URL classLoaderFormsUrl) {
+        start(classLoaderFormsUrl, getFormStorageUrl(classLoaderFormsUrl));
+    }
+
+    private void start(final URL classLoaderFormsUrl, final URL formsStorageUrl) {
+        try {
+            this.classLoaderFormsUrl = classLoaderFormsUrl;
+            this.formsStorageUrl = formsStorageUrl;
+        } catch (Exception ex) {
+            LOGGER.warn("Couldn't properly initialize FormsStorageImpl");
+        } finally {
+            init();
+        }
+    }
+
+    private URL getFormStorageUrl(URL classLoaderFormsUrl) {
+        if (classLoaderFormsUrl == null) {
+            return null;
+        }
+
+        File formsStorageFolder = new File(classLoaderFormsUrl.getFile().replace(CLASSLOADER_FORMS_STORAGE_PATH, FS_FORMS_STORAGE_PATH));
+
+        if (!formsStorageFolder.exists() || !formsStorageFolder.isDirectory()) {
+            LOGGER.warn("Cannot initialize form storage folder in path '" + formsStorageFolder.getPath() + "'");
+        }
+
+        try {
+            return formsStorageFolder.toURI().toURL();
+        } catch (MalformedURLException ex) {
+            LOGGER.warn("Cannot initialize form storage folder in path '" + formsStorageFolder.getPath() + "'", ex);
+        }
+        return null;
     }
 
     @Override
@@ -167,6 +193,10 @@ public class FormsStorageImpl implements FormsStorage {
 
     @Override
     public void updateFormContent(String formName, FormContent formContent) throws IOException {
+        if (this.formsStorageUrl == null) {
+            throw new RuntimeException("Cannot store form'" + formName + "'. Form storage couldnt be properly initialized.");
+        }
+
         FormInfo formInfo = formInfoMap.get(formName);
 
         if (formInfo == null) {
@@ -204,8 +234,8 @@ public class FormsStorageImpl implements FormsStorage {
         return FileUtils.getFile(this.formsStorageUrl.getFile() + "/" + formInfo.getName() + CONFIG_EXT);
     }
 
-    private void reloadFormBaseInfoList() {
-        readFormBaseList().stream()
+    private void init() {
+        readFormResources().stream()
                 .filter(file -> hasConfigFile(FilenameUtils.removeExtension(file.getName())))
                 .forEach(file -> {
                     LocalDateTime lastModified = LocalDateTime.ofInstant(Instant.ofEpochMilli(file.lastModified()), TimeZone.getDefault().toZoneId());
@@ -214,7 +244,7 @@ public class FormsStorageImpl implements FormsStorage {
                 });
     }
 
-    private Collection<File> readFormBaseList() {
+    private Collection<File> readFormResources() {
         if (classLoaderFormsUrl != null) {
             LOGGER.info("form's files path is {}", classLoaderFormsUrl.toString());
             File rootFolder = FileUtils.toFile(classLoaderFormsUrl);
