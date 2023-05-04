@@ -1,0 +1,28 @@
+commit c04c2b319769984458301db16b3bb191d03355f6
+Author: radtriste <tradisso@redhat.com>
+Date:   Thu May 4 11:22:34 2023 +0200
+
+    patch: doc updates
+
+diff --git a/task-assigning/task-assigning-process-service-client/src/main/java/org/kie/kogito/taskassigning/config/ServiceClientConfig.java b/task-assigning/task-assigning-process-service-client/src/main/java/org/kie/kogito/taskassigning/config/ServiceClientConfig.java
+index 872431f5b..686bc9402 100644
+--- a/task-assigning/task-assigning-process-service-client/src/main/java/org/kie/kogito/taskassigning/config/ServiceClientConfig.java
++++ b/task-assigning/task-assigning-process-service-client/src/main/java/org/kie/kogito/taskassigning/config/ServiceClientConfig.java
+@@ -70,7 +70,7 @@ public abstract class ServiceClientConfig {
+         /**
+          * Set the connect timeout in milliseconds.
+          * <p>
+-         * Like JAX-RS's <code>javax.ws.rs.client.ClientBuilder</code>'s
++         * Like JAX-RS's <code>jakarta.ws.rs.client.ClientBuilder</code>'s
+          * <code>connectTimeout</code> method, specifying a timeout of 0 represents
+          * infinity, and negative values are not allowed.
+          */
+@@ -85,7 +85,7 @@ public abstract class ServiceClientConfig {
+         /**
+          * Set the read timeout.
+          * <p>
+-         * Like JAX-RS's <code>javax.ws.rs.client.ClientBuilder</code>'s
++         * Like JAX-RS's <code>jakarta.ws.rs.client.ClientBuilder</code>'s
+          * <code>readTimeout</code> method, specifying a timeout of 0 represents
+          * infinity, and negative values are not allowed.
+          * </p>
