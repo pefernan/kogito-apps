@@ -7,9 +7,8 @@ ci="${CI:-false}"
 
 rewrite_plugin_version=4.43.0
 quarkus_version=${QUARKUS_VERSION:-3.0.0.Final}
-project_version='quarkus-3-SNAPSHOT'
 
-quarkus_file="${script_dir_path}/quarkus3.yml"
+quarkus_recipe_file="${script_dir_path}/quarkus3.yml"
 patch_file="${script_dir_path}"/patches/0001_before_sh.patch
 
 if [ "${ci}" = "true" ]; then
@@ -18,6 +17,7 @@ if [ "${ci}" = "true" ]; then
 fi
 
 rewrite=${1:-'none'}
+behavior=${2:-'none'}
 echo "rewrite "${rewrite}
 if [ "rewrite" != ${rewrite} ]; then
     echo "No rewrite to be done. Exited"
@@ -30,20 +30,23 @@ echo "Update project with Quarkus version ${quarkus_version}"
 
 set -x
 
+# Retrieve Drools version used
+optaplanner_version=$(mvn -q -pl :kogito-apps-build-parent -Dexpression=version.org.optaplanner -DforceStdout help:evaluate)
+# New drools version is based on current drools version and increment the Major => (M+1).m.y
+new_optaplanner_version=$(echo ${optaplanner_version} | awk -F. -v OFS=. '{$1 += 1 ; print}')
+
 # Regenerate quarkus3 recipe
 cd ${script_dir_path}
-curl -Ls https://sh.jbang.dev | bash -s - jbang/CreateQuarkusDroolsMigrationRecipe.java
+curl -Ls https://sh.jbang.dev | \
+    bash -s - jbang/CreateKieQuarkusProjectMigrationRecipe.java \
+        -v version.io.quarkus=${quarkus_version} \
+        -v version.org.optaplanner=${new_optaplanner_version}
 cd -
-if [ "$(git status --porcelain ${quarkus_file})" != '' ]; then
-    git add "${quarkus_file}"
-    git commit -m '[Quarkus 3 migration] Update Openrewrite recipe'
-fi
 
 # Launch Quarkus 3 Openrewrite
 ${mvn_cmd} org.openrewrite.maven:rewrite-maven-plugin:${rewrite_plugin_version}:run \
-    -Drewrite.configLocation="${quarkus_file}" \
+    -Drewrite.configLocation="${quarkus_recipe_file}" \
     -DactiveRecipes=io.quarkus.openrewrite.Quarkus \
-    -Drewrite.recipeArtifactCoordinates=org.kie:jpmml-migration-recipe:"${project_version}" \
     -Denforcer.skip \
     -DskipUI \
     -fae \
@@ -61,13 +64,24 @@ ${mvn_cmd} \
 
 # Create the `patches/0001_before_sh.patch` file
 git add .
+git reset "${quarkus_recipe_file}" # Do not include recipe file
 git diff --cached > "${patch_file}"
 git reset
 
 # Commit the change on patch
 if [ "$(git status --porcelain ${patch_file})" != '' ]; then
+    if [ "$(git status --porcelain ${quarkus_recipe_file})" != '' ]; then
+        git add "${quarkus_recipe_file}" # We suppose that if the recipe has changed, the patch file as well
+    fi
     git add "${patch_file}"
-    git commit -m '[Quarkus 3 migration] Updated Openrewrite patch'
+    git commit -m '[Quarkus 3] Updated rewrite data'
+
+    if [ "${behavior}" = 'push_changes' ]; then
+        git_remote="${GIT_REMOTE:-origin}"
+        branch=$(git branch --show-current)
+        echo "Pushing changes to ${git_remote}/${branch}"
+        git push ${git_remote} ${branch}
+    fi
 fi
 
 # Reset all other changes as they will be applied next by the `patches/0001_before_sh.patch` file

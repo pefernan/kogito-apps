@@ -18,7 +18,4 @@ type: specs.openrewrite.org/v1beta/recipe
 name: org.kie.kogito.Quarkus3Migration
 displayName: All Quarkus 3 Migration for Kogito Runtimes project
 recipeList: 
-  # TODO to keep up to date
-  - org.openrewrite.maven.ChangePropertyValue:
-      key: version.org.optaplanner
-      newValue: 9.37.0.Final
+  
