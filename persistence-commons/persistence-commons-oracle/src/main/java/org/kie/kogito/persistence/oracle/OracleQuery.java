@@ -32,7 +32,6 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vladmihalcea.hibernate.type.json.JsonBlobType;
 
 import static java.lang.String.format;
 import static java.util.stream.Collectors.joining;
@@ -134,10 +133,10 @@ public class OracleQuery<T> implements Query<T> {
         }
 
         LOGGER.debug("Executing Oracle query: {}", queryString);
-        javax.persistence.Query query = repository.getEntityManager()
+        jakarta.persistence.Query query = repository.getEntityManager()
                 .createNativeQuery(queryString.toString())
                 .unwrap(NativeQuery.class)
-                .addScalar("json_value", new JsonBlobType(type));
+                .addScalar("json_value", type); // TODO Quarkus 3: This does not work and should be fix in a next PR
 
         if (limit != null) {
             query.setMaxResults(limit);

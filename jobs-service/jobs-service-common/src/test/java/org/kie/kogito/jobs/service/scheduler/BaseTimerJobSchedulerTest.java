@@ -47,6 +47,8 @@ import org.reactivestreams.Publisher;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
 
+import mutiny.zero.flow.adapters.AdaptersToFlow;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.kie.kogito.jobs.service.model.JobStatus.CANCELED;
 import static org.kie.kogito.jobs.service.model.JobStatus.SCHEDULED;
@@ -352,7 +354,7 @@ public abstract class BaseTimerJobSchedulerTest {
 
     private void subscribeOn(Publisher<JobDetails> schedule) {
         Multi.createFrom()
-                .publisher(schedule)
+                .publisher(AdaptersToFlow.publisher(schedule))
                 .subscribe()
                 .with(dummyCallback(), dummyCallback());
     }

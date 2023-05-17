@@ -16,8 +16,6 @@
 
 package org.kie.kogito.persistence.protobuf;
 
-import javax.enterprise.event.Event;
-
 import org.infinispan.protostream.FileDescriptorSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,6 +28,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import io.quarkus.runtime.StartupEvent;
+
+import jakarta.enterprise.event.Event;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

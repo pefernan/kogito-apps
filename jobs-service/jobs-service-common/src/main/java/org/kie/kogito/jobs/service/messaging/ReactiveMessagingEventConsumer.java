@@ -29,6 +29,8 @@ import org.slf4j.LoggerFactory;
 import io.cloudevents.CloudEvent;
 import io.smallrye.mutiny.Uni;
 
+import mutiny.zero.flow.adapters.AdaptersToFlow;
+
 public abstract class ReactiveMessagingEventConsumer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ReactiveMessagingEventConsumer.class);
@@ -74,7 +76,7 @@ public abstract class ReactiveMessagingEventConsumer {
         return Uni.createFrom().completionStage(jobRepository.get(job.getId()))
                 .flatMap(existingJob -> {
                     if (existingJob == null || existingJob.getStatus() == JobStatus.SCHEDULED) {
-                        return Uni.createFrom().publisher(scheduler.schedule(job));
+                        return Uni.createFrom().publisher(AdaptersToFlow.publisher(scheduler.schedule(job)));
                     } else {
                         LOGGER.info("A Job in status: {} already exists for the job id: {}, no processing will be done fot the event: {}.",
                                 existingJob.getStatus(),

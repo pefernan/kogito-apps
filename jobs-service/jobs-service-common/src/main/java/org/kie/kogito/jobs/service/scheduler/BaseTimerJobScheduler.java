@@ -45,6 +45,8 @@ import org.slf4j.LoggerFactory;
 
 import io.smallrye.mutiny.Uni;
 
+import mutiny.zero.flow.adapters.AdaptersToFlow;
+
 /**
  * Base reactive Job Scheduler that performs the fundamental operations and let to the concrete classes to
  * implement the scheduling actions.
@@ -306,7 +308,7 @@ public abstract class BaseTimerJobScheduler implements ReactiveJobScheduler {
         return Uni.createFrom().completionStage(futureJob)
                 .onItem().invoke(job -> LOGGER.debug("Cancel Job Scheduling {}", job))
                 .chain(scheduledJob -> Optional.ofNullable(scheduledJob.getScheduledId())
-                        .map(id -> Uni.createFrom().publisher(this.doCancel(scheduledJob))
+                        .map(id -> Uni.createFrom().publisher(AdaptersToFlow.publisher(this.doCancel(scheduledJob)))
                                 .onItem().transform(b -> scheduledJob))
                         .orElse(Uni.createFrom().item(scheduledJob)))
                 //final state, removing the job

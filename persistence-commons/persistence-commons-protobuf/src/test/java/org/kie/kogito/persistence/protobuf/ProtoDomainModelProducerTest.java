@@ -16,8 +16,6 @@
 
 package org.kie.kogito.persistence.protobuf;
 
-import javax.enterprise.event.Event;
-
 import org.infinispan.protostream.FileDescriptorSource;
 import org.infinispan.protostream.SerializationContext;
 import org.infinispan.protostream.config.Configuration;
@@ -30,6 +28,8 @@ import org.kie.kogito.persistence.protobuf.domain.ProtoDomainModelProducer;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import jakarta.enterprise.event.Event;
 
 import static org.kie.kogito.persistence.protobuf.ProtobufService.DOMAIN_MODEL_PROTO_NAME;
 import static org.mockito.ArgumentMatchers.eq;
