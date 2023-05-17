@@ -45,7 +45,7 @@ public class CacheEntity {
     @Column(nullable = false)
     private String key;
 
-    @Type(value = JsonBinaryType.class)
+    @Type(JsonBinaryType.class)
     @Column(name = "json_value", columnDefinition = "jsonb")
     private ObjectNode value;
 

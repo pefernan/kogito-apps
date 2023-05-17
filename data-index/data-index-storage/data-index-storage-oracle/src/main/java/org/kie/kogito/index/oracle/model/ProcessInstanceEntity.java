@@ -39,7 +39,7 @@ import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import io.hypersistence.utils.hibernate.type.json.JsonBlobType;
+import org.kie.kogito.persistence.oracle.hibernate.JsonBinaryType;
 
 @Entity(name = "processes")
 @Table(name = "processes")
@@ -67,7 +67,7 @@ public class ProcessInstanceEntity extends AbstractEntity {
     private String parentProcessInstanceId;
     @Column(name = "lastUpdateTime")
     private ZonedDateTime lastUpdate;
-    @Type(value = JsonBlobType.class)
+    @Type(value = JsonBinaryType.class)
     private ObjectNode variables;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "processInstance")
     private List<NodeInstanceEntity> nodes;

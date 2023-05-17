@@ -37,8 +37,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
-import io.hypersistence.utils.hibernate.type.json.JsonBlobType;
+import org.kie.kogito.persistence.oracle.hibernate.JsonBinaryType;
 
 @Entity(name = "tasks")
 @Table(name = "tasks")
@@ -89,9 +88,9 @@ public class UserTaskInstanceEntity extends AbstractEntity {
     private String processId;
     private String rootProcessId;
     private String rootProcessInstanceId;
-    @Type(value = JsonBlobType.class)
+    @Type(value = JsonBinaryType.class)
     private ObjectNode inputs;
-    @Type(value = JsonBlobType.class)
+    @Type(value = JsonBinaryType.class)
     private ObjectNode outputs;
     private String endpoint;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userTask")

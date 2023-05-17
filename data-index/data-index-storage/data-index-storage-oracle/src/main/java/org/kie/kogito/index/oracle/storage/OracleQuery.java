@@ -26,8 +26,8 @@ import jakarta.persistence.criteria.Order;
 import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import jakarta.persistence.metamodel.Attribute;
 
-import org.hibernate.metamodel.mapping.ordering.ast.PluralAttributePath;
 import org.kie.kogito.index.oracle.model.AbstractEntity;
 import org.kie.kogito.persistence.api.query.AttributeFilter;
 import org.kie.kogito.persistence.api.query.AttributeSort;
@@ -134,10 +134,10 @@ public class OracleQuery<E extends AbstractEntity, T> implements Query<T> {
                     return builder.equal(getAttributePath(root, attribute), value);
                 case IS_NULL:
                     Path pathNull = getAttributePath(root, attribute);
-                    return pathNull instanceof PluralAttributePath ? builder.isEmpty(pathNull) : builder.isNull(pathNull);
+                    return isPluralAttribute(attribute) ? builder.isEmpty(pathNull) : builder.isNull(pathNull);
                 case NOT_NULL:
                     Path pathNotNull = getAttributePath(root, attribute);
-                    return pathNotNull instanceof PluralAttributePath ? builder.isNotEmpty(pathNotNull) : builder.isNotNull(pathNotNull);
+                    return isPluralAttribute(attribute) ? builder.isNotEmpty(pathNotNull) : builder.isNotNull(pathNotNull);
                 case BETWEEN:
                     List<Object> v = (List<Object>) value;
                     return builder.between(getAttributePath(root, attribute), (Comparable) v.get(0),
@@ -174,6 +174,12 @@ public class OracleQuery<E extends AbstractEntity, T> implements Query<T> {
             join = join.join(split[i]);
         }
         return join.get(split[split.length - 1]);
+    }
+
+    private boolean isPluralAttribute(final String attribute) {
+        return this.repository.getEntityManager().getMetamodel().entity(this.entityClass).getDeclaredPluralAttributes().stream()
+                .map(Attribute::getName)
+                .anyMatch(pluralAttribute -> pluralAttribute.equals(attribute));
     }
 
     private List<Predicate> getRecursivePredicate(AttributeFilter<?> filter, Root<E> root, CriteriaBuilder builder) {
