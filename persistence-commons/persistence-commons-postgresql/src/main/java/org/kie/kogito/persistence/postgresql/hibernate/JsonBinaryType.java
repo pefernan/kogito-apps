@@ -31,8 +31,6 @@ import org.hibernate.usertype.UserType;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import static java.lang.String.format;
 
 public class JsonBinaryType implements UserType<JsonNode> {
@@ -69,7 +67,7 @@ public class JsonBinaryType implements UserType<JsonNode> {
         try {
             return mapper.readTree(json.getBytes("UTF-8"));
         } catch (final Exception ex) {
-            throw new RuntimeException("Failed to convert String to Invoice: " + ex.getMessage(), ex);
+            throw new RuntimeException("Failed to convert String to JSON: " + ex.getMessage(), ex);
         }
     }
 
@@ -80,14 +78,10 @@ public class JsonBinaryType implements UserType<JsonNode> {
             ps.setNull(index, Types.OTHER);
             return;
         }
-        if (value instanceof ObjectNode) {
-            try {
-                ps.setObject(index, value.toString(), Types.OTHER);
-            } catch (final Exception ex) {
-                throw new RuntimeException(format("Failed to convert JSON to String: %s", ex.getMessage()), ex);
-            }
-        } else {
-            throw new RuntimeException(format("Cannot convert type %s as JSON String", value.getClass().getCanonicalName()));
+        try {
+            ps.setObject(index, value.toString(), Types.OTHER);
+        } catch (final Exception ex) {
+            throw new RuntimeException(format("Failed to convert JSON to String: %s", ex.getMessage()), ex);
         }
     }
 
@@ -96,11 +90,7 @@ public class JsonBinaryType implements UserType<JsonNode> {
         if (value == null) {
             return null;
         }
-        if (value instanceof JsonNode) {
-            return ((JsonNode) value).deepCopy();
-        } else {
-            throw new RuntimeException(format("Cannot deep copy type %s", value.getClass().getCanonicalName()));
-        }
+        return value.deepCopy();
     }
 
     @Override

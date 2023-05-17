@@ -22,10 +22,13 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.hibernate.query.NativeQuery;
+import org.hibernate.type.CustomType;
+import org.hibernate.type.spi.TypeConfiguration;
 import org.kie.kogito.persistence.api.query.AttributeFilter;
 import org.kie.kogito.persistence.api.query.AttributeSort;
 import org.kie.kogito.persistence.api.query.FilterCondition;
 import org.kie.kogito.persistence.api.query.Query;
+import org.kie.kogito.persistence.oracle.hibernate.JsonBinaryType;
 import org.kie.kogito.persistence.oracle.model.CacheEntityRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -136,7 +139,7 @@ public class OracleQuery<T> implements Query<T> {
         jakarta.persistence.Query query = repository.getEntityManager()
                 .createNativeQuery(queryString.toString())
                 .unwrap(NativeQuery.class)
-                .addScalar("json_value", type); // TODO Quarkus 3: This does not work and should be fix in a next PR
+                .addScalar("json_value", new CustomType<>(new JsonBinaryType(), new TypeConfiguration()));
 
         if (limit != null) {
             query.setMaxResults(limit);

@@ -48,7 +48,6 @@
         <version.org.optaplanner>9.37.0.Final</version.org.optaplanner>
 
         <version.org.hibernate>6.2.0.Final</version.org.hibernate> <!-- Aligned with Quarkus bom -->
-        <version.io.hypersistence.hypersistence-utils-hibernate-62>3.3.2</version.io.hypersistence.hypersistence-utils-hibernate-62>
         <version.org.apache.opennlp>1.9.2</version.org.apache.opennlp>
         <version.org.apache.commons.csv>1.8</version.org.apache.commons.csv>
         <version.org.jredisearch>2.0.0</version.org.jredisearch>
@@ -176,11 +175,6 @@
                 <artifactId>jsonassert</artifactId>
                 <version>${version.org.skyscreamer}</version>
                 <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.hypersistence</groupId>
-                <artifactId>hypersistence-utils-hibernate-62</artifactId>
-                <version>${version.io.hypersistence.hypersistence-utils-hibernate-62}</version>
             </dependency>
             <dependency>
                 <groupId>com.graphql-java</groupId>
