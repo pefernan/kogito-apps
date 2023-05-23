@@ -18,7 +18,7 @@ package org.kie.kogito.jobs.service.management;
 import java.time.OffsetDateTime;
 import java.util.function.Function;
 
-import javax.enterprise.event.Event;
+import jakarta.enterprise.event.Event;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

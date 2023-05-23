@@ -17,7 +17,7 @@ package org.kie.kogito.jobs.service.messaging;
 
 import java.lang.reflect.Type;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import org.eclipse.microprofile.reactive.messaging.Message;
 import org.slf4j.Logger;
