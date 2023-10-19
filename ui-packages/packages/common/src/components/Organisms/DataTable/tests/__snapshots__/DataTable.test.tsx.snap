@@ -144,21 +144,21 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
       Array [
         Object {
           "cells": Array [
-            "travels",
-            "VisaApplication",
-            "1",
-            "9ae7ce3b-d49c-4f35-b843-8ac3d22fa427",
-            "Ready",
+            "N/A",
+            "N/A",
+            "N/A",
+            "N/A",
+            "N/A",
           ],
           "rowKey": 1,
         },
         Object {
           "cells": Array [
-            "travels",
-            "ConfirmTravel",
-            "1",
-            "9ae407dd-cdfa-4722-8a49-0a6d2e14550d",
-            "Ready",
+            "N/A",
+            "N/A",
+            "N/A",
+            "N/A",
+            "N/A",
           ],
           "rowKey": 2,
         },
@@ -1603,21 +1603,21 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                   Array [
                     Object {
                       "cells": Array [
-                        "travels",
-                        "VisaApplication",
-                        "1",
-                        "9ae7ce3b-d49c-4f35-b843-8ac3d22fa427",
-                        "Ready",
+                        "N/A",
+                        "N/A",
+                        "N/A",
+                        "N/A",
+                        "N/A",
                       ],
                       "rowKey": 1,
                     },
                     Object {
                       "cells": Array [
-                        "travels",
-                        "ConfirmTravel",
-                        "1",
-                        "9ae407dd-cdfa-4722-8a49-0a6d2e14550d",
-                        "Ready",
+                        "N/A",
+                        "N/A",
+                        "N/A",
+                        "N/A",
+                        "N/A",
                       ],
                       "rowKey": 2,
                     },
@@ -1631,11 +1631,11 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                     Array [
                       Object {
                         "cells": Array [
-                          "travels",
-                          "VisaApplication",
-                          "1",
-                          "9ae7ce3b-d49c-4f35-b843-8ac3d22fa427",
-                          "Ready",
+                          "N/A",
+                          "N/A",
+                          "N/A",
+                          "N/A",
+                          "N/A",
                         ],
                         "isExpanded": undefined,
                         "isFirst": true,
@@ -1648,28 +1648,28 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                           "props": Object {
                             "isVisible": true,
                           },
-                          "title": "VisaApplication",
+                          "title": "N/A",
                         },
                         "priority": Object {
                           "formatters": Array [],
                           "props": Object {
                             "isVisible": true,
                           },
-                          "title": "1",
+                          "title": "N/A",
                         },
                         "processid": Object {
                           "formatters": Array [],
                           "props": Object {
                             "isVisible": true,
                           },
-                          "title": "travels",
+                          "title": "N/A",
                         },
                         "processinstanceid": Object {
                           "formatters": Array [],
                           "props": Object {
                             "isVisible": true,
                           },
-                          "title": "9ae7ce3b-d49c-4f35-b843-8ac3d22fa427",
+                          "title": "N/A",
                         },
                         "rowKey": 1,
                         "secretTableRowKeyId": 0,
@@ -1678,16 +1678,16 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                           "props": Object {
                             "isVisible": true,
                           },
-                          "title": "Ready",
+                          "title": "N/A",
                         },
                       },
                       Object {
                         "cells": Array [
-                          "travels",
-                          "ConfirmTravel",
-                          "1",
-                          "9ae407dd-cdfa-4722-8a49-0a6d2e14550d",
-                          "Ready",
+                          "N/A",
+                          "N/A",
+                          "N/A",
+                          "N/A",
+                          "N/A",
                         ],
                         "isExpanded": undefined,
                         "isFirst": false,
@@ -1700,28 +1700,28 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                           "props": Object {
                             "isVisible": true,
                           },
-                          "title": "ConfirmTravel",
+                          "title": "N/A",
                         },
                         "priority": Object {
                           "formatters": Array [],
                           "props": Object {
                             "isVisible": true,
                           },
-                          "title": "1",
+                          "title": "N/A",
                         },
                         "processid": Object {
                           "formatters": Array [],
                           "props": Object {
                             "isVisible": true,
                           },
-                          "title": "travels",
+                          "title": "N/A",
                         },
                         "processinstanceid": Object {
                           "formatters": Array [],
                           "props": Object {
                             "isVisible": true,
                           },
-                          "title": "9ae407dd-cdfa-4722-8a49-0a6d2e14550d",
+                          "title": "N/A",
                         },
                         "rowKey": 2,
                         "secretTableRowKeyId": 1,
@@ -1730,7 +1730,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                           "props": Object {
                             "isVisible": true,
                           },
-                          "title": "Ready",
+                          "title": "N/A",
                         },
                       },
                     ]
@@ -1741,11 +1741,11 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                     Array [
                       Object {
                         "cells": Array [
-                          "travels",
-                          "VisaApplication",
-                          "1",
-                          "9ae7ce3b-d49c-4f35-b843-8ac3d22fa427",
-                          "Ready",
+                          "N/A",
+                          "N/A",
+                          "N/A",
+                          "N/A",
+                          "N/A",
                         ],
                         "isExpanded": undefined,
                         "isFirst": true,
@@ -1758,28 +1758,28 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                           "props": Object {
                             "isVisible": true,
                           },
-                          "title": "VisaApplication",
+                          "title": "N/A",
                         },
                         "priority": Object {
                           "formatters": Array [],
                           "props": Object {
                             "isVisible": true,
                           },
-                          "title": "1",
+                          "title": "N/A",
                         },
                         "processid": Object {
                           "formatters": Array [],
                           "props": Object {
                             "isVisible": true,
                           },
-                          "title": "travels",
+                          "title": "N/A",
                         },
                         "processinstanceid": Object {
                           "formatters": Array [],
                           "props": Object {
                             "isVisible": true,
                           },
-                          "title": "9ae7ce3b-d49c-4f35-b843-8ac3d22fa427",
+                          "title": "N/A",
                         },
                         "rowKey": 1,
                         "secretTableRowKeyId": 0,
@@ -1788,16 +1788,16 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                           "props": Object {
                             "isVisible": true,
                           },
-                          "title": "Ready",
+                          "title": "N/A",
                         },
                       },
                       Object {
                         "cells": Array [
-                          "travels",
-                          "ConfirmTravel",
-                          "1",
-                          "9ae407dd-cdfa-4722-8a49-0a6d2e14550d",
-                          "Ready",
+                          "N/A",
+                          "N/A",
+                          "N/A",
+                          "N/A",
+                          "N/A",
                         ],
                         "isExpanded": undefined,
                         "isFirst": false,
@@ -1810,28 +1810,28 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                           "props": Object {
                             "isVisible": true,
                           },
-                          "title": "ConfirmTravel",
+                          "title": "N/A",
                         },
                         "priority": Object {
                           "formatters": Array [],
                           "props": Object {
                             "isVisible": true,
                           },
-                          "title": "1",
+                          "title": "N/A",
                         },
                         "processid": Object {
                           "formatters": Array [],
                           "props": Object {
                             "isVisible": true,
                           },
-                          "title": "travels",
+                          "title": "N/A",
                         },
                         "processinstanceid": Object {
                           "formatters": Array [],
                           "props": Object {
                             "isVisible": true,
                           },
-                          "title": "9ae407dd-cdfa-4722-8a49-0a6d2e14550d",
+                          "title": "N/A",
                         },
                         "rowKey": 2,
                         "secretTableRowKeyId": 1,
@@ -1840,7 +1840,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                           "props": Object {
                             "isVisible": true,
                           },
-                          "title": "Ready",
+                          "title": "N/A",
                         },
                       },
                     ]
@@ -2095,11 +2095,11 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                       Array [
                         Object {
                           "cells": Array [
-                            "travels",
-                            "VisaApplication",
-                            "1",
-                            "9ae7ce3b-d49c-4f35-b843-8ac3d22fa427",
-                            "Ready",
+                            "N/A",
+                            "N/A",
+                            "N/A",
+                            "N/A",
+                            "N/A",
                           ],
                           "isExpanded": undefined,
                           "isFirst": true,
@@ -2112,28 +2112,28 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                             "props": Object {
                               "isVisible": true,
                             },
-                            "title": "VisaApplication",
+                            "title": "N/A",
                           },
                           "priority": Object {
                             "formatters": Array [],
                             "props": Object {
                               "isVisible": true,
                             },
-                            "title": "1",
+                            "title": "N/A",
                           },
                           "processid": Object {
                             "formatters": Array [],
                             "props": Object {
                               "isVisible": true,
                             },
-                            "title": "travels",
+                            "title": "N/A",
                           },
                           "processinstanceid": Object {
                             "formatters": Array [],
                             "props": Object {
                               "isVisible": true,
                             },
-                            "title": "9ae7ce3b-d49c-4f35-b843-8ac3d22fa427",
+                            "title": "N/A",
                           },
                           "rowKey": 1,
                           "secretTableRowKeyId": 0,
@@ -2142,16 +2142,16 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                             "props": Object {
                               "isVisible": true,
                             },
-                            "title": "Ready",
+                            "title": "N/A",
                           },
                         },
                         Object {
                           "cells": Array [
-                            "travels",
-                            "ConfirmTravel",
-                            "1",
-                            "9ae407dd-cdfa-4722-8a49-0a6d2e14550d",
-                            "Ready",
+                            "N/A",
+                            "N/A",
+                            "N/A",
+                            "N/A",
+                            "N/A",
                           ],
                           "isExpanded": undefined,
                           "isFirst": false,
@@ -2164,28 +2164,28 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                             "props": Object {
                               "isVisible": true,
                             },
-                            "title": "ConfirmTravel",
+                            "title": "N/A",
                           },
                           "priority": Object {
                             "formatters": Array [],
                             "props": Object {
                               "isVisible": true,
                             },
-                            "title": "1",
+                            "title": "N/A",
                           },
                           "processid": Object {
                             "formatters": Array [],
                             "props": Object {
                               "isVisible": true,
                             },
-                            "title": "travels",
+                            "title": "N/A",
                           },
                           "processinstanceid": Object {
                             "formatters": Array [],
                             "props": Object {
                               "isVisible": true,
                             },
-                            "title": "9ae407dd-cdfa-4722-8a49-0a6d2e14550d",
+                            "title": "N/A",
                           },
                           "rowKey": 2,
                           "secretTableRowKeyId": 1,
@@ -2194,7 +2194,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                             "props": Object {
                               "isVisible": true,
                             },
-                            "title": "Ready",
+                            "title": "N/A",
                           },
                         },
                       ]
@@ -2232,11 +2232,11 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                       Array [
                         Object {
                           "cells": Array [
-                            "travels",
-                            "VisaApplication",
-                            "1",
-                            "9ae7ce3b-d49c-4f35-b843-8ac3d22fa427",
-                            "Ready",
+                            "N/A",
+                            "N/A",
+                            "N/A",
+                            "N/A",
+                            "N/A",
                           ],
                           "isExpanded": undefined,
                           "isFirst": true,
@@ -2249,28 +2249,28 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                             "props": Object {
                               "isVisible": true,
                             },
-                            "title": "VisaApplication",
+                            "title": "N/A",
                           },
                           "priority": Object {
                             "formatters": Array [],
                             "props": Object {
                               "isVisible": true,
                             },
-                            "title": "1",
+                            "title": "N/A",
                           },
                           "processid": Object {
                             "formatters": Array [],
                             "props": Object {
                               "isVisible": true,
                             },
-                            "title": "travels",
+                            "title": "N/A",
                           },
                           "processinstanceid": Object {
                             "formatters": Array [],
                             "props": Object {
                               "isVisible": true,
                             },
-                            "title": "9ae7ce3b-d49c-4f35-b843-8ac3d22fa427",
+                            "title": "N/A",
                           },
                           "rowKey": 1,
                           "secretTableRowKeyId": 0,
@@ -2279,16 +2279,16 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                             "props": Object {
                               "isVisible": true,
                             },
-                            "title": "Ready",
+                            "title": "N/A",
                           },
                         },
                         Object {
                           "cells": Array [
-                            "travels",
-                            "ConfirmTravel",
-                            "1",
-                            "9ae407dd-cdfa-4722-8a49-0a6d2e14550d",
-                            "Ready",
+                            "N/A",
+                            "N/A",
+                            "N/A",
+                            "N/A",
+                            "N/A",
                           ],
                           "isExpanded": undefined,
                           "isFirst": false,
@@ -2301,28 +2301,28 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                             "props": Object {
                               "isVisible": true,
                             },
-                            "title": "ConfirmTravel",
+                            "title": "N/A",
                           },
                           "priority": Object {
                             "formatters": Array [],
                             "props": Object {
                               "isVisible": true,
                             },
-                            "title": "1",
+                            "title": "N/A",
                           },
                           "processid": Object {
                             "formatters": Array [],
                             "props": Object {
                               "isVisible": true,
                             },
-                            "title": "travels",
+                            "title": "N/A",
                           },
                           "processinstanceid": Object {
                             "formatters": Array [],
                             "props": Object {
                               "isVisible": true,
                             },
-                            "title": "9ae407dd-cdfa-4722-8a49-0a6d2e14550d",
+                            "title": "N/A",
                           },
                           "rowKey": 2,
                           "secretTableRowKeyId": 1,
@@ -2331,7 +2331,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                             "props": Object {
                               "isVisible": true,
                             },
-                            "title": "Ready",
+                            "title": "N/A",
                           },
                         },
                       ]
@@ -2344,11 +2344,11 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                         Array [
                           Object {
                             "cells": Array [
-                              "travels",
-                              "VisaApplication",
-                              "1",
-                              "9ae7ce3b-d49c-4f35-b843-8ac3d22fa427",
-                              "Ready",
+                              "N/A",
+                              "N/A",
+                              "N/A",
+                              "N/A",
+                              "N/A",
                             ],
                             "isExpanded": undefined,
                             "isFirst": true,
@@ -2361,28 +2361,28 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                               "props": Object {
                                 "isVisible": true,
                               },
-                              "title": "VisaApplication",
+                              "title": "N/A",
                             },
                             "priority": Object {
                               "formatters": Array [],
                               "props": Object {
                                 "isVisible": true,
                               },
-                              "title": "1",
+                              "title": "N/A",
                             },
                             "processid": Object {
                               "formatters": Array [],
                               "props": Object {
                                 "isVisible": true,
                               },
-                              "title": "travels",
+                              "title": "N/A",
                             },
                             "processinstanceid": Object {
                               "formatters": Array [],
                               "props": Object {
                                 "isVisible": true,
                               },
-                              "title": "9ae7ce3b-d49c-4f35-b843-8ac3d22fa427",
+                              "title": "N/A",
                             },
                             "rowKey": 1,
                             "secretTableRowKeyId": 0,
@@ -2391,16 +2391,16 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                               "props": Object {
                                 "isVisible": true,
                               },
-                              "title": "Ready",
+                              "title": "N/A",
                             },
                           },
                           Object {
                             "cells": Array [
-                              "travels",
-                              "ConfirmTravel",
-                              "1",
-                              "9ae407dd-cdfa-4722-8a49-0a6d2e14550d",
-                              "Ready",
+                              "N/A",
+                              "N/A",
+                              "N/A",
+                              "N/A",
+                              "N/A",
                             ],
                             "isExpanded": undefined,
                             "isFirst": false,
@@ -2413,28 +2413,28 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                               "props": Object {
                                 "isVisible": true,
                               },
-                              "title": "ConfirmTravel",
+                              "title": "N/A",
                             },
                             "priority": Object {
                               "formatters": Array [],
                               "props": Object {
                                 "isVisible": true,
                               },
-                              "title": "1",
+                              "title": "N/A",
                             },
                             "processid": Object {
                               "formatters": Array [],
                               "props": Object {
                                 "isVisible": true,
                               },
-                              "title": "travels",
+                              "title": "N/A",
                             },
                             "processinstanceid": Object {
                               "formatters": Array [],
                               "props": Object {
                                 "isVisible": true,
                               },
-                              "title": "9ae407dd-cdfa-4722-8a49-0a6d2e14550d",
+                              "title": "N/A",
                             },
                             "rowKey": 2,
                             "secretTableRowKeyId": 1,
@@ -2443,7 +2443,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                               "props": Object {
                                 "isVisible": true,
                               },
-                              "title": "Ready",
+                              "title": "N/A",
                             },
                           },
                         ]
@@ -2715,11 +2715,11 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                               rowData={
                                 Object {
                                   "cells": Array [
-                                    "travels",
-                                    "VisaApplication",
-                                    "1",
-                                    "9ae7ce3b-d49c-4f35-b843-8ac3d22fa427",
-                                    "Ready",
+                                    "N/A",
+                                    "N/A",
+                                    "N/A",
+                                    "N/A",
+                                    "N/A",
                                   ],
                                   "isExpanded": undefined,
                                   "isFirst": true,
@@ -2732,28 +2732,28 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                     "props": Object {
                                       "isVisible": true,
                                     },
-                                    "title": "VisaApplication",
+                                    "title": "N/A",
                                   },
                                   "priority": Object {
                                     "formatters": Array [],
                                     "props": Object {
                                       "isVisible": true,
                                     },
-                                    "title": "1",
+                                    "title": "N/A",
                                   },
                                   "processid": Object {
                                     "formatters": Array [],
                                     "props": Object {
                                       "isVisible": true,
                                     },
-                                    "title": "travels",
+                                    "title": "N/A",
                                   },
                                   "processinstanceid": Object {
                                     "formatters": Array [],
                                     "props": Object {
                                       "isVisible": true,
                                     },
-                                    "title": "9ae7ce3b-d49c-4f35-b843-8ac3d22fa427",
+                                    "title": "N/A",
                                   },
                                   "rowKey": 1,
                                   "secretTableRowKeyId": 0,
@@ -2762,7 +2762,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                     "props": Object {
                                       "isVisible": true,
                                     },
-                                    "title": "Ready",
+                                    "title": "N/A",
                                   },
                                 }
                               }
@@ -2775,11 +2775,11 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                 row={
                                   Object {
                                     "cells": Array [
-                                      "travels",
-                                      "VisaApplication",
-                                      "1",
-                                      "9ae7ce3b-d49c-4f35-b843-8ac3d22fa427",
-                                      "Ready",
+                                      "N/A",
+                                      "N/A",
+                                      "N/A",
+                                      "N/A",
+                                      "N/A",
                                     ],
                                     "isExpanded": undefined,
                                     "isFirst": true,
@@ -2792,28 +2792,28 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                       "props": Object {
                                         "isVisible": true,
                                       },
-                                      "title": "VisaApplication",
+                                      "title": "N/A",
                                     },
                                     "priority": Object {
                                       "formatters": Array [],
                                       "props": Object {
                                         "isVisible": true,
                                       },
-                                      "title": "1",
+                                      "title": "N/A",
                                     },
                                     "processid": Object {
                                       "formatters": Array [],
                                       "props": Object {
                                         "isVisible": true,
                                       },
-                                      "title": "travels",
+                                      "title": "N/A",
                                     },
                                     "processinstanceid": Object {
                                       "formatters": Array [],
                                       "props": Object {
                                         "isVisible": true,
                                       },
-                                      "title": "9ae7ce3b-d49c-4f35-b843-8ac3d22fa427",
+                                      "title": "N/A",
                                     },
                                     "rowKey": 1,
                                     "secretTableRowKeyId": 0,
@@ -2822,7 +2822,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                       "props": Object {
                                         "isVisible": true,
                                       },
-                                      "title": "Ready",
+                                      "title": "N/A",
                                     },
                                   }
                                 }
@@ -2879,7 +2879,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                               data-label="ProcessId"
                                               onMouseEnter={[Function]}
                                             >
-                                              travels
+                                              N/A
                                             </td>
                                           </TdBase>
                                         </Td>
@@ -2913,7 +2913,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                               data-label="Name"
                                               onMouseEnter={[Function]}
                                             >
-                                              VisaApplication
+                                              N/A
                                             </td>
                                           </TdBase>
                                         </Td>
@@ -2947,7 +2947,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                               data-label="Priority"
                                               onMouseEnter={[Function]}
                                             >
-                                              1
+                                              N/A
                                             </td>
                                           </TdBase>
                                         </Td>
@@ -2981,7 +2981,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                               data-label="ProcessInstanceId"
                                               onMouseEnter={[Function]}
                                             >
-                                              9ae7ce3b-d49c-4f35-b843-8ac3d22fa427
+                                              N/A
                                             </td>
                                           </TdBase>
                                         </Td>
@@ -3022,7 +3022,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                                   <span
                                                     className="pf-c-label__content"
                                                   >
-                                                    Ready
+                                                    N/A
                                                   </span>
                                                 </span>
                                               </Label>
@@ -3290,11 +3290,11 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                               rowData={
                                 Object {
                                   "cells": Array [
-                                    "travels",
-                                    "ConfirmTravel",
-                                    "1",
-                                    "9ae407dd-cdfa-4722-8a49-0a6d2e14550d",
-                                    "Ready",
+                                    "N/A",
+                                    "N/A",
+                                    "N/A",
+                                    "N/A",
+                                    "N/A",
                                   ],
                                   "isExpanded": undefined,
                                   "isFirst": false,
@@ -3307,28 +3307,28 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                     "props": Object {
                                       "isVisible": true,
                                     },
-                                    "title": "ConfirmTravel",
+                                    "title": "N/A",
                                   },
                                   "priority": Object {
                                     "formatters": Array [],
                                     "props": Object {
                                       "isVisible": true,
                                     },
-                                    "title": "1",
+                                    "title": "N/A",
                                   },
                                   "processid": Object {
                                     "formatters": Array [],
                                     "props": Object {
                                       "isVisible": true,
                                     },
-                                    "title": "travels",
+                                    "title": "N/A",
                                   },
                                   "processinstanceid": Object {
                                     "formatters": Array [],
                                     "props": Object {
                                       "isVisible": true,
                                     },
-                                    "title": "9ae407dd-cdfa-4722-8a49-0a6d2e14550d",
+                                    "title": "N/A",
                                   },
                                   "rowKey": 2,
                                   "secretTableRowKeyId": 1,
@@ -3337,7 +3337,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                     "props": Object {
                                       "isVisible": true,
                                     },
-                                    "title": "Ready",
+                                    "title": "N/A",
                                   },
                                 }
                               }
@@ -3350,11 +3350,11 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                 row={
                                   Object {
                                     "cells": Array [
-                                      "travels",
-                                      "ConfirmTravel",
-                                      "1",
-                                      "9ae407dd-cdfa-4722-8a49-0a6d2e14550d",
-                                      "Ready",
+                                      "N/A",
+                                      "N/A",
+                                      "N/A",
+                                      "N/A",
+                                      "N/A",
                                     ],
                                     "isExpanded": undefined,
                                     "isFirst": false,
@@ -3367,28 +3367,28 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                       "props": Object {
                                         "isVisible": true,
                                       },
-                                      "title": "ConfirmTravel",
+                                      "title": "N/A",
                                     },
                                     "priority": Object {
                                       "formatters": Array [],
                                       "props": Object {
                                         "isVisible": true,
                                       },
-                                      "title": "1",
+                                      "title": "N/A",
                                     },
                                     "processid": Object {
                                       "formatters": Array [],
                                       "props": Object {
                                         "isVisible": true,
                                       },
-                                      "title": "travels",
+                                      "title": "N/A",
                                     },
                                     "processinstanceid": Object {
                                       "formatters": Array [],
                                       "props": Object {
                                         "isVisible": true,
                                       },
-                                      "title": "9ae407dd-cdfa-4722-8a49-0a6d2e14550d",
+                                      "title": "N/A",
                                     },
                                     "rowKey": 2,
                                     "secretTableRowKeyId": 1,
@@ -3397,7 +3397,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                       "props": Object {
                                         "isVisible": true,
                                       },
-                                      "title": "Ready",
+                                      "title": "N/A",
                                     },
                                   }
                                 }
@@ -3454,7 +3454,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                               data-label="ProcessId"
                                               onMouseEnter={[Function]}
                                             >
-                                              travels
+                                              N/A
                                             </td>
                                           </TdBase>
                                         </Td>
@@ -3488,7 +3488,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                               data-label="Name"
                                               onMouseEnter={[Function]}
                                             >
-                                              ConfirmTravel
+                                              N/A
                                             </td>
                                           </TdBase>
                                         </Td>
@@ -3522,7 +3522,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                               data-label="Priority"
                                               onMouseEnter={[Function]}
                                             >
-                                              1
+                                              N/A
                                             </td>
                                           </TdBase>
                                         </Td>
@@ -3556,7 +3556,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                               data-label="ProcessInstanceId"
                                               onMouseEnter={[Function]}
                                             >
-                                              9ae407dd-cdfa-4722-8a49-0a6d2e14550d
+                                              N/A
                                             </td>
                                           </TdBase>
                                         </Td>
@@ -3597,7 +3597,7 @@ exports[`DataTable component tests Should render DataTable correctly 1`] = `
                                                   <span
                                                     className="pf-c-label__content"
                                                   >
-                                                    Ready
+                                                    N/A
                                                   </span>
                                                 </span>
                                               </Label>
