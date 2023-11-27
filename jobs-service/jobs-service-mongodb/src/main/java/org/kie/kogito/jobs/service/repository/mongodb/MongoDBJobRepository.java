@@ -21,9 +21,9 @@ package org.kie.kogito.jobs.service.repository.mongodb;
 import java.time.ZonedDateTime;
 import java.util.concurrent.CompletionStage;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.Observes;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.event.Observes;
+import jakarta.inject.Inject;
 
 import org.bson.Document;
 import org.bson.json.JsonWriterSettings;

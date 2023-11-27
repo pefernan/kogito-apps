@@ -18,6 +18,17 @@
  */
 package org.kie.kogito.index;
 
+import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.config.JsonConfig;
+import io.restassured.http.ContentType;
+import io.restassured.path.json.config.JsonPathConfig;
+import io.restassured.response.ValidatableResponse;
+import io.restassured.specification.RequestSpecification;
+import org.junit.jupiter.api.Test;
+import org.testcontainers.shaded.com.fasterxml.jackson.databind.JsonNode;
+import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
@@ -30,33 +41,16 @@ import java.time.temporal.ChronoUnit;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
-import org.junit.jupiter.api.Test;
-import org.testcontainers.shaded.com.fasterxml.jackson.databind.JsonNode;
-import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
-
-import io.restassured.RestAssured;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.config.JsonConfig;
-import io.restassured.http.ContentType;
-import io.restassured.path.json.config.JsonPathConfig;
-import io.restassured.response.ValidatableResponse;
-import io.restassured.specification.RequestSpecification;
-
 import static io.restassured.RestAssured.given;
 import static java.util.Collections.singletonMap;
 import static org.awaitility.Awaitility.await;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public abstract class AbstractProcessDataIndexIT {
 
-    private static Duration TIMEOUT = Duration.ofSeconds(30);
+    private static final Duration TIMEOUT = Duration.ofSeconds(30);
 
     static {
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
@@ -112,7 +106,7 @@ public abstract class AbstractProcessDataIndexIT {
                 .get("/approvals/{processId}/tasks")
                 .then()
                 .statusCode(200)
-                .body("$.size()", is(1))
+                .body("size()", is(1))
                 .body("[0].name", is("firstLineApproval"))
                 .body("[0].id", notNullValue())
                 .extract()
@@ -206,7 +200,7 @@ public abstract class AbstractProcessDataIndexIT {
                 .get("/approvals/{processId}/tasks")
                 .then()
                 .statusCode(200)
-                .body("$.size()", is(1))
+                .body("size()", is(1))
                 .body("[0].name", is("secondLineApproval"))
                 .body("[0].id", notNullValue())
                 .extract()
@@ -473,7 +467,7 @@ public abstract class AbstractProcessDataIndexIT {
                         .get("/approvals/{id}/firstLineApproval/{taskId}/comments")
                         .then()
                         .statusCode(200)
-                        .body("$.size()", is(1))
+                        .body("size()", is(1))
                         .body("[0].content", is(commentContent)));
 
         await()

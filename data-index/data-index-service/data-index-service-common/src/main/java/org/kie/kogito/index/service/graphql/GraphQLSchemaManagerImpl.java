@@ -24,8 +24,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import org.kie.kogito.index.graphql.AbstractGraphQLSchemaManager;
 import org.kie.kogito.index.graphql.query.GraphQLQueryParserRegistry;
@@ -33,6 +32,7 @@ import org.kie.kogito.index.json.DataIndexParsingException;
 import org.kie.kogito.index.model.ProcessInstanceState;
 import org.kie.kogito.index.service.DataIndexServiceException;
 import org.kie.kogito.persistence.api.Storage;
+import jakarta.annotation.PostConstruct;
 import org.reactivestreams.Publisher;
 
 import com.fasterxml.jackson.databind.JsonNode;

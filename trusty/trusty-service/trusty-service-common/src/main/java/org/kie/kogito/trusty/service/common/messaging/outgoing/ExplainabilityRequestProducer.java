@@ -21,7 +21,7 @@ package org.kie.kogito.trusty.service.common.messaging.outgoing;
 import java.net.URI;
 import java.util.Optional;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import org.eclipse.microprofile.reactive.messaging.Outgoing;
 import org.kie.kogito.event.cloudevents.utils.CloudEventUtils;
