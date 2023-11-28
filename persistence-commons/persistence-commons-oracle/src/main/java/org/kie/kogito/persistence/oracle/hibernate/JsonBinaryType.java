@@ -37,7 +37,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static java.lang.String.format;
 
-public class JsonBinaryType implements UserType<JsonNode>  {
+public class JsonBinaryType implements UserType<JsonNode> {
 
     private ObjectMapper mapper = new ObjectMapper();
 
@@ -52,7 +52,7 @@ public class JsonBinaryType implements UserType<JsonNode>  {
     }
 
     @Override
-    public boolean equals(JsonNode x, JsonNode y) throws HibernateException  {
+    public boolean equals(JsonNode x, JsonNode y) throws HibernateException {
         return Objects.equals(x, y);
     }
 

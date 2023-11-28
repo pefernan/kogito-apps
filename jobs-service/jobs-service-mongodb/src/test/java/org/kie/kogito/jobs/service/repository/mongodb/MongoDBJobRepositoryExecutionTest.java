@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
+import java.util.concurrent.Flow;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -127,7 +128,7 @@ class MongoDBJobRepositoryExecutionTest {
         MultiConvert convertMulti = mock(MultiConvert.class);
         when(multi.emitOn(any())).thenReturn(multi);
         when(multi.convert()).thenReturn(convertMulti);
-        Publisher publisher = mock(Publisher.class);
+        Flow.Publisher publisher = mock(Flow.Publisher.class);
         when(convertMulti.toPublisher()).thenReturn(publisher);
 
         completableFuture = mock(CompletableFuture.class);
