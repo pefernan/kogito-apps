@@ -75,7 +75,6 @@ public class ProcessInstanceNodeDataEventMerger implements ProcessInstanceEventM
                 // we do nothing
                 break;
             default:
-
                 nodeInstance.setExit(toZonedDateTime(body.getEventDate()));
 
                 if (nodeInstance.getEnter() == null) {
