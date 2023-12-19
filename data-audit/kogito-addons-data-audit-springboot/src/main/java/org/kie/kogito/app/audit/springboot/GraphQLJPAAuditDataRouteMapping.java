@@ -20,7 +20,7 @@ package org.kie.kogito.app.audit.springboot;
 
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 import org.kie.kogito.app.audit.api.DataAuditQueryService;
 import org.kie.kogito.app.audit.spi.DataAuditContextFactory;

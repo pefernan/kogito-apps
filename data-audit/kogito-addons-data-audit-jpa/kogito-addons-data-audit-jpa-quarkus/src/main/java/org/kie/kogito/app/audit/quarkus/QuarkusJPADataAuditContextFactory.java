@@ -18,12 +18,13 @@
  */
 package org.kie.kogito.app.audit.quarkus;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.kie.kogito.app.audit.api.DataAuditContext;
 import org.kie.kogito.app.audit.spi.DataAuditContextFactory;
+
+import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class QuarkusJPADataAuditContextFactory implements DataAuditContextFactory {
