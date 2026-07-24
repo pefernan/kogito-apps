@@ -25,12 +25,18 @@ import org.kie.kogito.index.jpa.model.ProcessDefinitionEntity;
 import org.kie.kogito.index.model.ProcessDefinition;
 import org.kie.kogito.index.model.ProcessDefinitionKey;
 import org.kie.kogito.process.Processes;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceException;
+import jakarta.transaction.Transactional;
 
 import static org.kie.kogito.index.DependencyInjectionUtils.getInstance;
 
 public class ProcessDefinitionEntityStorage extends AbstractStorage<ProcessDefinitionKey, ProcessDefinitionEntity, ProcessDefinition> {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProcessDefinitionEntityStorage.class);
 
     protected ProcessDefinitionEntityStorage() {
     }
@@ -44,4 +50,18 @@ public class ProcessDefinitionEntityStorage extends AbstractStorage<ProcessDefin
                 e.getVersion()), Optional.ofNullable(getInstance(predicateBuilder)), Optional.ofNullable(getInstance(processes)));
     }
 
+    @Override
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
+    public ProcessDefinition put(ProcessDefinitionKey key, ProcessDefinition value) {
+        try {
+            super.put(key, value);
+            em.flush();
+            return value;
+        } catch (PersistenceException e) {
+            LOGGER.info("ProcessDefinition with id '{}' and version '{}' is already present in the database, skipping insert.",
+                    key.getId(), key.getVersion());
+            LOGGER.debug("Duplicate ProcessDefinition insert suppressed", e);
+            return get(key);
+        }
+    }
 }
